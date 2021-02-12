@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import { Categories } from "./pages/categories";
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 
@@ -30,6 +31,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/about">
 							<About />
+						</Route>
+						<Route exact path="/categories">
+							<Categories />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
