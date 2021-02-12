@@ -36,6 +36,9 @@ const Layout = () => {
 						<Route exact path="/pagina-marca">
 							<Marca />
 						</Route>
+						<Route exact path="/categories">
+							<Categories />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
