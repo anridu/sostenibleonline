@@ -1,20 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/home.scss";
+import logo from "../../img/logo.png";
+import { Navbar, Nav, Button, Form, FormControl } from "react-bootstrap";
 
-export const Navbar = () => {
+export const TopNav = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">SostenibleOnline</span>
-			</Link>
-
-			<Link to="/">Home</Link>
-
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
-		</nav>
+		<Navbar bg="light" expand="lg">
+			<Navbar.Brand href="#home" className="brand-name">
+				<img src={logo} className="logo" />
+				SostenibleOnline
+			</Navbar.Brand>
+			<Navbar.Toggle aria-controls="basic-navbar-nav" />
+			<Navbar.Collapse id="basic-navbar-nav">
+				<Nav className="mr-auto">
+					<Nav.Link href="/categories">Categorias</Nav.Link>
+					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
+					<Nav.Link href="#Contacto">Contacto</Nav.Link>
+				</Nav>
+				<Form inline>
+					<FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" />
+					<Button variant="outline-success">Buscar</Button>
+				</Form>
+			</Navbar.Collapse>
+		</Navbar>
 	);
 };
