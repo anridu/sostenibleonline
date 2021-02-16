@@ -71,7 +71,23 @@ export const ProductForm = () => {
 					<Form.Control as="textarea" rows={3} />
 				</Form.Group>
 				<Form.Group id="formGridCheckbox">
-					<Form.Check type="checkbox" label="Check me out" />
+					<p>¿De qué sellos de sostenibilidad dispone el producto?</p>
+					<Form.Check type="checkbox" label="EU Ecolabel" />
+				</Form.Group>
+				<Form.Group id="formGridCheckbox">
+					<Form.Check type="checkbox" label="BIO Cotton" />
+				</Form.Group>
+				<Form.Group id="formGridCheckbox">
+					<Form.Check type="checkbox" label="Fairtrade" />
+				</Form.Group>
+				<Form.Group id="formGridCheckbox">
+					<Form.Check type="checkbox" label="STeP by OEKO-TEX®" />
+				</Form.Group>
+				<Form.Group id="formGridCheckbox">
+					<Form.Check type="checkbox" label="PETA Approved Vegan" />
+				</Form.Group>
+				<Form.Group id="formGridCheckbox">
+					<Form.Check type="checkbox" label="GLOBAL ORGANIC TEXTILE STANDARD" />
 				</Form.Group>
 
 				<Button variant="primary" type="submit">
