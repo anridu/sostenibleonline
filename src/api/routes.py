@@ -25,17 +25,17 @@ def handle_products():
 
     return jsonify(all_products), 200
 
-# @api.route('/product', methods=['POST'])
-# def post_products():
-#     body = request.get_json()
+@api.route('/products', methods=['POST'])
+def post_products():
+    body = request.get_json()
 
-#     new_product = Product(product_name=bodypostman['product_name'], web=body['web'], quantity=body['quantity'], size=body['size'])
+    new_product = Product(product_name=body['productName'], web=body['web'], quantity=body['quantity'], size=body['size'])
     
-#     print(new_product)
-#     db.session.add(new_product)
-#     db.session.commit()
+    print(new_product)
+    db.session.add(new_product)
+    db.session.commit()
 
-#     return jsonify("Hola"), 200
+    return jsonify("Hola"), 200
 
 # @api.route('/product/<int:id>', methods=['DELETE'])
 # def delete_products(id):
