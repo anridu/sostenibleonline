@@ -17,6 +17,12 @@ export const TopNav = () => {
 					<Nav.Link href="/categories">Categorias</Nav.Link>
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
 					<Nav.Link href="#Contacto">Contacto</Nav.Link>
+					<Nav.Link href="#Contacto">
+						<i className="fas fa-shopping-cart" />
+					</Nav.Link>
+					<Nav.Link href="#Contacto">
+						<button className="btn btn-success">Registro</button>
+					</Nav.Link>
 				</Nav>
 				<Form inline>
 					<FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" />

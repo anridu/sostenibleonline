@@ -4,6 +4,17 @@ import { Context } from "../store/appContext";
 
 export const Registro = () => {
 	const { store, actions } = useContext(Context);
+	const [commercialName, setCommercialName] = useState("");
+	const [website, setWebsite] = useState("");
+	const [logo, setLogo] = useState("");
+	const [person, setPerson] = useState("");
+	const [email, setEmail] = useState("");
+	const [address, setAddress] = useState("");
+	const [city, setCity] = useState("");
+	const [region, setRegion] = useState("");
+	const [zipCode, setZipCode] = useState("");
+	const [description, setDescription] = useState("");
+	const [check, setCheck] = useState([]);
 
 	return (
 		<div className="container">
@@ -19,7 +30,13 @@ export const Registro = () => {
 				<div className="row mb-3">
 					<div className="col">
 						<label htmlFor="Marca">Nombre comercial</label>
-						<input type="text" className="form-control" placeholder="Nombre de la marca/tienda" />
+						<input
+							type="text"
+							value={commercialName}
+							onChange={event => setCommercialName(event.target.value)}
+							className="form-control"
+							placeholder="Nombre de la marca/tienda"
+						/>
 					</div>
 					<div className="col">
 						<label htmlFor="web">Página Web</label>

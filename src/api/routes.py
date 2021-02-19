@@ -23,4 +23,13 @@ def handle_products():
     products = Product.get_all_products()
     all_products = list(map(lambda product: product.serialize(), products))
 
-    return jsonify(all_products), 200
+    return jsonify(all_products), 
+    
+@api.route('/products', methods=['POST'])
+def post_products():
+    body=request.get_json()
+
+    new_product = Product(product_name=['body'])
+    
+    return jsonify(all_products), 
+    
