@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
-import { Navbar, Nav, Button, Form, FormControl } from "react-bootstrap";
+import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row } from "react-bootstrap";
 
 export const TopNav = () => {
 	return (
@@ -24,10 +24,12 @@ export const TopNav = () => {
 						<button className="btn btn-success">Registro</button>
 					</Nav.Link>
 				</Nav>
-				<Form inline>
-					<FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" />
-					<Button variant="outline-success">Buscar</Button>
-				</Form>
+				<div className="d-flex justify-content-between">
+					<Form inline>
+						<FormControl style={{ width: "60vh" }} type="text" placeholder="Búsqueda" className="mr-sm-2" />
+						<Button variant="outline-success">Buscar</Button>
+					</Form>
+				</div>
 			</Navbar.Collapse>
 		</Navbar>
 	);
