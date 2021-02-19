@@ -23,6 +23,7 @@ def handle_products():
     products = Product.get_all_products()
     all_products = list(map(lambda product: product.serialize(), products))
 
+<<<<<<< HEAD
     return jsonify(all_products), 
     
 @api.route('/products', methods=['POST'])
@@ -33,3 +34,30 @@ def post_products():
     
     return jsonify(all_products), 
     
+=======
+    return jsonify(all_products), 200
+
+@api.route('/products', methods=['POST'])
+def post_products():
+    body = request.get_json()
+
+    new_product = Product(product_name=body['productName'], web=body['web'], quantity=body['quantity'], size=body['size'])
+    
+    print(new_product)
+    db.session.add(new_product)
+    db.session.commit()
+
+    return jsonify("Hola"), 200
+
+# @api.route('/product/<int:id>', methods=['DELETE'])
+# def delete_products(id):
+#     body = request.get_json(id)
+
+#     product = Product.query.get(id)
+#     print(product)
+
+#     db.session.delete(product)
+#     db.session.commit()
+
+#     return jsonify("Borrado"), 200
+>>>>>>> 1a675c17e81605b51fda502d767e5a441a1e190e

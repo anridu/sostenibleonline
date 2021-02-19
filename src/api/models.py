@@ -9,7 +9,7 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.email
 
     def serialize(self):
         return {
@@ -25,12 +25,12 @@ class Product(db.Model):
     web = db.Column(db.String(80), unique=False, nullable=False)
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     size = db.Column(db.String(6), unique=False, nullable=False)  
-    description = db.Column(db.String, unique=False, nullable=False)
-    check = db.Column(db.Boolean(), unique=False, nullable=False)
+    description = db.Column(db.String, unique=False, nullable=True)
+    check = db.Column(db.Boolean(), unique=False, nullable=True)
      
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<Product %r>' % self.web
 
     def serialize(self):
         return {
