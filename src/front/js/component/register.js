@@ -8,12 +8,13 @@ export const Register = () => {
 		<div className="row register ">
 			<div className="dark-overlay">
 				<div className="col text-center text-light mb-4 ">
-					<h2 className="p-3">Regístrate ahora</h2>
+					<h2 className="p-3">Subscríbete a nuestra newsletter</h2>
 					<p className="lead p-3">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-						labore et dolore magna aliqua.
+						Quieres formar parte de una comunidad concienciada con el medio ambiente y la sostenibilidad?
+						Apúntate aquí para recibir nuestra newsletter mensual con los mejores tips convertirte en un
+						zero-waste warrior.
 					</p>
-					<button className="btn btn-success">Regístrate a nuestra newsletter</button>
+					<button className="btn btn-success">Regístrate aquí</button>
 				</div>
 			</div>
 		</div>

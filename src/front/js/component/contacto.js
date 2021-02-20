@@ -34,15 +34,17 @@ export const Contact = () => {
 			<div className="col-md-6 py-3">
 				<h4>Contacta con nosotros</h4>
 				<p className="lead">Estos son nuestros datos de contacto.</p>
-				<p>
-					<i className="fas fa-at" /> info@sostenibleonline.com
-				</p>
-				<p>
-					<i className="fas fa-phone" /> 688 944 123{" "}
-				</p>
-				<p>
-					<i className="fas fa-home" /> Dirección de nuestras oficinas
-				</p>
+				<ul className="list-group list-group-flush">
+					<li className="list-group-item">
+						<i className="fas fa-at text-dark" /> info@sostenibleonline.com
+					</li>
+					<li className="list-group-item">
+						<i className="fas fa-phone text-dark" /> 688 944 123{" "}
+					</li>
+					<li className="list-group-item">
+						<i className="fas fa-home text-dark" /> Carrer dels Àngels, 6, 08020, Barcelona.
+					</li>
+				</ul>
 			</div>
 		</div>
 	);

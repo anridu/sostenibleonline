@@ -2,16 +2,11 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 
-export const Hero_Section = () => {
+export const Sellos = () => {
 	return (
 		<div>
 			<div className="text-center mt-2">
-				<h1 className="display-4">Apuesta por un futuro sostenible con SostenibleOnline</h1>
-				<p className="lead">
-					En SostenibleOnline trabajamos para poner a tu alcance las mejores prendas de ropa sostenible
-					producidas en España por pequeñas empresas y sastres, vendidas por comercios de proximidad, en tu
-					barrio y ahora en tu pantalla.
-				</p>
+				<img src={}></img>
 			</div>
 			<section id="home-icons" className="py-4">
 				<div className="container-fluid">
