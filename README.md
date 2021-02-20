@@ -1,80 +1,44 @@
-# WebApp boilerplate with React JS
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-flask-hello.git)
+# Sostenible Online
+
+Sostenible online és una web app que ofrece una oportunidad única a negocios locales. Tiendas y pequeños productores de ropa comprometida con la sostenibilidad veran como sus ventas aumentan y su sueño sigue adelante, aún en tiempos de pandemia.
+
+Vamos a revolucionar el mundo de la moda ayudando a los pequeños comercios a aumentar su visibilidad online y acercando a la gente a los productos sostenibles, con sellos de garantía. Nuestros empresa y nuestro productos están comprometidos con la sostenibilidad en todos sus niveles tanto económico como social y ecológico
+
+Sostenible online es un marketPlace, que a diferencia de otros como Amazon, ofrece solamente productos sostenibles. En el momento del lanzamiento ofrecerá artículos de ropa para hombre, para mujer y unisex. En una segunda fase se estudiará añadir otras categorías como complementos o productos para el hogar.
+
+Nuestro negocio se dirige a dos segmentos, por una parte los compradores finales, personas comprometidas con la sostenibilidad que accederán a la app para comprar productos y por otra parte los negocios y tiendas locales que quieren vender sus productos online a través de nuestra tienda.
+
+### Product Pitch:
 
 <p align="center">
-<a href="https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b"><img src="https://github.com/4GeeksAcademy/react-flask-hello/blob/master/src/img/how-to.png?raw=true" /></a>
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/product-pitch.png" />
 </p>
 
 
-### Requirements:
-- Make sure you are using node version 10
+### UX Persona:
 
-1. Install the packages:
-```
-$ npm install
-```
-2. Create a .env file:
-```
-$ cp .env.example .env
-```
-3. Start coding! and the webpack dev server with live reload, for windows, mac, linux or Gitpod:
+<p align="center">
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/Persona1-1.PNG" />
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/persona1-2.PNG" />	
+</p>
 
-```bash
-$ npm run start
-```
 
-### Styles
-You can update the `styles/index.scss` or create new `.scss` files inside `styles/` and import them into your current scss or js files depending on your needs.
+<p align="center">
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/persona2-1.PNG" />
+</p>
 
-### Components
-Add more files into your `./src/js/components` or styles folder as you need them and import them into your current files as needed.
+### User Journey
 
-**Note (New changes)**: Components have been converted into functions to support the use of hooks:
-* Instead of a class component, we're using a `const` function.
-* Class `constructor` and `state` have been replaced by `useState()` hooks.
-* `componentDidMount()` was replaced by `useEffect({}, [])` - It runs at mount thanks to the second parameter (`[]`).
-* `Actions` and `Store` still work the same way.
+<p align="center">
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/User-journey.PNG" />
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/User-journey-2.PNG" />
+</p>
 
-```jsx
-// Previous "Class Oriented"
-export class Demo extends React.Component {
-	constructor(props) {
-		super(props);
+### Paleta de colores
 
-		this.state = getState('code here');
-	}
-}
+Nuestra paleta de colores utiliza el verde como como color destacado ya que se trata de un color que se asocia a la ecología y la sostenibilidad y por lo tanto nos ayudará a reforzar nuestro mensaje a través del color. Para el texto y los títulos hemos definido un color gris oscuro y también contamos con dos variantes más claras del verde y del gris para matizar algunos elementos, aportanto variedad estilística a la página pero manteniendo un tono uniforme que no genere desconcierto en el visitante y aporte coherencia al proyecto.
 
-// New "Functional Oriented"
-export const Demo = () => (
-	const [state, setState] = getState('code here'); //using the state (if needed)
-  const { store, actions } = useContext(Context); // using the context (if needed)
+<p align="center">
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/Paleta%20de%20colores_page-0001.jpg"/>
+</p>
 
-);
-```
-
-💡Note: There is an example using the Context API inside `views/demo.js`;
-
-### Views (Components)
-Add more files into your `./src/js/views` and import them in `./src/js/layout.jsx`.
-
-### Context
-This boilerplate comes with a centralized general Context API. The file `./src/js/store/flux.js` has a base structure for the store, we encourage you to change it and adapt it to your needs.
-
-React Context [docs](https://reactjs.org/docs/context.html)
-BreathCode Lesson [view](https://content.breatheco.de/lesson/react-hooks-explained)
-
-The `Provider` is already set. You can consume from any component using the useContext hook to get the `store` and `actions` from the Context. Check `/views/demo.js` to see a demo.
-
-```jsx
-import { Context } from "../store/appContext";
-const MyComponentSuper = () => {
-  //here you use useContext to get store and actions
-  const { store, actions } = useContext(Context);
-  return <div>{/* you can use your actions or store inside the html */}</div>
-}
-```
-
-## Publish your website!
-
-This boilerplate it's 100% integrate with Herkou, just by pushing your changes to the heroku repository it will deploy: `$ git push heroku main`
