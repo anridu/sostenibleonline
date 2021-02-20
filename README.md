@@ -45,3 +45,9 @@ Nuestra paleta de colores utiliza el verde como como color destacado ya que se t
 <img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/Paleta%20de%20colores_page-0001.jpg"/>
 </p>
 
+### Otros elementos de diseño
+
+Sostenible Online está creado con tecnología React y el diseño de la app básicamente fundamentalmente diseñada con elementos de React Bootstrap. Para los títulos utilizamos la tipografía xxx. También hemos creado un logo de líneas simples para reforzar la identidad corporativa de Sostenible Online.
+
+<img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/logo.png" />
+
