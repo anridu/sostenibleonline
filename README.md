@@ -17,11 +17,14 @@ Nuestro negocio se dirige a dos segmentos, por una parte los compradores finales
 
 ### UX Persona:
 
+Nuestro primer segmento, el público final, está representado por Elena, una compradora jóven que quiere adquirir prendas de ropa sostenible y de calidad.
+
 <p align="center">
 <img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/Persona1-1.PNG" />
 <img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/persona1-2.PNG" />	
 </p>
 
+Nuestro segundo segmento, los negocios que vendarán a través de la webapp, está representado por la propietaria de una tienda, de mediana edad, que ha decidido dar un empuje a su negocio añadiendo la venta online.
 
 <p align="center">
 <img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/persona2-1.PNG" />
