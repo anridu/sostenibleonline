@@ -17,7 +17,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 export const Contact = () => {
 	return (
-		<div className="row">
+		<div className="row" id="#Contacto">
 			<div className="col-md-6 p-3 ">
 				<MapContainer center={[41.3818, 2.1685]} zoom={13} scrollWheelZoom={false} style={{ height: 300 }}>
 					<TileLayer
