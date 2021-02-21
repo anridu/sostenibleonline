@@ -32,7 +32,7 @@ export const Contact = () => {
 				</MapContainer>
 			</div>
 			<div className="col-md-6 py-3">
-				<h4>Contacta con nosotros</h4>
+				<h3>Contacta con nosotros</h3>
 				<p className="lead">Estos son nuestros datos de contacto.</p>
 				<ul className="list-group list-group-flush">
 					<li className="list-group-item">

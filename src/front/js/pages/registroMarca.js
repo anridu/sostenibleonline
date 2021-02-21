@@ -17,7 +17,7 @@ export const Registro = () => {
 	const [check, setCheck] = useState([]);
 
 	return (
-		<div className="container">
+		<div className="container-fluid">
 			<div className="jumbotron">
 				<h1 className="display-4">Registro para marcas y tiendas</h1>
 				<p className="lead">
