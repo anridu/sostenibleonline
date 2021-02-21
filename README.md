@@ -51,3 +51,36 @@ Sostenible Online está creado con tecnología React y el diseño de la app bás
 
 <img src="https://github.com/anridu/sostenibleonline/blob/a97adb2c12be7e68813486d95a43a4f1aa6517fb/src/front/img/logo.png" />
 
+### Dependencias
+
+Existen algunas dependencias que hay que instalar:
+
+Para utilizar el boiler plate:
+
+$ npm install
+$ cp .env.example .env
+$ npm run start
+
+Para Google Maps:
+
+$ npm install react@latest react-dom@latest
+$ npm install leaflet (editado) 
+$ npm install react-leaflet
+
+Para el Carousel con múltiples slides (sellos de calidad):
+
+$ npm install react-multi-carousel --save
+
+Para el Footer
+
+$ npm install --save mdbreact
+
+### User Stories y metodología Agile
+
+Hemos trabajado la creación de las User Stories y el Kanvan Board en GitHub, creando un proyecto:
+
+<img src="https://github.com/anridu/sostenibleonline/blob/7f46a36c0a8d4447093476f3de6723cab7417dd2/src/front/img/UserStories.PNG" />
+
+
+
+
