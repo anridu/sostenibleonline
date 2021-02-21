@@ -46,12 +46,9 @@ export const About = () => {
 					<div className="col">
 						<h3>Nuestro equipo</h3>
 						<p>
-							Donec a blandit neque, eget sodales erat. Nulla eget nisl at neque pellentesque elementum.
-							Cras volutpat augue at leo varius interdum. Duis luctus mattis velit, a viverra eros porta
-							sed. Fusce consequat sem nisi, quis rutrum nisl rutrum quis. Proin sit amet mauris eleifend,
-							elementum odio blandit, pretium libero. Suspendisse fringilla tellus accumsan felis porta
-							faucibus. Ut eget quam euismod, placerat risus ut, ornare nisl. Vivamus sit amet efficitur
-							mi, vitae consectetur ex.
+							Somos un equipo comprometido con la sostenibilidad. Queremos aportar nuestro granito de
+							arena a hacer de este mundo un lugar mejor y lo hacemos apoyando al comercio local, los
+							productos hechos en España y las empresas con fuertes valores en sostenibilidad.
 						</p>
 					</div>
 				</div>
@@ -145,12 +142,12 @@ export const About = () => {
 					<div className="col-md-6">
 						<h3>Nuestro compromiso</h3>
 						<p>
-							Donec a blandit neque, eget sodales erat. Nulla eget nisl at neque pellentesque elementum.
-							Cras volutpat augue at leo varius interdum. Duis luctus mattis velit, a viverra eros porta
-							sed. Fusce consequat sem nisi, quis rutrum nisl rutrum quis. Proin sit amet mauris eleifend,
-							elementum odio blandit, pretium libero. Suspendisse fringilla tellus accumsan felis porta
-							faucibus. Ut eget quam euismod, placerat risus ut, ornare nisl. Vivamus sit amet efficitur
-							mi, vitae consectetur ex.
+							En SostenibleOnline apostamos por un consumo de ropa más consciente y también por una
+							producción consciente y de proximidad, donde sea más importante la calidad que la cantidad.
+							Las prendas que encontrarás en SostenibleOnline éstan pensadas, diseñadas y elaboradas
+							íntegramente en España, la mayoría de las veces de forma artesanal y siempre de forma
+							sostenible. Se trata de prendas únicas, hechas con cuidado y mimo, utilizando las mejores
+							materias primas para que su calidad y durabilidad sean excepcionales.
 						</p>
 					</div>
 				</div>
