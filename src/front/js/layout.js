@@ -7,7 +7,7 @@ import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 
 import { TopNav } from "./component/navbar";
-import { Footer } from "./component/footer";
+import { _Footer } from "./component/footer";
 import { Registro } from "./pages/registroMarca";
 import { About } from "./pages/about";
 import { Marca } from "./pages/paginaDeMarca";
@@ -55,7 +55,7 @@ const Layout = () => {
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
-					<Footer />
+					<_Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>
