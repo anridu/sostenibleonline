@@ -80,28 +80,15 @@ export const _Footer = () => (
 		<div className="text-center">
 			<ul className="list-unstyled list-inline">
 				<li className="list-inline-item">
-					<a className="btn-floating btn-sm btn-fb mx-1">
-						<i className="fa fa-facebook"> </i>
-					</a>
+					<i className="fab fa-instagram fa-3x" />
 				</li>
 				<li className="list-inline-item">
-					<a className="btn-floating btn-sm btn-tw mx-1">
-						<i className="fa fa-twitter"> </i>
-					</a>
+					<i className="fab fa-facebook-square fa-3x" />
 				</li>
-				<li className="list-inline-item">
-					<a className="btn-floating btn-sm btn-gplus mx-1">
-						<i className="fa fa-google-plus"> </i>
-					</a>
-				</li>
+
 				<li className="list-inline-item">
 					<a className="btn-floating btn-sm btn-li mx-1">
-						<i className="fa fa-linkedin"> </i>
-					</a>
-				</li>
-				<li className="list-inline-item">
-					<a className="btn-floating btn-sm btn-dribbble mx-1">
-						<i className="fa fa-dribbble"> </i>
+						<i className="fab fa-twitter fa-3x" />
 					</a>
 				</li>
 			</ul>
