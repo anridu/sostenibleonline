@@ -64,7 +64,7 @@ $ npm run start
 Para Google Maps:
 
 $ npm install react@latest react-dom@latest
-$ npm install leaflet (editado) 
+$ npm install leaflet
 $ npm install react-leaflet
 
 Para el Carousel con múltiples slides (sellos de calidad):
