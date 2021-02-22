@@ -12,11 +12,11 @@ import Tshirt from "../../img/icons/Tshirt.png";
 
 export const MoreInfo = () => {
 	return (
-		<div className="container">
+		<div className="container-fluid p-2">
 			<h2 className="text-center pt-3">¿Quieres saber más?</h2>
 			<div className="row py-5">
 				<div className="col-md-3">
-					<img src={algodon} className="img-fluid rounded-circle" />
+					<img src={algodon} className="img-fluid rounded-circle ml-4" />
 				</div>
 				<div className="col-md-9">
 					<h4>¿Qué és el algodón orgánico?</h4>
@@ -33,10 +33,10 @@ export const MoreInfo = () => {
 					<img src={NoPesticides} className="p-2" />
 				</div>
 			</div>
-			<div className="row py-3 mb-3">
+			<div className="row py-3 mb-3 ml-3">
 				<div className="col-md-9">
 					<h4>¿Hilo reciclado?</h4>
-					<p className="ml-2">
+					<p>
 						Otra de las técnicas que utilizan nuestros productores es el uso de hilo reciclado. ¿No sabes de
 						lo qué se trata? En el proceso de hilatura se reciclan recortes que han sobrado de fábricas
 						texitles para convertir las telas de nuevo en hilo. Con este proceso se onsigue un gran ahorro
