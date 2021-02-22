@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Col, Container, Row, Footer } from "mdbreact";
-import "mdbreact/dist/css/mdb.css";
 
 export const _Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
