@@ -12,7 +12,7 @@ import Tshirt from "../../img/icons/Tshirt.png";
 
 export const MoreInfo = () => {
 	return (
-		<div className="container">
+		<div className="container-fluid">
 			<h2 className="text-center pt-3">¿Quieres saber más?</h2>
 			<div className="row py-5">
 				<div className="col-md-3">
