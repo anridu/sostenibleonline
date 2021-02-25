@@ -24,6 +24,9 @@ class User(db.Model):
     roles = db.relationship("Role", secondary="designation")
     businesses = db.relationship('Business', backref='user', lazy=True)
 
+    businesses = db.relationship('Business', backref='user', lazy=True)
+    roles = db.relationship("Role", secondary="designation")
+
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -33,6 +36,29 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+
+class Designation(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+  role = db.relationship("Role")
+  user = db.relationship("User")
+
+class Business(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    products = db.relationship("Product")
+
+    def __repr__(self):
+        return f'<Business {self.name}>'
+
+    def serialize(self):
+        return {
+              "id": self.id,
+              "name": self.name
+            }
 
 class Designation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -55,26 +81,46 @@ class Business(db.Model):
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(120), unique=True, nullable=False)
-    web = db.Column(db.String(80), unique=False, nullable=False)
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     size = db.Column(db.String(6), unique=False, nullable=False)  
     description = db.Column(db.String, unique=False, nullable=True)
-    check = db.Column(db.Boolean(), unique=False, nullable=True)
+
+    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
+    business = db.relationship("Business")
+    categories = db.relationship("Category", secondary="product_category")
 
     def __repr__(self):
-        return '<Product %r>' % self.web
+        return '<Product %r>' % self.product_name
 
     def serialize(self):
         return {
             "id": self.id,
             "product_name": self.product_name,
-            "web": self.web,
             "quantity": self.quantity,
             "size": self.size,
             "description": self.description,
-            "check": self.check,
             # do not serialize the password, its a security breach
         }
 
-    def get_all_products():
-        return Product.query.all()
+class ProductCategory(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+  category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+
+  category = db.relationship("Category")
+  product = db.relationship("Product")
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+
+    products = db.relationship("Product", secondary="product_category")
+
+    def __repr__(self):
+        return f'<Category {self.name}>'
+
+    def serialize(self):
+        return {
+              "id": self.id,
+              "name": self.name
+            }
