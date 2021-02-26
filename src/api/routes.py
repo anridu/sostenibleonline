@@ -48,7 +48,6 @@ def post_users():
 @api.route('/users/<int:id>', methods=['PUT'])
 def modify_user(id):
 
-
     body = request.get_json()
     user = User.query.get(id)
     if not user: 
