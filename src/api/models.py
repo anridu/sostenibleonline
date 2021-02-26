@@ -65,6 +65,10 @@ class Business(db.Model):
               "name": self.name
             }
 
+    def get_all_businesses():
+         return Business.query.all()
+
+
 class BusinessCertificate(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   business_id = db.Column(db.Integer, db.ForeignKey('business.id'))
@@ -72,6 +76,9 @@ class BusinessCertificate(db.Model):
 
   certificate = db.relationship("Certificate")
   business = db.relationship("Business")
+
+  
+
 
 class Certificate(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -137,4 +144,5 @@ class Category(db.Model):
               "id": self.id,
               "name": self.name
             }
-
+    def get_all_categories():
+         return Category.query.all()
