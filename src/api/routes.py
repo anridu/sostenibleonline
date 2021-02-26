@@ -66,6 +66,14 @@ def handle_products():
 
     return jsonify(all_products), 200
 
+@api.route('/products/<int:id>', methods=['GET'])
+def handle_product(id):
+
+    product = Product.query.get(id)
+    if not product: 
+        return jsonify ("product not found"), 404
+    return jsonify(product.serialize()), 200
+
 @api.route('/products', methods=['POST'])
 def post_products():
     body = request.get_json()
