@@ -74,14 +74,116 @@ def handle_product(id):
         return jsonify ("product not found"), 404
     return jsonify(product.serialize()), 200
 
+@api.route('/products/<int:id>', methods=['PUT'])
+def modify_product(id):
+
+    body = request.get_json()
+    product = Product.query.get(id)
+    if not product: 
+        return jsonify ("Product not found"), 404
+    product.product_name = body['product_name']
+    db.session.commit()
+
+    return jsonify(product.serialize()), 200
+
 @api.route('/products', methods=['POST'])
 def post_products():
     body = request.get_json()
 
-    new_product = Product(product_name=body['productName'], web=body['web'], quantity=body['quantity'], size=body['size'])
+    new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], business_id=body['business_id'])
     
     print(new_product)
     db.session.add(new_product)
     db.session.commit()
 
-    return jsonify("Hola"), 200
+    return jsonify(new_product.serialize()), 200
+
+
+
+
+@api.route('/businesses', methods=['GET'])
+def handle_businesses():
+
+    businesses = Business.get_all_businesses()
+    all_businesses = list(map(lambda business: business.serialize(), businesses))
+
+    return jsonify(all_businesses), 200
+
+@api.route('/businesses/<int:id>', methods=['GET'])
+def handle_business(id):
+
+    business = Business.query.get(id)
+    if not business: 
+        return jsonify ("Business not found"), 404
+    return jsonify(business.serialize()), 200
+
+@api.route('/businesses/<int:id>', methods=['PUT'])
+def modify_business(id):
+
+    body = request.get_json()
+    business = Business.query.get(id)
+    if not business: 
+        return jsonify ("Product not found"), 404
+    business.name = body['name']
+    db.session.commit()
+
+    return jsonify(business.serialize()), 200
+
+@api.route('/businesses', methods=['POST'])
+def post_businesses():
+    body = request.get_json()
+
+    new_business = Business(name=body['name'], user_id=body['user_id'])
+    
+    print(new_business)
+    db.session.add(new_business)
+    db.session.commit()
+
+    return jsonify(new_business.serialize()), 200
+
+
+
+
+
+
+
+
+@api.route('/categories', methods=['GET'])
+def handle_categories():
+
+    categories = Category.get_all_categories()
+    all_categories = list(map(lambda category: category.serialize(), categories))
+
+    return jsonify(all_categories), 200
+
+@api.route('/categories/<int:id>', methods=['GET'])
+def handle_category(id):
+
+    category = Category.query.get(id)
+    if not category: 
+        return jsonify ("Category not found"), 404
+    return jsonify(category.serialize()), 200
+
+@api.route('/categories/<int:id>', methods=['PUT'])
+def modify_category(id):
+
+    body = request.get_json()
+    category = Category.query.get(id)
+    if not category: 
+        return jsonify ("Category not found"), 404
+    category.name = body['name']
+    db.session.commit()
+
+    return jsonify(category.serialize()), 200
+
+@api.route('/categories', methods=['POST'])
+def post_categories():
+    body = request.get_json()
+
+    new_category = Category(name=body['name'])
+    
+    print(new_category)
+    db.session.add(new_category)
+    db.session.commit()
+
+    return jsonify(new_category.serialize()), 200
