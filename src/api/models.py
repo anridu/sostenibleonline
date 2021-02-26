@@ -23,9 +23,12 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     roles = db.relationship("Role", secondary="designation")
     businesses = db.relationship('Business', backref='user', lazy=True)
+<<<<<<< HEAD
 
     businesses = db.relationship('Business', backref='user', lazy=True)
     roles = db.relationship("Role", secondary="designation")
+=======
+>>>>>>> origin
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -37,25 +40,34 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+<<<<<<< HEAD
     def get_all_users():
         return User.query.all()
 
 
+=======
+>>>>>>> origin
 class Designation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
   role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+<<<<<<< HEAD
   role = db.relationship("Role")
   user = db.relationship("User")
+=======
+>>>>>>> origin
 
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+<<<<<<< HEAD
     products = db.relationship("Product")
     certificates = db.relationship("Certificate", secondary="business_certificate")
 
+=======
+>>>>>>> origin
     def __repr__(self):
         return f'<Business {self.name}>'
 
@@ -63,6 +75,7 @@ class Business(db.Model):
         return {
               "id": self.id,
               "name": self.name
+<<<<<<< HEAD
             }
 
 class BusinessCertificate(db.Model):
@@ -138,3 +151,6 @@ class Category(db.Model):
               "name": self.name
             }
 
+=======
+            }
+>>>>>>> origin
