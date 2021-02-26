@@ -28,7 +28,7 @@ class User(db.Model):
     roles = db.relationship("Role", secondary="designation")
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.email
 
     def serialize(self):
         return {
@@ -36,6 +36,10 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+
+    def get_all_users():
+        return User.query.all()
+
 
 class Designation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -50,6 +54,7 @@ class Business(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     products = db.relationship("Product")
+    certificates = db.relationship("Certificate", secondary="business_certificate")
 
     def __repr__(self):
         return f'<Business {self.name}>'
@@ -60,24 +65,29 @@ class Business(db.Model):
               "name": self.name
             }
 
-class Designation(db.Model):
+class BusinessCertificate(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-  role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+  business_id = db.Column(db.Integer, db.ForeignKey('business.id'))
+  certificate_id = db.Column(db.Integer, db.ForeignKey('certificate.id'))
 
-class Business(db.Model):
+  certificate = db.relationship("Certificate")
+  business = db.relationship("Business")
+
+class Certificate(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    business = db.relationship("Business", secondary="business_certificate")
 
     def __repr__(self):
-        return f'<Business {self.name}>'
+        return f'<Certificate {self.name}>'
 
     def serialize(self):
         return {
               "id": self.id,
               "name": self.name
             }
+
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(120), unique=True, nullable=False)
@@ -102,6 +112,9 @@ class Product(db.Model):
             # do not serialize the password, its a security breach
         }
 
+    def get_all_products():
+         return Product.query.all()
+
 class ProductCategory(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
@@ -124,3 +137,4 @@ class Category(db.Model):
               "id": self.id,
               "name": self.name
             }
+

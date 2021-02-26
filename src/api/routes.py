@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Product, Business, BusinessCertificate, Category, ProductCategory, Role, Designation
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -16,6 +16,48 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/users', methods=['GET'])
+def handle_users():
+
+    users = User.get_all_users()
+    all_users = list(map(lambda user: user.serialize(), users))
+
+    return jsonify(all_users), 200
+
+@api.route('/users/<int:id>', methods=['GET'])
+def handle_user(id):
+
+    user = User.query.get(id)
+    if not user: 
+        return jsonify ("user not found"), 404
+    return jsonify(user.serialize()), 200
+
+@api.route('/users', methods=['POST'])
+def post_users():
+    body = request.get_json()
+
+    new_user = User(email=body['email'], password=body['password'], is_active=body['is_active'])
+    
+    print(new_user)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify(new_user.serialize()), 200
+
+@api.route('/users/<int:id>', methods=['PUT'])
+def modify_user(id):
+
+
+    body = request.get_json()
+    user = User.query.get(id)
+    if not user: 
+        return jsonify ("user not found"), 404
+    user.email = body['email']
+    db.session.commit()
+
+    return jsonify(user.serialize()), 200
+
 
 @api.route('/products', methods=['GET'])
 def handle_products():
