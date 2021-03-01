@@ -33,6 +33,10 @@ CORS(app)
 # add the admin
 setup_admin(app)
 
+# Add the JWT
+app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+jwt = JWTManager(app)
+
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
 

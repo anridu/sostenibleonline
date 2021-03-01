@@ -38,8 +38,11 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-    def get_all_users():
-        return User.query.all()
+    def check_password(self, password_param):
+        return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
+
+    # def get_all_users():
+    #     return User.query.all()
 
 
 class Designation(db.Model):
