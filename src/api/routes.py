@@ -10,7 +10,6 @@ from flask_jwt_extended import jwt_required
 
 api = Blueprint('api', __name__)
 
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -32,15 +31,13 @@ def sign_in():
         return jsonify("Wrong email or password"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.serialize())
+    access_token = create_access_token(identity=user.sign_in_serialize())
     return jsonify(access_token=access_token)
 
 @api.route("/me", methods=["GET"])
 @jwt_required()
 def protected():
-    # We can now access our sqlalchemy User object via `current_user`.
-    serialized_data = get_jwt_identity()
-    return jsonify(serialized_data)
+    return jsonify(current_user(get_jwt_identity()).serialize())
 
 ######################################################################################    
 
@@ -214,3 +211,7 @@ def post_categories():
     db.session.commit()
 
     return jsonify(new_category.serialize()), 200
+
+
+def current_user(identity):
+  return User.query.filter_by(email=identity['email']).one_or_none()
