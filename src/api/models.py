@@ -21,9 +21,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    
     roles = db.relationship("Role", secondary="designation")
     businesses = db.relationship('Business', backref='user', lazy=True)
-
+    
     businesses = db.relationship('Business', backref='user', lazy=True)
     roles = db.relationship("Role", secondary="designation")
 

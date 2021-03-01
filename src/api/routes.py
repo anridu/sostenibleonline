@@ -17,6 +17,9 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+
+
+
 @api.route('/users', methods=['GET'])
 def handle_users():
 
@@ -56,6 +59,9 @@ def modify_user(id):
     db.session.commit()
 
     return jsonify(user.serialize()), 200
+
+
+
 
 
 @api.route('/products', methods=['GET'])
@@ -140,9 +146,6 @@ def post_businesses():
     db.session.commit()
 
     return jsonify(new_business.serialize()), 200
-
-
-
 
 
 
