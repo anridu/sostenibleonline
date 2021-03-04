@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import safe_str_cmp
 
 db = SQLAlchemy()
 
@@ -20,13 +21,11 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False, default = True)
+    
     roles = db.relationship("Role", secondary="designation")
     businesses = db.relationship('Business', backref='user', lazy=True)
-
-    businesses = db.relationship('Business', backref='user', lazy=True)
-    roles = db.relationship("Role", secondary="designation")
-
+    
     def __repr__(self):
         return '<User %r>' % self.email
 
@@ -34,11 +33,23 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "isActive": self.is_active
             # do not serialize the password, its a security breach
         }
 
-    def get_all_users():
-        return User.query.all()
+    def sign_in_serialize(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            # do not serialize the password, its a security breach
+        }
+
+
+    def check_password(self, password_param):
+      return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
+
+    # def get_all_users():
+    #     return User.query.all()
 
 
 class Designation(db.Model):

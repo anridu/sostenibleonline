@@ -4,9 +4,12 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Product, Business, BusinessCertificate, Category, ProductCategory, Role, Designation
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -16,6 +19,43 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+########################### LOGIN RELATED ###########################################
+
+@api.route("/sign_up", methods=["POST"])
+def sign_up():
+
+    body = request.get_json()
+    hashed_password = generate_password_hash(body['password'], method='sha256')
+    new_user = User(email=body['email'], password=hashed_password)
+    
+    print(new_user)
+    db.session.add(new_user)
+    db.session.commit()
+
+    
+    return jsonify(new_user.serialize()), 200
+
+
+@api.route("/sign_in", methods=["POST"])
+def sign_in():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email).one_or_none()
+    if not user or not check_password_hash(user.password, password):
+        return jsonify("Wrong email or password"), 401
+
+    # Notice that we are passing in the actual sqlalchemy user object here
+    access_token = create_access_token(identity=user.sign_in_serialize())
+    return jsonify(access_token=access_token)
+
+@api.route("/me", methods=["GET"])
+@jwt_required()
+def protected():
+    return jsonify(current_user(get_jwt_identity()).serialize())
+
+######################################################################################    
 
 @api.route('/users', methods=['GET'])
 def handle_users():
@@ -56,6 +96,9 @@ def modify_user(id):
     db.session.commit()
 
     return jsonify(user.serialize()), 200
+
+
+
 
 
 @api.route('/products', methods=['GET'])
@@ -145,9 +188,6 @@ def post_businesses():
 
 
 
-
-
-
 @api.route('/categories', methods=['GET'])
 def handle_categories():
 
@@ -187,3 +227,7 @@ def post_categories():
     db.session.commit()
 
     return jsonify(new_category.serialize()), 200
+
+
+def current_user(identity):
+  return User.query.filter_by(email=identity['email']).one_or_none()

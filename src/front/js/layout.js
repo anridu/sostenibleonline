@@ -12,7 +12,7 @@ import { Registro } from "./pages/registroMarca";
 import { About } from "./pages/about";
 import { Marca } from "./pages/paginaDeMarca";
 import { ProductForm } from "./pages/productForm";
-import { Login } from "./pages/login";
+import { SignUp } from "./pages/signUp";
 import { Product } from "./pages/producto";
 import { Checkout } from "./pages/checkout";
 
@@ -46,8 +46,8 @@ const Layout = () => {
 						<Route exact path="/product-form">
 							<ProductForm />
 						</Route>
-						<Route exact path="/login">
-							<Login />
+						<Route exact path="/sign-up">
+							<SignUp />
 						</Route>
 						<Route exact path="/producto">
 							<Product />
