@@ -7,6 +7,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
 
@@ -21,13 +22,28 @@ def handle_hello():
 
 ########################### LOGIN RELATED ###########################################
 
+@api.route("/sign_up", methods=["POST"])
+def sign_up():
+
+    body = request.get_json()
+    hashed_password = generate_password_hash(body['password'], method='sha256')
+    new_user = User(email=body['email'], password=hashed_password)
+    
+    print(new_user)
+    db.session.add(new_user)
+    db.session.commit()
+
+    
+    return jsonify(new_user.serialize()), 200
+
+
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
     user = User.query.filter_by(email=email).one_or_none()
-    if not user or not user.check_password(password):
+    if not user or not check_password_hash(user.password, password):
         return jsonify("Wrong email or password"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
