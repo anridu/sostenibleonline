@@ -27,7 +27,7 @@ def sign_up():
 
     body = request.get_json()
     hashed_password = generate_password_hash(body['password'], method='sha256')
-    new_user = User(email=body['email'], password=hashed_password)
+    new_user = User(name=body['name'], last_name=body['last_name'], email=body['email'], password=hashed_password)
     
     print(new_user)
     db.session.add(new_user)
