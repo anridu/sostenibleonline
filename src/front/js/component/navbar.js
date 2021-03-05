@@ -7,7 +7,7 @@ import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row } fr
 export const TopNav = () => {
 	return (
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand href="#home" className="brand-name mr-2">
+			<Navbar.Brand href="/" className="brand-name mr-2">
 				<img src={logo} className="logo" />
 				SostenibleOnline
 			</Navbar.Brand>
@@ -20,7 +20,7 @@ export const TopNav = () => {
 					<Nav.Link href="#Contacto">
 						<i className="fas fa-shopping-cart" />
 					</Nav.Link>
-					<Nav.Link href="#Contacto">
+					<Nav.Link href="/sign-up">
 						<button className="btn btn-success">Registro</button>
 					</Nav.Link>
 				</Nav>

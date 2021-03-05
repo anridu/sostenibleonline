@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+
 const baseUrl = "https://3001-pink-rodent-ir3cdub5.ws-eu03.gitpod.io/api/";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -34,11 +36,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: raw,
 					redirect: "follow"
 				};
-				console.log(url, "hola");
 
 				fetch(url, requestOptions)
 					.then(response => response.json())
-					.then(result => console.log(result))
+					.then(result => {
+						console.log(result);
+					})
+
 					.catch(error => console.log("error", error));
 			},
 
