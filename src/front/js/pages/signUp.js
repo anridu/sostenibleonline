@@ -20,7 +20,7 @@ export const SignUp = () => {
 
 	return (
 		<div className="container">
-			<div className="jumbotron">
+			<div className="jumbotron mt-4">
 				<h1 className="display-4">Registro de usuarios</h1>
 			</div>
 

@@ -18,7 +18,7 @@ export const RegistroMarca = () => {
 
 	return (
 		<div className="container">
-			<div className="jumbotron">
+			<div className="jumbotron mt-4">
 				<h1 className="display-4">Registro para marcas y tiendas</h1>
 				<p className="lead">
 					Esta página es para que des de alta tu negocio en la plataforma de SostenibleOnline y empieces a
