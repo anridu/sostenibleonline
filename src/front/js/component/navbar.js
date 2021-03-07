@@ -2,29 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
-import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row } from "react-bootstrap";
+import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
 
 export const TopNav = () => {
 	return (
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand href="/" className="brand-name mr-2">
+			<Navbar.Brand href="/" className="brand-name mr-4">
 				<img src={logo} className="logo" />
 				SostenibleOnline
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
-					<Nav.Link href="/categories">Categorias</Nav.Link>
+					<NavDropdown title="Categorías" id="basic-nav-dropdown">
+						<NavDropdown.Item href="/ropa-hombre">Hombre</NavDropdown.Item>
+						<NavDropdown.Item href="/ropa-mujer">Mujer</NavDropdown.Item>
+						<NavDropdown.Item href="/ropa-unisex">Unisex</NavDropdown.Item>
+					</NavDropdown>
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
-					<Nav.Link href="#Contacto">Contacto</Nav.Link>
-					<Nav.Link href="#Contacto">
+					<Nav.Link href="/checkout">
 						<i className="fas fa-shopping-cart" />
-					</Nav.Link>
-					<Nav.Link href="/sign-up">
-						<button className="btn btn-success">Registro</button>
 					</Nav.Link>
 				</Nav>
 				<div className="d-flex justify-content-between">
+					<Link to="/registro">
+						<button className="btn btn-success mr-3">Registro</button>
+					</Link>
 					<Form inline>
 						<FormControl style={{ width: "60vh" }} type="text" placeholder="Búsqueda" className="mr-sm-2" />
 						<Button variant="outline-success">Buscar</Button>

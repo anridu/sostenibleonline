@@ -36,7 +36,9 @@ export const Contact = () => {
 				<p className="lead">Estos son nuestros datos de contacto.</p>
 				<ul className="list-group list-group-flush">
 					<li className="list-group-item">
-						<i className="fas fa-at text-dark" /> info@sostenibleonline.com
+						<a href="mailto:info@sostenibleonline.com">
+							<i className="fas fa-at text-dark" /> info@sostenibleonline.com
+						</a>
 					</li>
 					<li className="list-group-item">
 						<i className="fas fa-phone text-dark" /> 688 944 123{" "}

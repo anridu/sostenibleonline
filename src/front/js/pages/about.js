@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
 import Team from "../../img/team.jpg";
 import Sonia from "../../img/Sonia.jpg";
 import Angel from "../../img/angel.png";
