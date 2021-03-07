@@ -24,7 +24,7 @@ export const Home_Categories = () => {
 										Si te apasiona la moda pero buscas sostenibilidad, has encontrado tu lugar. Ropa
 										y complementos para ir a la última
 									</p>
-									<a href="#" className="btn btn-outline-success">
+									<a href="/ropa-mujer" className="btn btn-outline-success">
 										Ver la colección
 									</a>
 								</div>
@@ -39,7 +39,7 @@ export const Home_Categories = () => {
 										Te presentamos nuestra colección verde: camisas, camisetas, pantalones y jerséis
 										para reconvertir tu armario.
 									</p>
-									<a href="#" className="btn btn-outline-success">
+									<a href="/ropa-hombre" className="btn btn-outline-success">
 										Ver la colección
 									</a>
 								</div>
@@ -54,7 +54,7 @@ export const Home_Categories = () => {
 										Ropa cómoda y sostenible, libre de etiquetas para que te sientas libre en tu
 										cuerpo sabiendo que cuidas del planeta.
 									</p>
-									<a href="#" className="btn btn-outline-success">
+									<a href="ropa-unisex" className="btn btn-outline-success">
 										Ver la colección
 									</a>
 								</div>

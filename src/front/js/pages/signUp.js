@@ -69,7 +69,7 @@ export const SignUp = () => {
 			<div className="row mb-3">
 				<div className="col-md-6">
 					<div className="form-group ml-3">
-						<Link to="/">
+						<Link to="/gracias">
 							<button onClick={event => handleClick(event)} className="btn btn-primary">
 								Registro
 							</button>

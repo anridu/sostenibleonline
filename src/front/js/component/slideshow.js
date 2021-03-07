@@ -19,7 +19,7 @@ export const Slideshow = () => {
 						Te presentamos nuestra colección de ropa unisex sostenible. Con los estándares de calidad y
 						sostenibilidad que te representan.
 					</p>
-					<a href="#">
+					<a href="/ropa-unisex">
 						<button className="btn btn-success">Ver colección</button>
 					</a>
 				</Carousel.Caption>
@@ -33,7 +33,7 @@ export const Slideshow = () => {
 						Descubre nuestra colección de ropa para estar a la última. Marcas de calidad y con un compromiso
 						claro con la sostenibilidad.
 					</p>
-					<a href="#">
+					<a href="/ropa-mujer">
 						<button className="btn btn-success">Ver colección</button>
 					</a>
 				</Carousel.Caption>
@@ -46,7 +46,7 @@ export const Slideshow = () => {
 						Descubre nuestra colección de ropa para estar a la última. Marcas de calidad y con un compromiso
 						claro con la sostenibilidad..
 					</p>
-					<a href="#">
+					<a href="/ropa-hombre">
 						<button className="btn btn-success">Ver colección</button>
 					</a>
 				</Carousel.Caption>
@@ -58,7 +58,7 @@ export const Slideshow = () => {
 					<p className="lead">
 						Estamos comprometidos con la sostenibilidad a todos sus niveles: ecológico, económico y social.
 					</p>
-					<a href="#">
+					<a href="/about">
 						<button className="btn btn-secondary">Leer más</button>
 					</a>
 				</Carousel.Caption>

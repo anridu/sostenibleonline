@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Registro = () => {
+export const RegistroMarca = () => {
 	const { store, actions } = useContext(Context);
 	const [commercialName, setCommercialName] = useState("");
 	const [website, setWebsite] = useState("");
@@ -17,8 +17,8 @@ export const Registro = () => {
 	const [check, setCheck] = useState([]);
 
 	return (
-		<div className="container-fluid">
-			<div className="jumbotron jumbotron-fluid">
+		<div className="container">
+			<div className="jumbotron">
 				<h1 className="display-4">Registro para marcas y tiendas</h1>
 				<p className="lead">
 					Esta página es para que des de alta tu negocio en la plataforma de SostenibleOnline y empieces a

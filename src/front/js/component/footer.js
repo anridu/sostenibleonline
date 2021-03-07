@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Col, Container, Row, Footer } from "mdbreact";
+import { Link } from "react-router-dom";
 
 export const _Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
@@ -14,16 +15,13 @@ export const _Footer = () => (
 					<h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Tienda</h5>
 					<ul className="list-unstyled">
 						<li>
-							<a href="#!">Categorias</a>
+							<a href="/ropa-hombre">Hombre</a>
 						</li>
 						<li>
-							<a href="#!">Hombre</a>
+							<a href="/ropa-mujer">Mujer</a>
 						</li>
 						<li>
-							<a href="#!">Mujer</a>
-						</li>
-						<li>
-							<a href="#!">Unisex</a>
+							<a href="/ropa-unisex">Unisex</a>
 						</li>
 					</ul>
 				</Col>
@@ -35,7 +33,7 @@ export const _Footer = () => (
 							<a href="#!" />
 						</li>
 						<li>
-							<a href="#!">Contacta con nosotros</a>
+							<a href="mailto:info@sostenibleonline.com">Contacta con nosotros</a>
 						</li>
 						<li>
 							<a href="#!">Donde estamos</a>
@@ -55,9 +53,6 @@ export const _Footer = () => (
 						<li>
 							<a href="#!">Colabora con nosotros</a>
 						</li>
-						<li>
-							<a href="#!">mas ideas??</a>
-						</li>
 					</ul>
 				</Col>
 			</Row>
@@ -66,11 +61,11 @@ export const _Footer = () => (
 		<div className="text-center py-3">
 			<ul className="list-unstyled list-inline mb-0">
 				<li className="list-inline-item">
-					<h5 className="mb-1">Registrate</h5>
+					<h5 className="p-2">Sé parte del cambio</h5>
 				</li>
 				<li className="list-inline-item">
-					<a href="#" className="btn btn-danger btn-rounded">
-						Registro
+					<a href="/registro" className="btn btn-outline-success btn-rounded">
+						Regístrate ahora
 					</a>
 				</li>
 			</ul>
@@ -79,15 +74,30 @@ export const _Footer = () => (
 		<div className="text-center">
 			<ul className="list-unstyled list-inline">
 				<li className="list-inline-item">
-					<i className="fab fa-instagram fa-3x" />
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						href="http://www.instagram.com"
+						className="btn-floating btn-sm text-secondary btn-li mx-1">
+						<i className="fab fa-instagram fa-2x" />
+					</a>
 				</li>
 				<li className="list-inline-item">
-					<i className="fab fa-facebook-square fa-3x" />
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						href="http://www.facebook.com"
+						className="btn-floating btn-sm text-secondary btn-li mx-1">
+						<i className="fab fa-facebook-square fa-2x" />
+					</a>
 				</li>
-
 				<li className="list-inline-item">
-					<a className="btn-floating btn-sm btn-li mx-1">
-						<i className="fab fa-twitter fa-3x" />
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						href="http://www.twitter.com"
+						className="btn-floating btn-sm text-secondary btn-li mx-1">
+						<i className="fab fa-twitter fa-2x" />
 					</a>
 				</li>
 			</ul>
