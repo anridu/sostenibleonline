@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const RegistroMarca = () => {
 	const { store, actions } = useContext(Context);
 	const [commercialName, setCommercialName] = useState("");
 	const [taxName, setTaxName] = useState("");
-	const [logo, setLogo] = useState("");
+	const [logo, setLogo] = useState();
 	const [person, setPerson] = useState("");
 	const [email, setEmail] = useState("");
 	const [address, setAddress] = useState("");
@@ -15,7 +15,7 @@ export const RegistroMarca = () => {
 	const [zipCode, setZipCode] = useState("");
 	const [description, setDescription] = useState("");
 	const [check, setCheck] = useState([]);
-	const [certs, setCerts] = useState("");
+	const [certs, setCerts] = useState();
 
 	const handleClick = () => {
 		let business = {
