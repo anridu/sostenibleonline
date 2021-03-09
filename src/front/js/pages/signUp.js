@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { apiBaseURL } from "../constants";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
@@ -15,7 +16,27 @@ export const SignUp = () => {
 			email: email,
 			password: password
 		};
-		actions.signUp(user);
+
+		let myHeaders = new Headers();
+		myHeaders.append("Accept", "application/json");
+		myHeaders.append("Content-Type", "application/json");
+
+		let url = `${apiBaseURL}api/sign_up`;
+		let raw = JSON.stringify(user);
+
+		let requestOptions = {
+			method: "POST",
+			headers: myHeaders,
+			body: raw
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+			})
+
+			.catch(error => console.log("error", error));
 	};
 
 	return (
