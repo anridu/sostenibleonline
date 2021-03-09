@@ -33,7 +33,6 @@ def sign_up():
     db.session.add(new_user)
     db.session.commit()
 
-    
     return jsonify(new_user.serialize()), 200
 
 
