@@ -62,19 +62,37 @@ class Designation(db.Model):
 
 class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
+    comercial_name = db.Column(db.String(80), nullable=False)
+    tax_name = db.Column(db.String(80), nullable=False)
+    person = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False)
+    address = db.Column(db.String(80), nullable=False)
+    city = db.Column(db.String(80), nullable=False)
+    region = db.Column(db.String(80), nullable=False)
+    zip_code = db.Column(db.String(80), nullable=False)
+    description = db.Column(db.String(400), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     products = db.relationship("Product")
     certificates = db.relationship("Certificate", secondary="business_certificate")
 
     def __repr__(self):
-        return f'<Business {self.name}>'
+        # return f'<Business {self.name}>'
+        return '<Business %r>' % self.email
 
     def serialize(self):
         return {
               "id": self.id,
-              "name": self.name
+              "comercialName": self.comercial_name,
+              "taxName": self.tax_name,
+              "person": self.person,
+              "email": self.email,
+              "address": self.address,
+              "city": self.city,
+              "region": self.region,
+              "zipCode": self.zip_code,
+              "description": self.description,
+              "userId": self.user_id
             }
 
     def get_all_businesses():

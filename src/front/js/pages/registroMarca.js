@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+import { apiBaseURL } from "../constants";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const RegistroMarca = () => {
+	const history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [commercialName, setCommercialName] = useState("");
 	const [taxName, setTaxName] = useState("");
@@ -21,7 +23,7 @@ export const RegistroMarca = () => {
 		let business = {
 			comercial_name: commercialName,
 			tax_name: taxName,
-			logo: logo,
+			// logo: logo,
 			person: person,
 			email: email,
 			adress: address,
@@ -29,10 +31,36 @@ export const RegistroMarca = () => {
 			region: region,
 			zip_code: zipCode,
 			description: description,
-			check: check,
-			certs: certs
+			password: password
+			// check: check,
+			// certs: certs
 		};
-		actions.RegistroMarca(business);
+
+		// if (name !== "" && email !== "" && lastName !== "" && password !== "") {
+		// 	createBusiness(business);
+		// }
+
+		const createBusiness = business => {
+			let myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			let url = `${apiBaseURL}api/businesses`;
+			let raw = JSON.stringify(business);
+
+			var requestOptions = {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			};
+
+			fetch(url, requestOptions)
+				.then(response => response.json())
+				.then(result => {
+					history.push("/gracias");
+					console.log(result);
+				});
+		};
 	};
 
 	return (
@@ -260,11 +288,9 @@ export const RegistroMarca = () => {
 				<div className="row mb-3">
 					<div className="col-md">
 						<div className="form-group ml-3">
-							<Link to="/gracias" className="float-right">
-								<button onClick={event => handleClick(event)} className="btn btn-success btn-lg">
-									Registro
-								</button>
-							</Link>
+							<button onClick={event => handleClick(event)} className="btn btn-success btn-lg">
+								Registro
+							</button>
 						</div>
 					</div>
 				</div>
