@@ -6,11 +6,13 @@ import { Context } from "../store/appContext";
 export const RegistroMarca = () => {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
+	const [name, setName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [commercialName, setCommercialName] = useState("");
 	const [taxName, setTaxName] = useState("");
 	const [logo, setLogo] = useState();
-	const [person, setPerson] = useState("");
-	const [email, setEmail] = useState("");
 	const [address, setAddress] = useState("");
 	const [city, setCity] = useState("");
 	const [region, setRegion] = useState("");
@@ -24,14 +26,11 @@ export const RegistroMarca = () => {
 			comercial_name: commercialName,
 			tax_name: taxName,
 			// logo: logo,
-			person: person,
-			email: email,
 			adress: address,
 			city: city,
 			region: region,
 			zip_code: zipCode,
-			description: description,
-			password: password
+			description: description
 			// check: check,
 			// certs: certs
 		};
@@ -76,6 +75,47 @@ export const RegistroMarca = () => {
 			<form>
 				<div className="row mb-3">
 					<div className="col">
+						<label htmlFor="Marca">Nombre</label>
+						<input
+							onChange={event => setName(event.target.value)}
+							type="text"
+							className="form-control"
+							placeholder="Elon"
+						/>
+					</div>
+					<div className="col">
+						<label htmlFor="web">Apellidos</label>
+						<input
+							onChange={event => setLastName(event.target.value)}
+							type="text"
+							className="form-control"
+							placeholder="Musk"
+						/>
+					</div>
+				</div>
+
+				<div className="row mb-3">
+					<div className="col">
+						<label htmlFor="email">Correo electrónico</label>
+						<input
+							onChange={event => setEmail(event.target.value)}
+							type="email"
+							className="form-control"
+							placeholder="xxx@xxxx.com"
+						/>
+					</div>
+					<div className="col">
+						<label htmlFor="Marca">Contraseña</label>
+						<input
+							onChange={event => setPassword(event.target.value)}
+							type="password"
+							className="form-control"
+							placeholder="*******"
+						/>
+					</div>
+				</div>
+				<div className="row mb-3">
+					<div className="col">
 						<label htmlFor="Marca">Nombre comercial</label>
 						<input
 							type="text"
@@ -106,33 +146,13 @@ export const RegistroMarca = () => {
 						/>
 					</div>
 				</div>
-				<div className="row mb-3">
-					<div className="col">
-						<label htmlFor="Contact">Persona de Contacto</label>
-						<input
-							type="text"
-							onChange={event => setPerson(event.target.value)}
-							className="form-control"
-							placeholder="Nombre y apellidos"
-						/>
-					</div>
-					<div className="col">
-						<label htmlFor="email">Correo electrónico</label>
-						<input
-							type="email"
-							onChange={event => setEmail(event.target.value)}
-							className="form-control"
-							placeholder="xxx@xxxx.com"
-						/>
-					</div>
-				</div>
 
 				<div className="row mb-3">
 					<div className="col">
 						<label htmlFor="CodigoPostal">Dirección</label>
 						<input
 							type="text"
-							onChange={event => setAdress(event.target.value)}
+							onChange={event => setAddress(event.target.value)}
 							className="form-control"
 							placeholder="Calle, número, puerta."
 						/>
