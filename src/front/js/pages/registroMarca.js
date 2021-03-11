@@ -1,13 +1,70 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { apiBaseURL } from "../constants";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Registro = () => {
+export const RegistroMarca = () => {
+	const history = useHistory();
 	const { store, actions } = useContext(Context);
+	const [name, setName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [commercialName, setCommercialName] = useState("");
+	const [taxName, setTaxName] = useState("");
+	const [logo, setLogo] = useState();
+	const [address, setAddress] = useState("");
+	const [city, setCity] = useState("");
+	const [region, setRegion] = useState("");
+	const [zipCode, setZipCode] = useState("");
+	const [description, setDescription] = useState("");
+	const [check, setCheck] = useState([]);
+	const [certs, setCerts] = useState();
+
+	const handleClick = () => {
+		let business = {
+			comercial_name: commercialName,
+			tax_name: taxName,
+			// logo: logo,
+			adress: address,
+			city: city,
+			region: region,
+			zip_code: zipCode,
+			description: description
+			// check: check,
+			// certs: certs
+		};
+
+		// if (name !== "" && email !== "" && lastName !== "" && password !== "") {
+		// 	createBusiness(business);
+		// }
+
+		const createBusiness = business => {
+			let myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			let url = `${apiBaseURL}api/businesses`;
+			let raw = JSON.stringify(business);
+
+			var requestOptions = {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			};
+
+			fetch(url, requestOptions)
+				.then(response => response.json())
+				.then(result => {
+					history.push("/gracias");
+					console.log(result);
+				});
+		};
+	};
 
 	return (
 		<div className="container">
-			<div className="jumbotron">
+			<div className="jumbotron mt-4">
 				<h1 className="display-4">Registro para marcas y tiendas</h1>
 				<p className="lead">
 					Esta página es para que des de alta tu negocio en la plataforma de SostenibleOnline y empieces a
@@ -18,45 +75,105 @@ export const Registro = () => {
 			<form>
 				<div className="row mb-3">
 					<div className="col">
-						<label htmlFor="Marca">Nombre comercial</label>
-						<input type="text" className="form-control" placeholder="Nombre de la marca/tienda" />
+						<label htmlFor="Marca">Nombre</label>
+						<input
+							onChange={event => setName(event.target.value)}
+							type="text"
+							className="form-control"
+							placeholder="Elon"
+						/>
 					</div>
 					<div className="col">
-						<label htmlFor="web">Página Web</label>
-						<input type="text" className="form-control" placeholder="http://www.ejemplo.es" />
+						<label htmlFor="web">Apellidos</label>
+						<input
+							onChange={event => setLastName(event.target.value)}
+							type="text"
+							className="form-control"
+							placeholder="Musk"
+						/>
+					</div>
+				</div>
+
+				<div className="row mb-3">
+					<div className="col">
+						<label htmlFor="email">Correo electrónico</label>
+						<input
+							onChange={event => setEmail(event.target.value)}
+							type="email"
+							className="form-control"
+							placeholder="xxx@xxxx.com"
+						/>
+					</div>
+					<div className="col">
+						<label htmlFor="Marca">Contraseña</label>
+						<input
+							onChange={event => setPassword(event.target.value)}
+							type="password"
+							className="form-control"
+							placeholder="*******"
+						/>
+					</div>
+				</div>
+				<div className="row mb-3">
+					<div className="col">
+						<label htmlFor="Marca">Nombre comercial</label>
+						<input
+							type="text"
+							value={commercialName}
+							onChange={event => setCommercialName(event.target.value)}
+							className="form-control"
+							placeholder="Nombre de la marca/tienda"
+						/>
+					</div>
+					<div className="col">
+						<label htmlFor="web">Nombre Fiscal</label>
+						<input
+							type="text"
+							onChange={event => setTaxName(event.target.value)}
+							className="form-control"
+							placeholder="Tu empresa"
+						/>
 					</div>
 				</div>
 				<div className="row mb-3">
 					<div className="form-group ml-3">
 						<label htmlFor="exampleFormControlFile1">Subir logo</label>
-						<input type="file" className="form-control-file" id="exampleFormControlFile1" />
-					</div>
-				</div>
-				<div className="row mb-3">
-					<div className="col">
-						<label htmlFor="Contact">Persona de Contacto</label>
-						<input type="text" className="form-control" placeholder="Nombre y apellidos" />
-					</div>
-					<div className="col">
-						<label htmlFor="email">Correo electrónico</label>
-						<input type="email" className="form-control" placeholder="xxx@xxxx.com" />
+						<input
+							type="file"
+							onChange={event => setLogo(event.target.value)}
+							className="form-control-file"
+							id="exampleFormControlFile1"
+						/>
 					</div>
 				</div>
 
 				<div className="row mb-3">
 					<div className="col">
 						<label htmlFor="CodigoPostal">Dirección</label>
-						<input type="text" className="form-control" placeholder="Calle, número, puerta." />
+						<input
+							type="text"
+							onChange={event => setAddress(event.target.value)}
+							className="form-control"
+							placeholder="Calle, número, puerta."
+						/>
 					</div>
 				</div>
 				<div className="row mb-3">
 					<div className="form-group col-md-6">
 						<label htmlFor="inputCity">Ciudad</label>
-						<input type="text" className="form-control" id="inputCity" />
+						<input
+							type="text"
+							onChange={event => setCity(event.target.value)}
+							className="form-control"
+							id="inputCity"
+						/>
 					</div>
 					<div className="form-group col-md-4">
 						<label htmlFor="inputState">Provincia</label>
-						<select id="inputState" className="form-control">
+						<select
+							id="inputState"
+							onChange={event => setRegion(event.target.value)}
+							className="form-control">
 							<option selected>Elige...</option>
 							<option>Albacete</option>
 							<option>Alicante</option>
@@ -114,7 +231,12 @@ export const Registro = () => {
 					</div>
 					<div className="form-group col-md-2">
 						<label htmlFor="inputZip">Código postal</label>
-						<input type="text" className="form-control" id="inputZip" />
+						<input
+							type="text"
+							onChange={event => setZipCode(event.target.value)}
+							className="form-control"
+							id="inputZip"
+						/>
 					</div>
 				</div>
 
@@ -122,7 +244,12 @@ export const Registro = () => {
 					<div className="col">
 						<div className="form-group">
 							<label htmlFor="exampleFormControlTextarea">Descripción de tu empresa/marca</label>
-							<textarea className="form-control" id="exampleFormControlTextarea" rows="4" />
+							<textarea
+								className="form-control"
+								id="exampleFormControlTextarea"
+								onChange={event => setDescription(event.target.value)}
+								rows="4"
+							/>
 						</div>
 					</div>
 				</div>
@@ -169,7 +296,21 @@ export const Registro = () => {
 					<div className="col-md-6">
 						<div className="form-group ml-3">
 							<label htmlFor="exampleFormControlFile1">Subir certificados de calidad</label>
-							<input type="file" className="form-control-file" id="exampleFormControlFile1" />
+							<input
+								type="file"
+								className="form-control-file"
+								id="exampleFormControlFile1"
+								onChange={event => setCerts(event.target.value)}
+							/>
+						</div>
+					</div>
+				</div>
+				<div className="row mb-3">
+					<div className="col-md">
+						<div className="form-group ml-3">
+							<button onClick={event => handleClick(event)} className="btn btn-success btn-lg">
+								Registro
+							</button>
 						</div>
 					</div>
 				</div>

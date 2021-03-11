@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -20,6 +22,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			signUp: user => {},
 
 			getMessage: () => {
 				// fetching data from the backend

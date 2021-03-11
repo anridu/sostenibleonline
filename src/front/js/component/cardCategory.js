@@ -13,7 +13,7 @@ export const CardCategory = () => {
 				<Card.Text>
 					Some quick example text to build on the card title and make up the bulk of the cards content.
 				</Card.Text>
-				<Button variant="primary">Go somewhere</Button>
+				<Button variant="success">Ver el producto</Button>
 			</Card.Body>
 		</Card>
 	);
