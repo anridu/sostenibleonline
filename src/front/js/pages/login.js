@@ -9,28 +9,15 @@ export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	async function handleSubmit(event) {
+	const handleSubmit = event => {
+		let user = {
+			email: email,
+			password: password
+		};
+		// if (name !== "" && email !== "" && lastName !== "" && password !== "") {
+		// 	createUser(user);
+		// }
 		event.preventDefault();
-
-		try {
-			await Auth.signIn(email, password);
-			alert("Logged in");
-		} catch (e) {
-			alert(e.message);
-		}
-	}
-
-	// const handleSubmit = event => {
-	// 	let user = {
-	// 		email: email,
-	// 		password: password
-	// 	};
-	// 	// if (name !== "" && email !== "" && lastName !== "" && password !== "") {
-	// 	// 	createUser(user);
-	// 	// }
-	// 	event.preventDefault();
-	// };
-	const validateForm = user => {
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
@@ -41,13 +28,12 @@ export const Login = () => {
 			method: "POST",
 			headers: myHeaders,
 			body: raw
-			// redirect: "follow"
 		};
 
 		fetch(url, requestOptions)
 			.then(response => response.text())
 			.then(result => {
-				// history.push("/gracias");
+				history.push("/");
 				console.log(result);
 			})
 
@@ -65,7 +51,7 @@ export const Login = () => {
 						<Form.Label>Password</Form.Label>
 						<Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
 					</Form.Group>
-					<Button block size="lg" type="submit" disabled={!validateForm()}>
+					<Button block size="lg" type="submit">
 						Login
 					</Button>
 				</Form>
