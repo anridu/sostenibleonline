@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 8730641070ff
+Revision ID: 6a7dde4baeeb
 Revises: 
-Create Date: 2021-03-05 19:02:21.755931
+Create Date: 2021-03-11 19:14:19.633128
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8730641070ff'
+revision = '6a7dde4baeeb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,7 +33,7 @@ def upgrade():
     sa.Column('name', sa.String(length=80), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('user',
+    op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=False),
     sa.Column('last_name', sa.String(length=120), nullable=False),
@@ -41,15 +41,21 @@ def upgrade():
     sa.Column('password', sa.String(length=80), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('last_name'),
-    sa.UniqueConstraint('name')
+    sa.UniqueConstraint('email')
     )
     op.create_table('business',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=80), nullable=False),
+    sa.Column('comercial_name', sa.String(length=80), nullable=False),
+    sa.Column('tax_name', sa.String(length=80), nullable=False),
+    sa.Column('person', sa.String(length=80), nullable=False),
+    sa.Column('email', sa.String(length=80), nullable=False),
+    sa.Column('address', sa.String(length=80), nullable=False),
+    sa.Column('city', sa.String(length=80), nullable=False),
+    sa.Column('region', sa.String(length=80), nullable=False),
+    sa.Column('zip_code', sa.String(length=80), nullable=False),
+    sa.Column('description', sa.String(length=400), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('designation',
@@ -57,7 +63,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('business_certificate',
@@ -97,7 +103,7 @@ def downgrade():
     op.drop_table('business_certificate')
     op.drop_table('designation')
     op.drop_table('business')
-    op.drop_table('user')
+    op.drop_table('users')
     op.drop_table('role')
     op.drop_table('certificate')
     op.drop_table('category')

@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { apiBaseURL } from "../constants";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const SignUp = () => {
+	const history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [name, setName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
 	const handleClick = () => {
 		let user = {
 			name: name,
@@ -15,7 +18,33 @@ export const SignUp = () => {
 			email: email,
 			password: password
 		};
-		actions.signUp(user);
+		if (name !== "" && email !== "" && lastName !== "" && password !== "") {
+			createUser(user);
+		}
+	};
+
+	const createUser = user => {
+		let myHeaders = new Headers();
+		myHeaders.append("Accept", "application/json");
+		myHeaders.append("Content-Type", "application/json");
+
+		let url = `${apiBaseURL}api/sign_up`;
+		let raw = JSON.stringify(user);
+
+		let requestOptions = {
+			method: "POST",
+			headers: myHeaders,
+			body: raw
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				history.push("/gracias");
+				console.log(result);
+			})
+
+			.catch(error => console.log("error", error));
 	};
 
 	return (
@@ -69,11 +98,9 @@ export const SignUp = () => {
 			<div className="row mb-3">
 				<div className="col-md-6">
 					<div className="form-group ml-3">
-						<Link to="/gracias">
-							<button onClick={event => handleClick(event)} className="btn btn-primary">
-								Registro
-							</button>
-						</Link>
+						<button onClick={event => handleClick(event)} className="btn btn-primary">
+							Registro
+						</button>
 					</div>
 				</div>
 			</div>

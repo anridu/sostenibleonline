@@ -33,12 +33,12 @@ def sign_up():
     db.session.add(new_user)
     db.session.commit()
 
-    
     return jsonify(new_user.serialize()), 200
 
 
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
+    
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
@@ -175,13 +175,19 @@ def modify_business(id):
 @api.route('/businesses', methods=['POST'])
 def post_businesses():
     body = request.get_json()
-
-    new_business = Business(name=body['name'], user_id=body['user_id'])
+    hashed_password = generate_password_hash(body['password'], method='sha256')
+    new_user = User(name=body['name'], last_name=body['last_name'], email=body['email'], password=hashed_password)
     
-    print(new_business)
-    db.session.add(new_business)
+    
+    db.session.add(new_user)
     db.session.commit()
 
+    new_business = Business(comercial_name=body['comercial_name'], tax_name=body['tax_name'], address=body['address'], city=body['city'], region=body['region'], zip_code=body['zip_code'],description=body['description'],user_id=new_user.id)
+    
+   
+    db.session.add(new_business)
+    db.session.commit()
+    print(new_business)
     return jsonify(new_business.serialize()), 200
 
 
