@@ -33,7 +33,7 @@ export const SignUp = () => {
 						className="form-control"
 						placeholder="Elon"
 					/>
-				</div>
+				</div> 
 				<div className="col">
 					<label htmlFor="web">Apellidos</label>
 					<input
