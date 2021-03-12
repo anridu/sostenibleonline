@@ -6,6 +6,8 @@ import { Register } from "../component/register.js";
 import { Hero_Section } from "../component/hero-section.js";
 import { Home_Categories } from "../component/home-categories.js";
 import { Contact } from "../component/contacto.js";
+import { MultiCarousel } from "../component/react-multi-carousel";
+import { MoreInfo } from "../component/MoreInfo";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -16,6 +18,8 @@ export const Home = () => {
 			<Hero_Section />
 			<Home_Categories />
 			<Register />
+			<MultiCarousel />
+			<MoreInfo />
 			<Contact />
 		</div>
 	);
