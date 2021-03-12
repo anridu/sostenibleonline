@@ -116,6 +116,9 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     size = db.Column(db.String(6), unique=False, nullable=False)  
     description = db.Column(db.String, unique=False, nullable=True)
+    short_description = db.Column(db.String(80), unique=False, nullable=False)
+    price = quantity = db.Column(db.Integer, unique=False, nullable=False)
+    color = db.Column(db.String(20), unique=False, nullable=False)
 
     business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
     business = db.relationship("Business")
