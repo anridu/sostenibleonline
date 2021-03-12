@@ -145,6 +145,9 @@ class Product(db.Model):
             "quantity": self.quantity,
             "size": self.size,
             "description": self.description,
+            "short_description": self.short_description,
+            "price": self.price,
+            "color": self.color
             # do not serialize the password, its a security breach
         }
 

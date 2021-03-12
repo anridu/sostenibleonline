@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -29,7 +29,40 @@ export const ProductForm = () => {
 			color: color
 		};
 		actions.ProductForm(product);
+		if (
+			productName !== "" &&
+			quantity !== "" &&
+			size !== "" &&
+			description !== "" &&
+			shortDescription !== "" &&
+			price !== "" &&
+			color !== ""
+		) {
+			createProduct(product);
+		}
 	};
+	const createProduct = product => {
+		let myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		let url = `${apiBaseURL}api/products`;
+		let raw = JSON.stringify(product);
+
+		var requestOptions = {
+			method: "POST",
+			headers: myHeaders,
+			body: raw,
+			redirect: "follow"
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				history.push("/product-form");
+				console.log(result);
+			});
+	};
+
 	return (
 		<div>
 			<div className="container">
@@ -88,7 +121,6 @@ export const ProductForm = () => {
 							placeholder="Precio por unidad"
 							onChange={event => setPrice(event.target.value)}
 						/>
-						/>
 					</Form.Group>
 					<Form.Group as={Col} controlId="formGridState">
 						<Form.Label>Color</Form.Label>
@@ -128,8 +160,8 @@ export const ProductForm = () => {
 					<Form.Check type="checkbox" label="GLOBAL ORGANIC TEXTILE STANDARD" />
 				</Form.Group>
 
-				<Button variant="primary" type="submit">
-					Submit
+				<Button onClick={event => handleClick(event)} className="btn btn-success btn-lg">
+					Subir producto
 				</Button>
 			</Form>
 		</div>
