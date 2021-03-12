@@ -38,6 +38,7 @@ def sign_up():
 
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
+    
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
