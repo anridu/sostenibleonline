@@ -14,7 +14,9 @@ export const Register = () => {
 						Apúntate aquí para recibir nuestra newsletter mensual con los mejores tips convertirte en un
 						zero-waste warrior.
 					</p>
-					<button className="btn btn-success">Regístrate aquí</button>
+					<a href="https://mailchimp.com/es/" className="btn btn-success">
+						Regístrate aquí
+					</a>
 				</div>
 			</div>
 		</div>
