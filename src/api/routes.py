@@ -133,7 +133,11 @@ def modify_product(id):
 def post_products():
     body = request.get_json()
 
-    new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], business_id=body['business_id'])
+    new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], 
+    category_id=body['category_id'],
+    price=body['price'],
+    color=body['color'],
+    business_id=body['business_id'])
     
     print(new_product)
     db.session.add(new_product)

@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
+import { apiBaseURL } from "../constants";
+import { Link, useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -14,7 +17,7 @@ export const ProductForm = () => {
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
 	const [description, setDescription] = useState("");
-	const [shortDescription, setShorthDescription] = useState("");
+	const [category, setCategory] = useState("");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 
@@ -24,17 +27,16 @@ export const ProductForm = () => {
 			quantity: quantity,
 			size: size,
 			description: description,
-			short_description: shortDescription,
+			category: category,
 			price: price,
 			color: color
 		};
-		actions.ProductForm(product);
+
 		if (
 			productName !== "" &&
 			quantity !== "" &&
 			size !== "" &&
 			description !== "" &&
-			shortDescription !== "" &&
 			price !== "" &&
 			color !== ""
 		) {
@@ -83,12 +85,12 @@ export const ProductForm = () => {
 					</Form.Group>
 
 					<Form.Group as={Col} controlId="formGridPassword">
-						<Form.Label>Descripción breve</Form.Label>
-						<Form.Control
-							type="text"
-							placeholder="Descripción breve"
-							onChange={event => setShorthDescription(event.target.value)}
-						/>
+						<Form.Label>Categoría</Form.Label>
+						<Form.Control as="select" onChange={event => setCategory(event.target.value)}>
+							<option>Hombre</option>
+							<option>Mujer</option>
+							<option>Unisex</option>
+						</Form.Control>
 					</Form.Group>
 				</Form.Row>
 				<Form.Group>
