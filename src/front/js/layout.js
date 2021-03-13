@@ -22,6 +22,8 @@ import { Registro } from "./pages/registro";
 import { Gracias } from "./pages/gracias-registro";
 import { Login } from "./pages/login";
 
+import { Search } from "./component/searchBar";
+
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
+import { Search } from "../component/searchBar";
 import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
 
 export const TopNav = () => {
@@ -29,8 +30,8 @@ export const TopNav = () => {
 						<button className="btn btn-success mr-3">Registro</button>
 					</Link>
 					<Form inline>
-						<FormControl style={{ width: "60vh" }} type="text" placeholder="Búsqueda" className="mr-sm-2" />
-						<Button variant="outline-success">Buscar</Button>
+						<Search />
+						<Button variant="outline-success" />
 					</Form>
 				</div>
 			</Navbar.Collapse>
