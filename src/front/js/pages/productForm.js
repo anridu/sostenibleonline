@@ -62,7 +62,7 @@ export const ProductForm = () => {
 		fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				history.push("/product-form");
+				history.push("/");
 				console.log(result);
 			});
 	};
