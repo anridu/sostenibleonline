@@ -13,6 +13,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 
 export const ProductForm = () => {
+	const history = useHistory();
 	const [productName, setProductName] = useState("");
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
@@ -22,6 +23,7 @@ export const ProductForm = () => {
 	const [color, setColor] = useState("");
 
 	const handleClick = () => {
+		event.preventDefault();
 		let product = {
 			product_name: productName,
 			quantity: quantity,
@@ -66,12 +68,10 @@ export const ProductForm = () => {
 	};
 
 	return (
-		<div>
-			<div className="container">
-				<div className="jumbotron mt-4">
-					<h1 className="display-4">Subida de productos</h1>
-					<p className="lead">Formulario para subir los productos de la tienda</p>
-				</div>
+		<div className="container">
+			<div className="jumbotron mt-4">
+				<h1 className="display-4">Subida de productos</h1>
+				<p className="lead">Formulario para subir los productos de la tienda</p>
 			</div>
 			<Form className="m-5">
 				<Form.Row>

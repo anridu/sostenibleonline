@@ -127,7 +127,7 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     size = db.Column(db.String(6), unique=False, nullable=False)  
     description = db.Column(db.String, unique=False, nullable=True)    
-    price = quantity = db.Column(db.Integer, unique=False, nullable=False)
+    price = db.Column(db.Integer, unique=False, nullable=False)
     color = db.Column(db.String(20), unique=False, nullable=False)
 
     business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
@@ -144,7 +144,6 @@ class Product(db.Model):
             "quantity": self.quantity,
             "size": self.size,
             "description": self.description,
-            "short_description": self.short_description,
             "price": self.price,
             "color": self.color
             # do not serialize the password, its a security breach
