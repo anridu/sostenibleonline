@@ -150,10 +150,16 @@ def post_products():
     color=body['color']
     )
     
-    print(new_product)
+    
     db.session.add(new_product)
     db.session.commit()
-    # product_category = ProductCategory(product_id=new_product.id, category_id=category.id)
+    db.session.flush()
+    print(new_product)
+    
+    product_category = ProductCategory(product_id=new_product.id, category_id=category.id)
+
+    db.session.add(product_category)
+    db.session.commit()
 
     return jsonify(new_product.serialize()), 200
 
