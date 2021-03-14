@@ -143,16 +143,17 @@ def modify_product(id):
 @api.route('/products', methods=['POST'])
 def post_products():
     body = request.get_json()
-
+    print(body)
+    category = Category.query.filter_by(name=body["category"]).first()
     new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], 
-    category_id=body['category_id'],
     price=body['price'],
-    color=body['color'],
-    business_id=body['business_id'])
+    color=body['color']
+    )
     
     print(new_product)
     db.session.add(new_product)
     db.session.commit()
+    # product_category = ProductCategory(product_id=new_product.id, category_id=category.id)
 
     return jsonify(new_product.serialize()), 200
 

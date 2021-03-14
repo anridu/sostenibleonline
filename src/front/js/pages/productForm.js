@@ -25,7 +25,7 @@ export const ProductForm = () => {
 	const handleClick = () => {
 		event.preventDefault();
 		let product = {
-			product_name: productName,
+			productName: productName,
 			quantity: quantity,
 			size: size,
 			description: description,
@@ -49,7 +49,7 @@ export const ProductForm = () => {
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
-		let url = `${apiBaseURL}api/products`;
+		let url = `${apiBaseURL}/api/products`;
 		let raw = JSON.stringify(product);
 
 		var requestOptions = {
@@ -58,6 +58,7 @@ export const ProductForm = () => {
 			body: raw,
 			redirect: "follow"
 		};
+		debugger;
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
@@ -162,7 +163,7 @@ export const ProductForm = () => {
 					<Form.Check type="checkbox" label="GLOBAL ORGANIC TEXTILE STANDARD" />
 				</Form.Group>
 
-				<Button onClick={event => handleClick(event)} className="btn btn-success btn-lg">
+				<Button onClick={handleClick} className="btn btn-success btn-lg">
 					Subir producto
 				</Button>
 			</Form>

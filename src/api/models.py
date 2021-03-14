@@ -123,14 +123,14 @@ class Certificate(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    product_name = db.Column(db.String(120), unique=True, nullable=False)
+    product_name = db.Column(db.String(120), unique=False, nullable=False)
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     size = db.Column(db.String(6), unique=False, nullable=False)  
     description = db.Column(db.String, unique=False, nullable=True)    
     price = db.Column(db.Integer, unique=False, nullable=False)
     color = db.Column(db.String(20), unique=False, nullable=False)
 
-    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
+    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=True)
     business = db.relationship("Business")
     categories = db.relationship("Category", secondary="product_category")
 
