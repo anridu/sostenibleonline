@@ -53,6 +53,9 @@ class User(db.Model):
   def check_password(self, password_param):
     return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
 
+  def is_owner(self):
+      return self.businesses.count() !=0
+
 class Designation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

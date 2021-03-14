@@ -59,7 +59,7 @@ def sign_in():
 
     # Notice that we are passing in the actual sqlalchemy user object here
     access_token = create_access_token(identity=user.sign_in_serialize())
-    return jsonify(access_token=access_token)
+    return jsonify({access_token: access_token, is_owner: user.is_owner()})
 
 @api.route("/me", methods=["GET"])
 @jwt_required()
