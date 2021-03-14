@@ -33,8 +33,8 @@ export const Search = () => {
 	};
 
 	if (searchTerm.length > 0) {
-		test = test.filter(i => {
-			return i.first_name.toLowerCase().match(searchTerm);
+		test = test.filter(element => {
+			return element.first_name.toLowerCase().match(searchTerm.toLowerCase());
 		});
 	}
 
