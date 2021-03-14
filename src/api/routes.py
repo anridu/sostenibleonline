@@ -3,6 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Product, Business, BusinessCertificate, Category, ProductCategory, Role, Designation
+from api.seed_data import RoleSeedData, CategorySeedData
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -19,6 +20,16 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+########################### SEED DATA - START ###########################################
+@api.route("/seed_data", methods=["GET"])
+def create_seed_data():
+  RoleSeedData().seed()
+  CategorySeedData().seed()
+
+  return jsonify("Seed data executed"), 200
+
+########################### SEED DATA - END ###########################################
 
 ########################### LOGIN RELATED ###########################################
 
