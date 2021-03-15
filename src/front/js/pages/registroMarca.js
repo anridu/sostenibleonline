@@ -61,7 +61,7 @@ export const RegistroMarca = () => {
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
-		let url = `${apiBaseURL}api/businesses`;
+		let url = `${apiBaseURL}/api/businesses`;
 		let raw = JSON.stringify(business);
 
 		var requestOptions = {

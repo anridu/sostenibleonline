@@ -58,20 +58,28 @@ def sign_in():
         return jsonify("Wrong email or password"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.sign_in_serialize())
-    return jsonify({access_token: access_token, is_owner: user.is_owner()})
+    access_token = create_access_token(identity=user.sign_in_serialize())       
+    return jsonify(access_token= access_token, is_owner= user.is_owner())
 
 @api.route("/me", methods=["GET"])
 @jwt_required()
 def protected():
     return jsonify(current_user(get_jwt_identity()).serialize())
 
+@api.route("/me/get_business", methods=["GET"])
+@jwt_required()
+def get_business():
+    user = get_jwt_identity()
+    business = Business.get_business_by_user_id(user["id"])   
+    return jsonify(list(map(lambda x: x.serialize(), business)))
+
+
 ######################################################################################    
 
 @api.route('/users', methods=['GET'])
 def handle_users():
 
-    users = User.get_all_users()
+    users = User.query.all()
     all_users = list(map(lambda user: user.serialize(), users))
 
     return jsonify(all_users), 200

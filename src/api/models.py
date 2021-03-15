@@ -38,9 +38,11 @@ class User(db.Model):
           "name": self.name,
           "lastName": self.last_name,
           "email": self.email,
-          "isActive": self.is_active
+          "isActive": self.is_active,
+          "business": list(map(lambda x: x.serialize(), self.businesses))
+        #   "role": self.roles
           # do not serialize the password, its a security breach
-      }
+      }  
 
   def sign_in_serialize(self):
       return {
@@ -53,8 +55,8 @@ class User(db.Model):
   def check_password(self, password_param):
     return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
 
-  def is_owner(self):
-      return self.businesses.count() !=0
+  def is_owner(self):      
+      return True if self.businesses else False
 
 class Designation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -80,6 +82,8 @@ class Business(db.Model):
     def __repr__(self):
         # return f'<Business {self.name}>'
         return '<Business %r>' % self.tax_name
+    def get_business_by_user_id(user_id):
+        return Business.query.filter_by(user_id=user_id).all()
 
     def serialize(self):
         return {

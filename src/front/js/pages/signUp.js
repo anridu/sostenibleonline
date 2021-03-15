@@ -28,7 +28,7 @@ export const SignUp = () => {
 		myHeaders.append("Accept", "application/json");
 		myHeaders.append("Content-Type", "application/json");
 
-		let url = `${apiBaseURL}api/sign_up`;
+		let url = `${apiBaseURL}/api/sign_up`;
 		let raw = JSON.stringify(user);
 
 		let requestOptions = {
