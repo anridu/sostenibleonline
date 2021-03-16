@@ -58,7 +58,6 @@ export const ProductForm = () => {
 			body: raw,
 			redirect: "follow"
 		};
-		debugger;
 
 		fetch(url, requestOptions)
 			.then(response => response.json())

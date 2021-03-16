@@ -110,7 +110,7 @@ class BusinessCertificate(db.Model):
   certificate = db.relationship("Certificate")
   business = db.relationship("Business")
 
-  
+
 
 
 class Certificate(db.Model):
@@ -145,6 +145,10 @@ class Product(db.Model):
         return '<Product %r>' % self.product_name
 
     def serialize(self):
+        serialized_categories = []
+        for category in self.categories:
+            serialized_categories.append(category.serialize())
+        # serialized_categories = []
         return {
             "id": self.id,
             "product_name": self.product_name,
@@ -152,7 +156,8 @@ class Product(db.Model):
             "size": self.size,
             "description": self.description,
             "price": self.price,
-            "color": self.color
+            "color": self.color,
+            "category": serialized_categories
             # do not serialize the password, its a security breach
         }
 
@@ -181,5 +186,6 @@ class Category(db.Model):
               "id": self.id,
               "name": self.name
             }
+
     def get_all_categories():
          return Category.query.all()

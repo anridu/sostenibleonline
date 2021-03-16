@@ -154,15 +154,14 @@ def post_products():
     print(body)
     category = Category.query.filter_by(name=body["category"]).first()
     new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], 
-    price=body['price'],
-    color=body['color']
+    price=body['price'], color=body['color'], business_id=body['business_id']
     )
     
     
     db.session.add(new_product)
     db.session.commit()
     db.session.flush()
-    print(new_product)
+    print(category)
     
     product_category = ProductCategory(product_id=new_product.id, category_id=category.id)
 
