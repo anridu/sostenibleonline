@@ -38,9 +38,11 @@ class User(db.Model):
           "name": self.name,
           "lastName": self.last_name,
           "email": self.email,
-          "isActive": self.is_active
+          "isActive": self.is_active,
+          "business": list(map(lambda x: x.serialize(), self.businesses))
+        #   "role": self.roles
           # do not serialize the password, its a security breach
-      }
+      }  
 
   def sign_in_serialize(self):
       return {
@@ -52,6 +54,9 @@ class User(db.Model):
 
   def check_password(self, password_param):
     return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
+
+  def is_owner(self):      
+      return True if self.businesses else False
 
 class Designation(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -77,6 +82,8 @@ class Business(db.Model):
     def __repr__(self):
         # return f'<Business {self.name}>'
         return '<Business %r>' % self.tax_name
+    def get_business_by_user_id(user_id):
+        return Business.query.filter_by(user_id=user_id).all()
 
     def serialize(self):
         return {
@@ -103,7 +110,7 @@ class BusinessCertificate(db.Model):
   certificate = db.relationship("Certificate")
   business = db.relationship("Business")
 
-  
+
 
 
 class Certificate(db.Model):
@@ -123,14 +130,14 @@ class Certificate(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    product_name = db.Column(db.String(120), unique=True, nullable=False)
+    product_name = db.Column(db.String(120), unique=False, nullable=False)
     quantity = db.Column(db.Integer, unique=False, nullable=False)
     size = db.Column(db.String(6), unique=False, nullable=False)  
     description = db.Column(db.String, unique=False, nullable=True)    
     price = db.Column(db.Integer, unique=False, nullable=False)
     color = db.Column(db.String(20), unique=False, nullable=False)
 
-    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
+    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=True)
     business = db.relationship("Business")
     categories = db.relationship("Category", secondary="product_category")
 
@@ -138,6 +145,10 @@ class Product(db.Model):
         return '<Product %r>' % self.product_name
 
     def serialize(self):
+        serialized_categories = []
+        for category in self.categories:
+            serialized_categories.append(category.serialize())
+        # serialized_categories = []
         return {
             "id": self.id,
             "product_name": self.product_name,
@@ -145,7 +156,8 @@ class Product(db.Model):
             "size": self.size,
             "description": self.description,
             "price": self.price,
-            "color": self.color
+            "color": self.color,
+            "category": serialized_categories
             # do not serialize the password, its a security breach
         }
 
@@ -174,5 +186,6 @@ class Category(db.Model):
               "id": self.id,
               "name": self.name
             }
+
     def get_all_categories():
          return Category.query.all()

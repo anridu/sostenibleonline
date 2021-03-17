@@ -3,6 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Product, Business, BusinessCertificate, Category, ProductCategory, Role, Designation
+from api.seed_data import RoleSeedData, CategorySeedData
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -19,6 +20,16 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+########################### SEED DATA - START ###########################################
+@api.route("/seed_data", methods=["GET"])
+def create_seed_data():
+  RoleSeedData().seed()
+  CategorySeedData().seed()
+
+  return jsonify("Seed data executed"), 200
+
+########################### SEED DATA - END ###########################################
 
 ########################### LOGIN RELATED ###########################################
 
@@ -47,20 +58,28 @@ def sign_in():
         return jsonify("Wrong email or password"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.sign_in_serialize())
-    return jsonify(access_token=access_token)
+    access_token = create_access_token(identity=user.sign_in_serialize())       
+    return jsonify(access_token= access_token, is_owner= user.is_owner())
 
 @api.route("/me", methods=["GET"])
 @jwt_required()
 def protected():
     return jsonify(current_user(get_jwt_identity()).serialize())
 
+@api.route("/me/get_business", methods=["GET"])
+@jwt_required()
+def get_business():
+    user = get_jwt_identity()
+    business = Business.get_business_by_user_id(user["id"])   
+    return jsonify(list(map(lambda x: x.serialize(), business)))
+
+
 ######################################################################################    
 
 @api.route('/users', methods=['GET'])
 def handle_users():
 
-    users = User.get_all_users()
+    users = User.query.all()
     all_users = list(map(lambda user: user.serialize(), users))
 
     return jsonify(all_users), 200
@@ -132,15 +151,21 @@ def modify_product(id):
 @api.route('/products', methods=['POST'])
 def post_products():
     body = request.get_json()
-
+    print(body)
+    category = Category.query.filter_by(name=body["category"]).first()
     new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], 
-    category_id=body['category_id'],
-    price=body['price'],
-    color=body['color'],
-    business_id=body['business_id'])
+    price=body['price'], color=body['color'], business_id=body['business_id']
+    )
     
-    print(new_product)
+    
     db.session.add(new_product)
+    db.session.commit()
+    db.session.flush()
+    print(category)
+    
+    product_category = ProductCategory(product_id=new_product.id, category_id=category.id)
+
+    db.session.add(product_category)
     db.session.commit()
 
     return jsonify(new_product.serialize()), 200

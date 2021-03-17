@@ -12,12 +12,7 @@ export const Login = () => {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
-		try {
-			await Auth.signIn(email, password);
-			alert("Logged in");
-		} catch (e) {
-			alert(e.message);
-		}
+		validateForm();
 	}
 
 	// const handleSubmit = event => {
@@ -30,11 +25,11 @@ export const Login = () => {
 	// 	// }
 	// 	event.preventDefault();
 	// };
-	const validateForm = user => {
+	const validateForm = () => {
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
-		let url = `${apiBaseURL}api/sign_in`;
+		let url = `${apiBaseURL}/api/sign_in`;
 		let raw = JSON.stringify({ email, password });
 
 		let requestOptions = {
@@ -45,10 +40,11 @@ export const Login = () => {
 		};
 
 		fetch(url, requestOptions)
-			.then(response => response.text())
+			.then(response => response.json())
 			.then(result => {
 				// history.push("/gracias");
-				console.log(result);
+				localStorage.setItem("token", result.access_token);
+				console.log(result.access_token);
 			})
 
 			.catch(error => console.log("error", error));
@@ -65,7 +61,7 @@ export const Login = () => {
 						<Form.Label>Password</Form.Label>
 						<Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
 					</Form.Group>
-					<Button block size="lg" type="submit" disabled={!validateForm()}>
+					<Button block size="lg" type="submit">
 						Login
 					</Button>
 				</Form>
