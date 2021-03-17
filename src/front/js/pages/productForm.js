@@ -51,6 +51,7 @@ export const ProductForm = () => {
 
 		let url = `${apiBaseURL}api/products`;
 		let raw = JSON.stringify(product);
+		console.log(raw);
 
 		var requestOptions = {
 			method: "POST",
