@@ -14,6 +14,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 export const ProductForm = () => {
 	const history = useHistory();
+	const { store, actions } = useContext(Context);
 	const [productName, setProductName] = useState("");
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
@@ -21,6 +22,19 @@ export const ProductForm = () => {
 	const [category, setCategory] = useState("");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
+	const [businessId, setBusinessId] = useState("");
+
+	useEffect(() => {
+		actions.getBusiness();
+	}, []);
+
+	const handleBusiness = event => {
+		var business = store.business.filter(bs => {
+			bs.comercialName.toString() === event.target.value;
+		});
+		// setBusinessId(business.id)
+		console.log(business);
+	};
 
 	const handleClick = () => {
 		event.preventDefault();
@@ -31,7 +45,8 @@ export const ProductForm = () => {
 			description: description,
 			category: category,
 			price: price,
-			color: color
+			color: color,
+			business_id: businessId
 		};
 
 		if (
@@ -84,7 +99,6 @@ export const ProductForm = () => {
 							onChange={event => setProductName(event.target.value)}
 						/>
 					</Form.Group>
-
 					<Form.Group as={Col} controlId="formGridPassword">
 						<Form.Label>Categoría</Form.Label>
 						<Form.Control as="select" onChange={event => setCategory(event.target.value)}>
@@ -94,14 +108,26 @@ export const ProductForm = () => {
 						</Form.Control>
 					</Form.Group>
 				</Form.Row>
-				<Form.Group>
-					<Form.File
-						id="custom-file-translate-html"
-						label="Carga la imagen tu producto"
-						data-browse="Examinar"
-						custom
-					/>
-				</Form.Group>
+				<Form.Row>
+					<Form.Group>
+						<Form.Label>Imagen del producto</Form.Label>
+						<Form.File
+							id="custom-file-translate-html"
+							label="Carga la imagen tu producto"
+							data-browse="Examinar"
+							custom
+						/>
+					</Form.Group>
+
+					<Form.Group as={Col} controlId="formGridPassword">
+						<Form.Label>Categoría</Form.Label>
+						<Form.Control as="select" onChange={event => handleBusiness(event)}>
+							{store.business.map((bs, key) => (
+								<option key={key}>{bs.comercialName}</option>
+							))}
+						</Form.Control>
+					</Form.Group>
+				</Form.Row>
 				<Form.Row>
 					<Form.Group as={Col} controlId="formGridText">
 						<Form.Label>Cantidad</Form.Label>

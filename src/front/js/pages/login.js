@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { apiBaseURL } from "../constants";
 import { useHistory } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Login = () => {
 	const history = useHistory();
+	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -35,16 +37,17 @@ export const Login = () => {
 		let requestOptions = {
 			method: "POST",
 			headers: myHeaders,
-			body: raw
-			// redirect: "follow"
+			body: raw,
+			redirect: "follow"
 		};
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				// history.push("/gracias");
+				actions.setIsLogged(true);
 				localStorage.setItem("token", result.access_token);
 				console.log(result.access_token);
+				history.push("/");
 			})
 
 			.catch(error => console.log("error", error));

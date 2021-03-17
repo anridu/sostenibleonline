@@ -217,7 +217,9 @@ def post_businesses():
     db.session.add(new_business)
     db.session.commit()
     print(new_business)
-    return jsonify(new_business.serialize()), 200
+    access_token = create_access_token(identity=new_user.sign_in_serialize()) 
+    return jsonify(new_business = new_business.serialize(),access_token = access_token), 200
+
 
 
 

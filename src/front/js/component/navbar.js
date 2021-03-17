@@ -20,11 +20,14 @@ export const TopNav = () => {
 						<NavDropdown.Item href="/ropa-unisex">Unisex</NavDropdown.Item>
 					</NavDropdown>
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
-					<Nav.Link href="/checkout">
+					<Nav.Link href="/compra">
 						<i className="fas fa-shopping-cart" />
 					</Nav.Link>
 				</Nav>
 				<div className="d-flex justify-content-between">
+					<Link to="/login">
+						<button className="btn btn-outline-success mr-3">Login</button>
+					</Link>
 					<Link to="/registro">
 						<button className="btn btn-success mr-3">Registro</button>
 					</Link>

@@ -74,8 +74,10 @@ export const RegistroMarca = () => {
 		fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				history.push("/gracias");
+				actions.setIsLogged(true);
+				localStorage.setItem("token", result.access_token);
 				console.log(result);
+				history.push("/gracias");
 			});
 	};
 
