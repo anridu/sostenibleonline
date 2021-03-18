@@ -36,6 +36,13 @@ export const ProductForm = () => {
 		console.log(business);
 	};
 
+	function addSelectedCerts(event) {
+		let value = event.target.value;
+		console.log(event.target.value);
+		setSelectedCerts(certs => [...certs, event.target.value]);
+		console.log(selectedCerts);
+	}
+
 	const handleClick = () => {
 		event.preventDefault();
 		let product = {
@@ -46,7 +53,8 @@ export const ProductForm = () => {
 			category: category,
 			price: price,
 			color: color,
-			business_id: businessId
+			business_id: businessId,
+			certs: certs
 		};
 
 		if (
@@ -120,10 +128,12 @@ export const ProductForm = () => {
 					</Form.Group>
 
 					<Form.Group as={Col} controlId="formGridPassword">
-						<Form.Label>Categoría</Form.Label>
-						<Form.Control as="select" onChange={event => handleBusiness(event)}>
+						<Form.Label>Negocio</Form.Label>
+						<Form.Control as="select" onChange={event => setBusinessId(event.target.value)}>
 							{store.business.map((bs, key) => (
-								<option key={key}>{bs.comercialName}</option>
+								<option value={bs.id} key={key}>
+									{bs.comercialName}
+								</option>
 							))}
 						</Form.Control>
 					</Form.Group>
@@ -169,7 +179,14 @@ export const ProductForm = () => {
 						onChange={event => setDescription(event.target.value)}
 					/>
 				</Form.Group>
-				<Form.Group id="formGridCheckbox">
+				<Form.Control as="select" multiple onChange={event => addSelectedCerts(event.target.selectedOptions)}>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</Form.Control>
+				{/* <Form.Group id="formGridCheckbox">
 					<p>¿De qué sellos de sostenibilidad dispone el producto?</p>
 					<Form.Check type="checkbox" label="EU Ecolabel" />
 				</Form.Group>
@@ -187,7 +204,7 @@ export const ProductForm = () => {
 				</Form.Group>
 				<Form.Group id="formGridCheckbox">
 					<Form.Check type="checkbox" label="GLOBAL ORGANIC TEXTILE STANDARD" />
-				</Form.Group>
+				</Form.Group> */}
 
 				<Button onClick={handleClick} className="btn btn-success btn-lg">
 					Subir producto
