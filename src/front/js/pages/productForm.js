@@ -23,6 +23,7 @@ export const ProductForm = () => {
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");
+	const [certs, setCerts] = useState([]);
 
 	useEffect(() => {
 		actions.getBusiness();
@@ -37,10 +38,7 @@ export const ProductForm = () => {
 	};
 
 	function addSelectedCerts(event) {
-		let value = event.target.value;
-		console.log(event.target.value);
-		setSelectedCerts(certs => [...certs, event.target.value]);
-		console.log(selectedCerts);
+		setSelectedCerts(Array.prototype.slice.call(event.target.selectedOptions).map(o => o.value));
 	}
 
 	const handleClick = () => {
@@ -179,7 +177,7 @@ export const ProductForm = () => {
 						onChange={event => setDescription(event.target.value)}
 					/>
 				</Form.Group>
-				<Form.Control as="select" multiple onChange={event => addSelectedCerts(event.target.selectedOptions)}>
+				<Form.Control as="select" multiple onChange={event => addSelectedCerts(event)}>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
