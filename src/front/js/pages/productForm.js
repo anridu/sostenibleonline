@@ -175,11 +175,10 @@ export const ProductForm = () => {
 					/>
 				</Form.Group>
 				<Form.Control as="select" multiple onChange={event => addSelectedCerts(event)}>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+					 <option>BIO Cotton</option>
+                    <option>Fairtrade</option>
+                    <option>STeP by OEKO-TEX®</option>
+                    <option>PETA Approved Vegan</option>
 				</Form.Control>
 
 				<Button onClick={handleClick} className="btn btn-success btn-lg">
