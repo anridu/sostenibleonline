@@ -23,7 +23,7 @@ export const ProductForm = () => {
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");
-	const [certs, setCerts] = useState([]);
+	const [certs, setSelectedCerts] = useState([]);
 
 	useEffect(() => {
 		actions.getBusiness();

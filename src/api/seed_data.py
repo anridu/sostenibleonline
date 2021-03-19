@@ -10,7 +10,7 @@ class RoleSeedData:
 
 class CategorySeedData:
   def seed(self):
-    categories = ['Hombre', 'Mujer', 'Unisex']
+    categories = ['Sin categoria','Hombre', 'Mujer', 'Unisex']
     for category in categories:
       new_cat = Category(name=category)
       db.session.add(new_cat)
