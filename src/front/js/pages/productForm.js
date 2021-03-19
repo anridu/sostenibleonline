@@ -19,7 +19,7 @@ export const ProductForm = () => {
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
 	const [description, setDescription] = useState("");
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState("Hombre");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");
@@ -29,20 +29,14 @@ export const ProductForm = () => {
 		actions.getBusiness();
 	}, []);
 
-	const handleBusiness = event => {
-		var business = store.business.filter(bs => {
-			bs.comercialName.toString() === event.target.value;
-		});
-		// setBusinessId(business.id)
-		console.log(business);
-	};
-
 	function addSelectedCerts(event) {
 		setSelectedCerts(Array.prototype.slice.call(event.target.selectedOptions).map(o => o.value));
 	}
 
-	const handleClick = () => {
+	const handleClick = event => {
 		event.preventDefault();
+		let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
+		debugger;
 		let product = {
 			productName: productName,
 			quantity: quantity,
@@ -51,7 +45,7 @@ export const ProductForm = () => {
 			category: category,
 			price: price,
 			color: color,
-			business_id: businessId,
+			business_id: BuId,
 			certs: certs
 		};
 
@@ -97,7 +91,7 @@ export const ProductForm = () => {
 			</div>
 			<Form className="m-5">
 				<Form.Row>
-					<Form.Group as={Col} controlId="formGridText">
+					<Form.Group as={Col}>
 						<Form.Label>Nombre del producto</Form.Label>
 						<Form.Control
 							type="text"
@@ -105,12 +99,12 @@ export const ProductForm = () => {
 							onChange={event => setProductName(event.target.value)}
 						/>
 					</Form.Group>
-					<Form.Group as={Col} controlId="formGridPassword">
+					<Form.Group as={Col}>
 						<Form.Label>Categoría</Form.Label>
 						<Form.Control as="select" onChange={event => setCategory(event.target.value)}>
-							<option>Hombre</option>
-							<option>Mujer</option>
-							<option>Unisex</option>
+							<option value="Hombre">Hombre</option>
+							<option value="Mujer">Mujer</option>
+							<option value="Unisex">Unisex</option>
 						</Form.Control>
 					</Form.Group>
 				</Form.Row>
@@ -125,9 +119,12 @@ export const ProductForm = () => {
 						/>
 					</Form.Group>
 
-					<Form.Group as={Col} controlId="formGridPassword">
+					<Form.Group as={Col} controlId="formBusinessId">
 						<Form.Label>Negocio</Form.Label>
-						<Form.Control as="select" onChange={event => setBusinessId(event.target.value)}>
+						<Form.Control
+							as="select"
+							defaultValue={store.business[0]}
+							onChange={event => setBusinessId(event.target.value)}>
 							{store.business.map((bs, key) => (
 								<option value={bs.id} key={key}>
 									{bs.comercialName}
@@ -137,7 +134,7 @@ export const ProductForm = () => {
 					</Form.Group>
 				</Form.Row>
 				<Form.Row>
-					<Form.Group as={Col} controlId="formGridText">
+					<Form.Group as={Col}>
 						<Form.Label>Cantidad</Form.Label>
 						<Form.Control
 							type="text"
@@ -146,12 +143,12 @@ export const ProductForm = () => {
 						/>
 					</Form.Group>
 
-					<Form.Group as={Col} controlId="formGridState">
+					<Form.Group as={Col}>
 						<Form.Label>Talla</Form.Label>
 						<Form.Control type="text" placeholder="Talla" onChange={event => setSize(event.target.value)} />
 					</Form.Group>
 
-					<Form.Group as={Col} controlId="formGridText">
+					<Form.Group as={Col}>
 						<Form.Label>Precio por unidad</Form.Label>
 						<Form.Control
 							type="text"
@@ -159,7 +156,7 @@ export const ProductForm = () => {
 							onChange={event => setPrice(event.target.value)}
 						/>
 					</Form.Group>
-					<Form.Group as={Col} controlId="formGridState">
+					<Form.Group as={Col}>
 						<Form.Label>Color</Form.Label>
 						<Form.Control
 							type="text"
@@ -168,7 +165,7 @@ export const ProductForm = () => {
 						/>
 					</Form.Group>
 				</Form.Row>
-				<Form.Group controlId="exampleForm.ControlTextarea1">
+				<Form.Group>
 					<Form.Label>Descripción</Form.Label>
 					<Form.Control
 						as="textarea"
@@ -184,25 +181,6 @@ export const ProductForm = () => {
 					<option>4</option>
 					<option>5</option>
 				</Form.Control>
-				{/* <Form.Group id="formGridCheckbox">
-					<p>¿De qué sellos de sostenibilidad dispone el producto?</p>
-					<Form.Check type="checkbox" label="EU Ecolabel" />
-				</Form.Group>
-				<Form.Group id="formGridCheckbox">
-					<Form.Check type="checkbox" label="BIO Cotton" />
-				</Form.Group>
-				<Form.Group id="formGridCheckbox">
-					<Form.Check type="checkbox" label="Fairtrade" />
-				</Form.Group>
-				<Form.Group id="formGridCheckbox">
-					<Form.Check type="checkbox" label="STeP by OEKO-TEX®" />
-				</Form.Group>
-				<Form.Group id="formGridCheckbox">
-					<Form.Check type="checkbox" label="PETA Approved Vegan" />
-				</Form.Group>
-				<Form.Group id="formGridCheckbox">
-					<Form.Check type="checkbox" label="GLOBAL ORGANIC TEXTILE STANDARD" />
-				</Form.Group> */}
 
 				<Button onClick={handleClick} className="btn btn-success btn-lg">
 					Subir producto
