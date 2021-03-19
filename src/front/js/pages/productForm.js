@@ -78,7 +78,9 @@ export const ProductForm = () => {
 		fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				history.push("/");
+				alert("Producto agregado correctamente");
+				location.reload();
+				// history.push("/");
 				console.log(result);
 			});
 	};
@@ -175,10 +177,10 @@ export const ProductForm = () => {
 					/>
 				</Form.Group>
 				<Form.Control as="select" multiple onChange={event => addSelectedCerts(event)}>
-					 <option>BIO Cotton</option>
-                    <option>Fairtrade</option>
-                    <option>STeP by OEKO-TEX®</option>
-                    <option>PETA Approved Vegan</option>
+					<option>BIO Cotton</option>
+					<option>Fairtrade</option>
+					<option>STeP by OEKO-TEX®</option>
+					<option>PETA Approved Vegan</option>
 				</Form.Control>
 
 				<Button onClick={handleClick} className="btn btn-success btn-lg">
