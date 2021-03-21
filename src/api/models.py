@@ -136,6 +136,8 @@ class Product(db.Model):
     description = db.Column(db.String, unique=False, nullable=True)    
     price = db.Column(db.Integer, unique=False, nullable=False)
     color = db.Column(db.String(20), unique=False, nullable=False)
+    image_url = db.Column(db.String, unique=False, nullable=False)
+    image_public_id = db.Column(db.String, unique=False, nullable=False)
 
     business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=True)
     business = db.relationship("Business")
@@ -157,7 +159,8 @@ class Product(db.Model):
             "description": self.description,
             "price": self.price,
             "color": self.color,
-            "category": serialized_categories
+            "category": serialized_categories,
+            "imageUrl": self.image_url
             # do not serialize the password, its a security breach
         }
 

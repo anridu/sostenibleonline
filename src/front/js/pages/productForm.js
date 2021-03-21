@@ -24,6 +24,7 @@ export const ProductForm = () => {
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");
 	const [certs, setSelectedCerts] = useState([]);
+	const [files, setFiles] = useState([]);
 
 	useEffect(() => {
 		actions.getBusiness();
@@ -46,41 +47,35 @@ export const ProductForm = () => {
 			price: price,
 			color: color,
 			business_id: BuId,
-			certs: certs
+			certs: certs,
+			image: files[0]
 		};
 
-		if (
-			productName !== "" &&
-			quantity !== "" &&
-			size !== "" &&
-			description !== "" &&
-			price !== "" &&
-			color !== ""
-		) {
-			createProduct(product);
-		}
+		createProduct(product);
 	};
 	const createProduct = product => {
 		let myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
 
 		let url = `${apiBaseURL}/api/products`;
-		let raw = JSON.stringify(product);
-		console.log(raw);
+		//let raw = JSON.stringify(product);
+
+		const data = new FormData();
+		for (let key in product) {
+			console.log(product[key]);
+			data.append(key, product[key]);
+		}
 
 		var requestOptions = {
 			method: "POST",
 			headers: myHeaders,
-			body: raw,
-			redirect: "follow"
+			body: data
 		};
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				alert("Producto agregado correctamente");
-				location.reload();
-				// history.push("/");
+				history.push("/");
 				console.log(result);
 			});
 	};
@@ -117,6 +112,7 @@ export const ProductForm = () => {
 							id="custom-file-translate-html"
 							label="Carga la imagen tu producto"
 							data-browse="Examinar"
+							onChange={event => setFiles(event.target.files)}
 							custom
 						/>
 					</Form.Group>

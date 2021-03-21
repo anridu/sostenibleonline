@@ -9,6 +9,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
+import cloudinary.uploader
 
 api = Blueprint('api', __name__)
 
@@ -150,11 +151,23 @@ def modify_product(id):
 
 @api.route('/products', methods=['POST'])
 def post_products():
-    body = request.get_json()
+    body = request.form.to_dict()
     print(body)
     category = Category.query.filter_by(name=body["category"]).first()
-    new_product = Product(product_name=body['productName'], quantity=body['quantity'], size=body['size'], description=body['description'], 
-    price=body['price'], color=body['color'], business_id=body['business_id']
+
+    result = cloudinary.uploader.upload(request.files['image'])
+
+
+
+    new_product = Product(product_name=body['productName'],
+        quantity=body['quantity'],
+        size=body['size'],
+        description=body['description'], 
+        price=body['price'],
+        color=body['color'],
+        business_id=body['business_id'],
+        image_url=result['secure_url'],
+        image_public_id=result['public_id']
     )
     
     
@@ -264,6 +277,8 @@ def post_categories():
     db.session.commit()
 
     return jsonify(new_category.serialize()), 200
+
+
 
 
 def current_user(identity):
