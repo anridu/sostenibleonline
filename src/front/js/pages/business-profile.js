@@ -25,7 +25,7 @@ export const BusinessProfile = () => {
 					<a href="/subir-producto" className=" my-4 btn btn-lg btn-secondary text-center mb-5 mr-3">
 						<i className="fas fa-upload" /> Subir un producto
 					</a>
-					<a href="/subir-producto" className=" my-4 btn btn-lg btn-danger text-center mb-5">
+                    <a href="/" className=" my-4 btn btn-lg btn-danger text-center mb-5">
 						<i className="fas fa-sign-out-alt" /> Cerrar Sesión
 					</a>
 				</div>
