@@ -61,7 +61,7 @@ export const RegistroMarca = () => {
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
-		let url = `${apiBaseURL}api/businesses`;
+		let url = `${apiBaseURL}/api/businesses`;
 		let raw = JSON.stringify(business);
 
 		var requestOptions = {
@@ -74,8 +74,10 @@ export const RegistroMarca = () => {
 		fetch(url, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				history.push("/gracias");
+				actions.setIsLogged(true);
+				localStorage.setItem("token", result.access_token);
 				console.log(result);
+				history.push("/perfil-empresa");
 			});
 	};
 
@@ -270,7 +272,7 @@ export const RegistroMarca = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row mb-3">
+				{/* <div className="row mb-3">
 					<div className="col-md-6">
 						<label htmlFor="input-check">¿De qué sellos de sostenibilidad dispones?</label>
 						<div className="form-check">
@@ -321,7 +323,7 @@ export const RegistroMarca = () => {
 							/>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div className="row mb-3">
 					<div className="col-md">
 						<div className="form-group ml-3">

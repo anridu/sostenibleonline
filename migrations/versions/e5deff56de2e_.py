@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 6a7dde4baeeb
+Revision ID: e5deff56de2e
 Revises: 
-Create Date: 2021-03-11 19:14:19.633128
+Create Date: 2021-03-22 18:14:38.734604
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6a7dde4baeeb'
+revision = 'e5deff56de2e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -47,8 +47,6 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('comercial_name', sa.String(length=80), nullable=False),
     sa.Column('tax_name', sa.String(length=80), nullable=False),
-    sa.Column('person', sa.String(length=80), nullable=False),
-    sa.Column('email', sa.String(length=80), nullable=False),
     sa.Column('address', sa.String(length=80), nullable=False),
     sa.Column('city', sa.String(length=80), nullable=False),
     sa.Column('region', sa.String(length=80), nullable=False),
@@ -80,10 +78,13 @@ def upgrade():
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('size', sa.String(length=6), nullable=False),
     sa.Column('description', sa.String(), nullable=True),
-    sa.Column('business_id', sa.Integer(), nullable=False),
+    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('color', sa.String(length=20), nullable=False),
+    sa.Column('image_url', sa.String(), nullable=False),
+    sa.Column('image_public_id', sa.String(), nullable=False),
+    sa.Column('business_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['business_id'], ['business.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('product_name')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('product_category',
     sa.Column('id', sa.Integer(), nullable=False),

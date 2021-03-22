@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 
 export const Gracias = () => {
 	const { store, actions } = useContext(Context);
+	console.log(store.isLogged);
 
 	return (
 		<div className="container">

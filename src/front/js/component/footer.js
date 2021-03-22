@@ -3,7 +3,7 @@ import { Col, Container, Row, Footer } from "mdbreact";
 import { Link } from "react-router-dom";
 
 export const _Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
+	<footer className="footer mt-auto py-3 text-center mt-5">
 		<Container fluid className="text-left">
 			<Row>
 				<Col md="6">

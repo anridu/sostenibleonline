@@ -8,7 +8,7 @@ import ropaHombre from "../../img/ropa-hombre.jpg";
 export const Home_Categories = () => {
 	return (
 		<div>
-			<section id="home-categories" className="p-2">
+			<section id="home-categories" className="p-2 my-3">
 				<div className="container text-center">
 					<h2>¿Qué estás buscando?</h2>
 					<p className="lead">

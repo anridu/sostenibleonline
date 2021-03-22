@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { apiBaseURL } from "../constants";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -15,12 +16,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			isLogged: false,
+
+			business: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+
+			setIsLogged: value => {
+				setStore({
+					isLogged: value
+				});
+			},
+
+			getBusiness: () => {
+				let myHeaders = new Headers();
+				myHeaders.append(
+					"Authorization",
+					"Bearer " + localStorage.getItem("token"),
+					"Content-Type",
+					"application/json"
+				);
+
+				let url = `${apiBaseURL}/api/me/get_business`;
+
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders
+				};
+
+				fetch(url, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						//history.push("/");
+						setStore({
+							business: result
+						});
+					});
 			},
 
 			signUp: user => {},
