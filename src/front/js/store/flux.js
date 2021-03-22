@@ -1,3 +1,6 @@
+import { useHistory } from "react-router-dom";
+import { apiBaseURL } from "../constants";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -13,7 +16,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			isLogged: false,
+
+			business: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -21,13 +27,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
+			setIsLogged: value => {
+				setStore({
+					isLogged: value
+				});
 			},
+
+			getBusiness: () => {
+				let myHeaders = new Headers();
+				myHeaders.append(
+					"Authorization",
+					"Bearer " + localStorage.getItem("token"),
+					"Content-Type",
+					"application/json"
+				);
+
+				let url = `${apiBaseURL}/api/me/get_business`;
+
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders
+				};
+
+				fetch(url, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						//history.push("/");
+						setStore({
+							business: result
+						});
+					});
+			},
+
+			signUp: user => {},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

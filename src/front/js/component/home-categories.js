@@ -8,7 +8,7 @@ import ropaHombre from "../../img/ropa-hombre.jpg";
 export const Home_Categories = () => {
 	return (
 		<div>
-			<section id="home-categories" className="p-2">
+			<section id="home-categories" className="p-2 my-3">
 				<div className="container text-center">
 					<h2>¿Qué estás buscando?</h2>
 					<p className="lead">
@@ -21,11 +21,11 @@ export const Home_Categories = () => {
 								<div className="card-body">
 									<h5 className="card-title">Ropa de mujer</h5>
 									<p className="card-text">
-										Some quick example text to build on the card title and make up the bulk of the
-										card content.
+										Si te apasiona la moda pero buscas sostenibilidad, has encontrado tu lugar. Ropa
+										y complementos para ir a la última
 									</p>
-									<a href="#" className="btn btn-success">
-										Go somewhere
+									<a href="/ropa-mujer" className="btn btn-outline-success">
+										Ver la colección
 									</a>
 								</div>
 							</div>
@@ -36,11 +36,11 @@ export const Home_Categories = () => {
 								<div className="card-body">
 									<h5 className="card-title">Ropa de hombre</h5>
 									<p className="card-text">
-										Some quick example text to build on the card title and make up the bulk of the
-										card content.
+										Te presentamos nuestra colección verde: camisas, camisetas, pantalones y jerséis
+										para reconvertir tu armario.
 									</p>
-									<a href="#" className="btn btn-success">
-										Go somewhere
+									<a href="/ropa-hombre" className="btn btn-outline-success">
+										Ver la colección
 									</a>
 								</div>
 							</div>
@@ -49,13 +49,13 @@ export const Home_Categories = () => {
 							<div className="card">
 								<img className="card-img-top" src={novedades} alt="Ropa de mujer" />
 								<div className="card-body">
-									<h5 className="card-title">Accesorios</h5>
+									<h5 className="card-title">Ropa Unisex</h5>
 									<p className="card-text">
-										Some quick example text to build on the card title and make up the bulk of the
-										card content.
+										Ropa cómoda y sostenible, libre de etiquetas para que te sientas libre en tu
+										cuerpo sabiendo que cuidas del planeta.
 									</p>
-									<a href="#" className="btn btn-success">
-										Go somewhere
+									<a href="ropa-unisex" className="btn btn-outline-success">
+										Ver la colección
 									</a>
 								</div>
 							</div>
