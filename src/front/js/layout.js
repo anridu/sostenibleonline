@@ -21,6 +21,7 @@ import { Checkout } from "./pages/checkout";
 import { Registro } from "./pages/registro";
 import { Gracias } from "./pages/gracias-registro";
 import { Login } from "./pages/login";
+import { BusinessProfile } from "./pages/business-profile";
 
 //create your first component
 const Layout = () => {
@@ -78,6 +79,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/login">
 							<Login />
+						</Route>
+						<Route exact path="/perfil-empresa">
+							<BusinessProfile />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

@@ -5,7 +5,7 @@ import "../../styles/home.scss";
 export const Hero_Section = () => {
 	return (
 		<div>
-			<div className="text-center mt-2">
+			<div className="text-center mt-5">
 				<h1 className="display-4">Apuesta por un futuro sostenible con SostenibleOnline</h1>
 				<p className="lead">
 					En SostenibleOnline trabajamos para poner a tu alcance las mejores prendas de ropa sostenible
@@ -13,7 +13,7 @@ export const Hero_Section = () => {
 					barrio y ahora en tu pantalla.
 				</p>
 			</div>
-			<section id="home-icons" className="py-4">
+			<section id="home-icons" className="py-4 mt-2">
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-md-3 mb-2 text-center">
