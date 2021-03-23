@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
 import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
+import { AutoCompleteDemo } from "../component/searchBar";
 
 export const TopNav = () => {
 	return (
@@ -32,8 +33,9 @@ export const TopNav = () => {
 						<button className="btn btn-success mr-3">Registro</button>
 					</Link>
 					<Form inline>
-						<FormControl style={{ width: "60vh" }} type="text" placeholder="Búsqueda" className="mr-sm-2" />
-						<Button variant="outline-success">Buscar</Button>
+						{/* <FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" />
+						<Button variant="outline-success">Buscar</Button> */}
+						<AutoCompleteDemo />
 					</Form>
 				</div>
 			</Navbar.Collapse>

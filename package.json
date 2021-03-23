@@ -69,6 +69,7 @@
 		]
 	},
 	"dependencies": {
+		"axios": "^0.21.1",
 		"bootstrap": "^4.6.0",
 		"cloudinary": "^1.25.0",
 		"leaflet": "^1.7.1",
