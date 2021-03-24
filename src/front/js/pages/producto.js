@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
 //include images into your bundle
 import marca from "../../img/ropa.jpg";
 
 //create your first component
-export function Product() {
+export const Product = () => {
+	const [details, setDetails] = useState();
+	const params = useParams();
+	console.log(params);
+	useEffect(() => {
+		fetch(`https://3001-purple-centipede-th6irne2.ws-eu03.gitpod.io/api/products/1`)
+			// fetch(`https://3001-purple-centipede-th6irne2.ws-eu03.gitpod.io/api/products/${params.id}`)
+			.then(resp => resp.json())
+			.then(data => {
+				setDetails(data);
+			});
+	}, []);
 	return (
 		<div>
 			<div>
@@ -15,8 +27,8 @@ export function Product() {
 						</div>
 						<div className="col-md-8">
 							<div className="card-body">
-								<h5 className="card-title">Título del producto</h5>
-								<h5 className="card-title">Precio</h5>
+								<h5 className="card-title">{details ? details.product_name : "loading"}</h5>
+								<h5 className="card-title">{details ? details.price : "loading"}</h5>
 
 								<div className="dropdown">
 									<button
@@ -107,4 +119,4 @@ export function Product() {
 			</div>
 		</div>
 	);
-}
+};
