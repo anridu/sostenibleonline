@@ -37,7 +37,6 @@ export const ProductForm = () => {
 	const handleClick = event => {
 		event.preventDefault();
 		let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
-		debugger;
 		let product = {
 			productName: productName,
 			quantity: quantity,

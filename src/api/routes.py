@@ -129,6 +129,17 @@ def handle_products():
 
     return jsonify(all_products), 200
 
+@api.route('/products/category/<int:id>', methods=['GET'])
+def handle_productCategory(id):
+
+    products = Product.query.join(ProductCategory).join(Category). filter((ProductCategory.category_id == id)).all()
+    all_products = list(map(lambda product: product.serialize(), products))
+
+    # product = Product.query.filter_by(Product.categories==id).all()
+    if not all_products: 
+        return jsonify ("product not found"), 404
+    return jsonify(all_products), 200
+
 @api.route('/products/<int:id>', methods=['GET'])
 def handle_product(id):
 
