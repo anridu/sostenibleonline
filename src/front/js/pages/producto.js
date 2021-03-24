@@ -29,6 +29,7 @@ export function Product() {
 										Elige tu talla
 									</button>
 									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										{/* hacer con un if o seleccionar una de las disponibles */}
 										<a className="dropdown-item" href="#">
 											s
 										</a>
@@ -55,6 +56,7 @@ export function Product() {
 										Cantidad
 									</button>
 									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										{/* igual que la talla o diferente?? */}
 										<a className="dropdown-item" href="#">
 											1
 										</a>
