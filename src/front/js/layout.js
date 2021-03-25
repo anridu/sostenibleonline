@@ -23,6 +23,8 @@ import { Gracias } from "./pages/gracias-registro";
 import { Login } from "./pages/login";
 import { BusinessProfile } from "./pages/business-profile";
 
+import { ProductGalery } from "./pages/productGalery";
+
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -67,6 +69,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/producto-id">
 							<Product />
+						</Route>
+						<Route exact path="/productos">
+							<ProductGalery />
 						</Route>
 						<Route exact path="/compra">
 							<Checkout />

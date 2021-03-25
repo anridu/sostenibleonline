@@ -14,11 +14,8 @@ export const TopNav = () => {
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
-					<NavDropdown title="Categorías" id="basic-nav-dropdown">
-						<NavDropdown.Item href="/ropa-hombre">Hombre</NavDropdown.Item>
-						<NavDropdown.Item href="/ropa-mujer">Mujer</NavDropdown.Item>
-						<NavDropdown.Item href="/ropa-unisex">Unisex</NavDropdown.Item>
-					</NavDropdown>
+					<Nav.Link href="/productos">Productos</Nav.Link>
+
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
 					<Nav.Link href="/compra">
 						<i className="fas fa-shopping-cart" />

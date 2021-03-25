@@ -6,7 +6,7 @@ import CardColumns from "react-bootstrap/CardColumns";
 import Form from "react-bootstrap/Form";
 import Badge from "react-bootstrap/Badge";
 
-import { CardCategory } from "../component/cardCategory";
+import { CardCategory } from "../component/productcard";
 
 export const RopaUnisex = () => {
 	return (
@@ -34,24 +34,7 @@ export const RopaUnisex = () => {
 						</Button>
 					</div>
 				</div>
-				<CardDeck>
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-				</CardDeck>
-				<CardDeck>
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-				</CardDeck>
-				<CardDeck>
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-				</CardDeck>
+
 				<Button className="float-right" variant="secondary">
 					Cargar más prendas
 				</Button>

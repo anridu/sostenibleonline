@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { CardCategory } from "../component/cardCategory";
+import { CardCategory } from "../component/productcard";
 import CardDeck from "react-bootstrap/CardDeck";
 
 export const BusinessProfile = () => {

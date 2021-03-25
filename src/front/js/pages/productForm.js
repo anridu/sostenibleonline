@@ -19,7 +19,7 @@ export const ProductForm = () => {
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
 	const [description, setDescription] = useState("");
-	const [category, setCategory] = useState("Hombre");
+	const [category, setCategory] = useState("");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");

@@ -3,8 +3,11 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import CardColumns from "react-bootstrap/CardColumns";
+import Context from "../store/appContext";
 
-export const CardCategory = () => {
+export const ProductCard = () => {
+	// const { store, actions } = useContext(Context);
+
 	return (
 		<Card className="mb-5">
 			<Card.Img variant="top" src="https://picsum.photos/id/237/200/300" style={{ height: "18rem" }} />
