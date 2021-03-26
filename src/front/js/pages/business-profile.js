@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { CardCategory } from "../component/productcard";
 import CardDeck from "react-bootstrap/CardDeck";
+import { ProductCard } from "../component/productcard";
 
 export const BusinessProfile = () => {
 	const { store, actions } = useContext(Context);
@@ -34,10 +34,7 @@ export const BusinessProfile = () => {
 				<div className="col">
 					<h3 className="pb-3">Productos subidos</h3>
 					<CardDeck>
-						<CardCategory />
-						<CardCategory />
-						<CardCategory />
-						<CardCategory />
+						<ProductCard />
 					</CardDeck>
 				</div>
 			</div>

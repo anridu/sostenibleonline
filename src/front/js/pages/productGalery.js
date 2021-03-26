@@ -1,36 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ProductCard } from "../component/productcard";
+import { apiBaseURL } from "../constants";
 
 export const ProductGalery = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [products, setProducts] = useState([]);
+	// const { store, actions } = useContext(Context);
 
-	useEffect(
-		() => {
-			var requestOptions = {
-				method: "GET",
-				redirect: "follow"
-			};
+	useEffect(async () => {
+		// actions.getProducts()
+		let url = `${apiBaseURL}/api/products`;
 
-			fetch("https://3001-teal-goose-lj4uyptd.ws-eu03.gitpod.io/api/products", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log("error", error));
-		},
-		[selectedCategory]
-	);
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
 
-	let itemList = products.map((item, index) => {
-		return (
-			<div className="col-md-4" key={index}>
-				<ProductCard />
-			</div>
-		);
-	});
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => setProducts(result))
+			.catch(error => console.log("error", error));
+	}, []);
 
-	return (
-		<div className="container">
-			<div className="row">{itemList}</div>
+	let itemList = products.map((item, key) => (
+		<div className="col-md-4" key={key}>
+			<ProductCard data={item} />
 		</div>
-	);
+	));
+
+	return <div className="container">{<div className="row">{itemList}</div>}</div>;
 };

@@ -168,8 +168,6 @@ def post_products():
 
     result = cloudinary.uploader.upload(request.files['image'])
 
-
-
     new_product = Product(product_name=body['productName'],
         quantity=body['quantity'],
         size=body['size'],

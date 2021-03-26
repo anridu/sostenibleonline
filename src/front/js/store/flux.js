@@ -59,6 +59,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			getProducts: () => {},
+
 			signUp: user => {},
 
 			changeColor: (index, color) => {
