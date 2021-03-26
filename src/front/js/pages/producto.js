@@ -10,7 +10,7 @@ export const Product = () => {
 	const params = useParams();
 	console.log(params);
 	useEffect(() => {
-		fetch(`https://3001-purple-centipede-th6irne2.ws-eu03.gitpod.io/api/products/1`)
+		fetch(`https://3001-plum-termite-vsldad1r.ws-eu03.gitpod.io/api/products/1`)
 			// fetch(`https://3001-purple-centipede-th6irne2.ws-eu03.gitpod.io/api/products/${params.id}`)
 			.then(resp => resp.json())
 			.then(data => {
@@ -28,7 +28,8 @@ export const Product = () => {
 						<div className="col-md-8">
 							<div className="card-body">
 								<h5 className="card-title">{details ? details.product_name : "loading"}</h5>
-								<h5 className="card-title">{details ? details.price : "loading"}</h5>
+								<h5 className="card-title">Color</h5>
+								<h5 className="card-body">{details ? details.color : "loading"}</h5>
 
 								<div className="dropdown">
 									<button
@@ -41,7 +42,6 @@ export const Product = () => {
 										Elige tu talla
 									</button>
 									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										{/* hacer con un if o seleccionar una de las disponibles */}
 										<a className="dropdown-item" href="#">
 											s
 										</a>
@@ -82,6 +82,11 @@ export const Product = () => {
 											Para mas cantidad contacta con nosotros
 										</a>
 									</div>
+
+									<h5 className="card-body">
+										{details ? details.price : "loading"}
+										Euros
+									</h5>
 								</div>
 							</div>
 						</div>
@@ -99,20 +104,16 @@ export const Product = () => {
 										Descripción
 									</a>
 								</li>
-								<li className="nav-item">
+								{/* <li className="nav-item">
 									<a className="nav-link" href="#">
 										Información adicional
 									</a>
-								</li>
+								</li> */}
 							</ul>
 						</div>
 						<div className="card-body">
-							<h4 className="card-title">Titulo de la tarjeta</h4>
-							<p className="card-text">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus sem, tempor vitae
-								mattis malesuada, ornare sed erat. Pellentesque nulla dui, congue nec tortor sit amet,
-								maximus mattis dui.{" "}
-							</p>
+							<p className="card-text">{details ? details.product_name : "loading"}</p>
+							<p className="card-text">{details ? details.description : "loading"}</p>
 						</div>
 					</div>
 				</div>
