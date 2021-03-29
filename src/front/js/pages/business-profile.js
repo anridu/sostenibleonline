@@ -1,12 +1,41 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { apiBaseURL } from "../constants";
 import CardDeck from "react-bootstrap/CardDeck";
 import { ProductCard } from "../component/productcard";
 
 export const BusinessProfile = () => {
+	const [selectedCategory, setSelectedCategory] = useState("");
+	const [products, setProducts] = useState([]);
 	const { store, actions } = useContext(Context);
 	console.log(store.isLogged);
+
+	useEffect(() => {
+		// actions.getProducts()
+		let url = `${apiBaseURL}/api/products/business`;
+
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				actions.setIsLogged(true);
+				localStorage.setItem("token", result.access_token);
+				console.log(result.access_token);
+			})
+
+			.catch(error => console.log("error", error));
+	}, []);
+
+	let itemList = products.map((item, key) => (
+		<div className="col-md-4" key={key}>
+			<ProductCard data={item} />
+		</div>
+	));
 
 	return (
 		<div className="container">
@@ -33,9 +62,8 @@ export const BusinessProfile = () => {
 			<div className="row">
 				<div className="col">
 					<h3 className="pb-3">Productos subidos</h3>
-					<CardDeck>
-						<ProductCard />
-					</CardDeck>
+
+					<ProductCard data="" />
 				</div>
 			</div>
 		</div>

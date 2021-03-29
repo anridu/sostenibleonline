@@ -140,6 +140,19 @@ def handle_productCategory(id):
         return jsonify ("product not found"), 404
     return jsonify(all_products), 200
 
+@api.route('/products/business', methods=['GET'])
+@jwt_required()
+def handle_product_business():
+    user = current_user(get_jwt_identity())
+    for x in user.businesses:
+        business_id = x.id
+    
+    products_business = Product.query.join(Business).filter((Business.id == business_id)).all()
+
+    if not products_business: 
+        return jsonify ("product not found"), 404
+    return jsonify(list(map(lambda product: product.serialize(), products_business))), 200
+
 @api.route('/products/<int:id>', methods=['GET'])
 def handle_product(id):
 
@@ -239,7 +252,7 @@ def post_businesses():
     db.session.add(new_business)
     db.session.commit()
     print(new_business)
-    access_token = create_access_token(identity=new_user.sign_in_serialize()) 
+    access_token = create_access_token(identity=new_user.serialize()) 
     return jsonify(new_business = new_business.serialize(),access_token = access_token), 200
 
 

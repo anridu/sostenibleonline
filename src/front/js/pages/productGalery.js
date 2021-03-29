@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ProductCard } from "../component/productcard";
 import { apiBaseURL } from "../constants";
+import { Context } from "../store/appContext";
 
 export const ProductGalery = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [products, setProducts] = useState([]);
-	// const { store, actions } = useContext(Context);
+	const { store, actions } = useContext(Context);
 
-	useEffect(async () => {
+	useEffect(() => {
 		// actions.getProducts()
 		let url = `${apiBaseURL}/api/products`;
 
