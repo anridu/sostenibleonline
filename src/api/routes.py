@@ -141,11 +141,12 @@ def handle_productCategory(id):
     return jsonify(all_products), 200
 
 @api.route('/products/business', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def handle_product_business():
-    user = current_user(get_jwt_identity())
-    for x in user.businesses:
-        business_id = x.id
+    # user = current_user(get_jwt_identity())
+    # for x in user.businesses:
+    #     business_id = x.id
+    business_id = 4
     
     products_business = Product.query.join(Business).filter((Business.id == business_id)).all()
 
@@ -254,9 +255,6 @@ def post_businesses():
     print(new_business)
     access_token = create_access_token(identity=new_user.serialize()) 
     return jsonify(new_business = new_business.serialize(),access_token = access_token), 200
-
-
-
 
 
 

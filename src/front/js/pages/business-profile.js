@@ -22,9 +22,11 @@ export const BusinessProfile = () => {
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
+
 			.then(result => {
 				actions.setIsLogged(true);
 				localStorage.setItem("token", result.access_token);
+				setProducts(result);
 				console.log(result.access_token);
 			})
 
@@ -62,8 +64,7 @@ export const BusinessProfile = () => {
 			<div className="row">
 				<div className="col">
 					<h3 className="pb-3">Productos subidos</h3>
-
-					<ProductCard data="" />
+					{itemList}
 				</div>
 			</div>
 		</div>

@@ -1,51 +1,67 @@
-import React from "react";
-import CardDeck from "react-bootstrap/CardDeck";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import CardColumns from "react-bootstrap/CardColumns";
-import Form from "react-bootstrap/Form";
-import Badge from "react-bootstrap/Badge";
-
-import { CardCategory, ProductCard } from "../component/productcard";
+import React, { useState, useEffect, useContext } from "react";
+import { ProductCard } from "../component/productcard";
+import { apiBaseURL } from "../constants";
+import { Context } from "../store/appContext";
 
 export const RopaHombre = () => {
+	const [selectedCategory, setSelectedCategory] = useState("");
+	const [products, setProducts] = useState([]);
+	const [productsCat2, setProductsCat2] = useState([]);
+	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		// actions.getProducts()
+		let url = `${apiBaseURL}/api/products/category/3`;
+
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => setProducts(result))
+			.catch(error => console.log("error", error));
+
+		// actions.getProducts()
+		url = `${apiBaseURL}/api/products/category/2`;
+
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => setProductsCat2(result))
+			.catch(error => console.log("error", error));
+	}, []);
+
+	// Parece que falla el map cuando la lista de items está vacía
+	let itemListCat1 = products.map((item, key) => (
+		// Categoria 1
+		<div className="col-md-4" key={key}>
+			<ProductCard data={item} />
+		</div>
+	));
+
+	let itemListCat2 = productsCat2.map((item, key) => (
+		// Categoria 1
+		<div className="col-md-4" key={key}>
+			<ProductCard data={item} />
+		</div>
+	));
+
 	return (
 		<div className="container">
-			<div className="container">
-				<h1 className="display-4 py-5 text-center">Ropa de hombre</h1>
-				<p className="lead">
-					En esta página encontrarás una selección de ropa para hombre, fabricada y diseñada en España.
-					Pantalones, sudaderas, camisetas o camisas entre muchas otras prendas. Ropa pensada para tu
-					comodidad. Rupa duradera y de buena calidad, con la que te verás elegante y ayudarás a conservar el
-					planeta.
-				</p>
-				<p>
-					Las prendas que encontrarás en SostenibleOnline se han diseñado pensando en tu comodidad. Es ropa
-					duradera y de buena calidad, con la que te verás elegante y ayudarás a conservar el planeta. Porque
-					no hay un planeta B.
-				</p>
-
-				<p>
-					Todos nuestros productos disponen de los sellos de calidad y sostenibilidad más exigentes.
-					Trabajamos con algodón orgánico, hilo reciclado y materias primeras de alta calidad.
-				</p>
-				<div className="container-fluid" style={{ background: "#D3D3D3" }}>
-					<div style={{ textAlign: "right" }}>
-						<Button variant="secondary" size="sm">
-							Aplica un filtro
-						</Button>
-					</div>
+			{
+				<div>
+					Unisex
+					<div className="row">{itemListCat1}</div>
+					Hombre
+					<div className="row">{itemListCat2}</div>
 				</div>
-				<CardDeck>
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-				</CardDeck>
-				<Button className="float-right" variant="secondary">
-					Cargar más prendas
-				</Button>
-			</div>
+			}
 		</div>
 	);
 };
