@@ -9,13 +9,13 @@ import marca from "../../img/ropa.jpg";
 //create your first component
 export const Product = data => {
 	const params = useParams();
-	const { product_name, description, price } = data.data;
+	const { product_name, description, price, imageUrl } = data.data;
 	return (
 		<div>
 			<div>
 				<div className="card mb-3">
 					<div className="row g-0">
-						<div className="col-md-4">{/* <img src={data ? imageUrl : "loading"} /> */}</div>
+						<div className="col-md-4">{<img src={data ? imageUrl : "loading"} />}</div>
 						<div className="col-md-8">
 							<div className="card-body">
 								<h5 className="card-title">{data ? product_name : "loading"}</h5>

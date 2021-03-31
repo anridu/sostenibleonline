@@ -34,7 +34,7 @@ export const BusinessProfile = () => {
 			.catch(error => console.log("error", error));
 	}, []);
 
-	if (products.length > 0) {
+	if (products != "product not found") {
 		itemList = products.map((item, key) => (
 			<div className="col-md-4" key={key}>
 				<ProductCard data={item} />
