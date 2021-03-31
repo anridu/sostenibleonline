@@ -9,35 +9,38 @@ export const BusinessProfile = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [products, setProducts] = useState([]);
 	const { store, actions } = useContext(Context);
+	let itemList = "";
 	console.log(store.isLogged);
 
 	useEffect(() => {
 		// actions.getProducts()
 		let url = `${apiBaseURL}/api/products/business`;
 
+		var myHeaders = new Headers();
+		myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
 		var requestOptions = {
 			method: "GET",
+			headers: myHeaders,
 			redirect: "follow"
 		};
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
-
 			.then(result => {
-				actions.setIsLogged(true);
-				localStorage.setItem("token", result.access_token);
 				setProducts(result);
-				console.log(result.access_token);
 			})
 
 			.catch(error => console.log("error", error));
 	}, []);
 
-	let itemList = products.map((item, key) => (
-		<div className="col-md-4" key={key}>
-			<ProductCard data={item} />
-		</div>
-	));
+	if (products.length > 0) {
+		itemList = products.map((item, key) => (
+			<div className="col-md-4" key={key}>
+				<ProductCard data={item} />
+			</div>
+		));
+	}
 
 	return (
 		<div className="container">
@@ -63,8 +66,12 @@ export const BusinessProfile = () => {
 			</div>
 			<div className="row">
 				<div className="col">
-					<h3 className="pb-3">Productos subidos</h3>
-					{itemList}
+					{itemList && (
+						<div>
+							<h3 className="pb-3">Productos subidos</h3>
+							<div>{itemList}</div>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

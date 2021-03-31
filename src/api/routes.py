@@ -118,9 +118,6 @@ def modify_user(id):
     return jsonify(user.serialize()), 200
 
 
-
-
-
 @api.route('/products', methods=['GET'])
 def handle_products():
 
@@ -141,12 +138,11 @@ def handle_productCategory(id):
     return jsonify(all_products), 200
 
 @api.route('/products/business', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def handle_product_business():
-    # user = current_user(get_jwt_identity())
-    # for x in user.businesses:
-    #     business_id = x.id
-    business_id = 4
+    user = current_user(get_jwt_identity())
+    for x in user.businesses:
+        business_id = x.id  
     
     products_business = Product.query.join(Business).filter((Business.id == business_id)).all()
 

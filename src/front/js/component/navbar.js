@@ -29,7 +29,7 @@ export const TopNav = () => {
 						<button className="btn btn-success mr-3">Registro</button>
 					</Link>
 					<Form inline>
-						<FormControl style={{ width: "60vh" }} type="text" placeholder="Búsqueda" className="mr-sm-2" />
+						<FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" />
 						<Button variant="outline-success">Buscar</Button>
 					</Form>
 				</div>

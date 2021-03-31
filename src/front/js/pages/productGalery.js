@@ -6,11 +6,39 @@ import { Context } from "../store/appContext";
 export const ProductGalery = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [products, setProducts] = useState([]);
+	const [productsCat2, setProductsCat2] = useState([]);
+	const [productsCat3, setProductsCat3] = useState([]);
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
 		// actions.getProducts()
-		let url = `${apiBaseURL}/api/products`;
+		let url = `${apiBaseURL}/api/products/category/3`;
+
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => setProducts(result))
+			.catch(error => console.log("error", error));
+
+		// actions.getProducts()
+		url = `${apiBaseURL}/api/products/category/2`;
+
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
+
+		fetch(url, requestOptions)
+			.then(response => response.json())
+			.then(result => setProductsCat2(result))
+			.catch(error => console.log("error", error));
+
+		// actions.getProducts()
+		url = `${apiBaseURL}/api/products/category/1`;
 
 		var requestOptions = {
 			method: "GET",
@@ -23,11 +51,41 @@ export const ProductGalery = () => {
 			.catch(error => console.log("error", error));
 	}, []);
 
-	let itemList = products.map((item, key) => (
+	// Parece que falla el map cuando la lista de items está vacía
+	let itemListCat1 = products.map((item, key) => (
+		// Categoria 1
 		<div className="col-md-4" key={key}>
 			<ProductCard data={item} />
 		</div>
 	));
 
-	return <div className="container">{<div className="row">{itemList}</div>}</div>;
+	let itemListCat2 = productsCat2.map((item, key) => (
+		// Categoria 2
+		<div className="col-md-4" key={key}>
+			<ProductCard data={item} />
+		</div>
+	));
+
+	// Parece que falla el map cuando la lista de items está vacía
+	let itemListCat3 = products.map((item, key) => (
+		// Categoria 3
+		<div className="col-md-4" key={key}>
+			<ProductCard data={item} />
+		</div>
+	));
+
+	return (
+		<div className="container">
+			{
+				<div>
+					Unisex
+					<div className="row">{itemListCat1}</div>
+					Hombre
+					<div className="row">{itemListCat2}</div>
+					Mujer
+					<div className="row">{itemListCat3}</div>
+				</div>
+			}
+		</div>
+	);
 };
