@@ -51,7 +51,6 @@ export const ProductGalery = () => {
 			.catch(error => console.log("error", error));
 	}, []);
 
-	// Parece que falla el map cuando la lista de items está vacía
 	let itemListCat1 = "";
 	if (products != "product not found") {
 		itemListCat1 = products.map((item, key) => (
@@ -72,7 +71,6 @@ export const ProductGalery = () => {
 		));
 	}
 
-	// Parece que falla el map cuando la lista de items está vacía
 	let itemListCat3 = "";
 	if (productsCat3 != "product not found") {
 		itemListCat3 = productsCat3.map((item, key) => (
@@ -86,13 +84,18 @@ export const ProductGalery = () => {
 	return (
 		<div className="container">
 			{
-				<div>
-					<h3>Hombre</h3>
-					<div className="row">{itemListCat1}</div>
-					<h3>Mujer</h3>
-					<div className="row">{itemListCat2}</div>
-					<h3>Unisex</h3>
-					<div className="row">{itemListCat3}</div>
+				<div className="py-5">
+					<h1 className="display-4">Productos sostenibles, gente comprometida</h1>
+					<p className="lead">
+						En esta página se muestran todos los productos de SostenibleOnline para que encuentres la prenda
+						perfecta, para verte bien, sentirte mejor y respetar el planeta. Porque no hay un planeta B.
+					</p>
+					<h3>Ropa de hombre</h3>
+					<div className="row py-3">{itemListCat1}</div>
+					<h3>Ropa de mujer</h3>
+					<div className="row py-3">{itemListCat2}</div>
+					<h3>Ropa unisex</h3>
+					<div className="row py-3">{itemListCat3}</div>
 				</div>
 			}
 		</div>
