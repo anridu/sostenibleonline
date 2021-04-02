@@ -28,7 +28,7 @@ export const ProductCard = data => {
 			<Card.Body>
 				<Card.Title>{data ? product_name : "loading"}</Card.Title>
 				<Card.Text>{data ? description : "loading"}</Card.Text>
-				<Link to="/producto-id">
+				<Link to={`/products/${data.data.id}`}>
 					<button className="btn btn-success">Ver el producto</button>
 				</Link>
 			</Card.Body>

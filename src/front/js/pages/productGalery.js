@@ -87,11 +87,11 @@ export const ProductGalery = () => {
 		<div className="container">
 			{
 				<div>
-					Unisex
+					<h3>Hombre</h3>
 					<div className="row">{itemListCat1}</div>
-					Hombre
+					<h3>Mujer</h3>
 					<div className="row">{itemListCat2}</div>
-					Mujer
+					<h3>Unisex</h3>
 					<div className="row">{itemListCat3}</div>
 				</div>
 			}

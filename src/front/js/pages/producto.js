@@ -8,17 +8,25 @@ import marca from "../../img/ropa.jpg";
 
 //create your first component
 export const Product = data => {
+	const [details, setDetails] = useState();
 	const params = useParams();
-	const { product_name, description, price, imageUrl } = data.data;
+	// const { product_name, description, price, imageUrl } = data.data;
+
+	useEffect(() => {
+		fetch(`${apiBaseURL}/api/products/${params.id}`)
+			.then(resp => resp.json())
+			.then(data => setDetails(data.id));
+	}, []);
+
 	return (
 		<div>
 			<div>
 				<div className="card mb-3">
 					<div className="row g-0">
-						<div className="col-md-4">{<img src={data ? imageUrl : "loading"} />}</div>
+						<div className="col-md-4">{<img src={details ? details.imageUrl : "loading"} />}</div>
 						<div className="col-md-8">
 							<div className="card-body">
-								<h5 className="card-title">{data ? product_name : "loading"}</h5>
+								<h5 className="card-title">{details ? details.product_name : "loading"}</h5>
 
 								<div className="dropdown">
 									<button
@@ -74,7 +82,7 @@ export const Product = data => {
 									</div>
 								</div>
 								<h5 className="card-title">
-									{data ? price : "loading"}
+									{details ? details.price : "loading"}
 									euros
 								</h5>
 							</div>
@@ -96,7 +104,7 @@ export const Product = data => {
 							</ul>
 						</div>
 						<div className="card-body">
-							<p className="card-text">{data ? description : "loading"}</p>
+							<p className="card-text">{details ? details.description : "loading"}</p>
 						</div>
 					</div>
 				</div>

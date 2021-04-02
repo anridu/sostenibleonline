@@ -19,7 +19,7 @@ export const ProductForm = () => {
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
 	const [description, setDescription] = useState("");
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState("Hombre");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");
@@ -74,7 +74,7 @@ export const ProductForm = () => {
 			.then(response => response.json())
 			.then(result => {
 				alert("Producto agregado correctamente");
-				history.push("/");
+				history.push("/productos-subidos");
 				console.log(result);
 			});
 	};

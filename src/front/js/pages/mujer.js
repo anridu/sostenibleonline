@@ -6,10 +6,11 @@ import { Context } from "../store/appContext";
 export const RopaMujer = () => {
 	const [products, setProducts] = useState([]);
 	const { store, actions } = useContext(Context);
+	let itemListCat2 = "";
 
 	useEffect(() => {
 		// actions.getProducts()
-		let url = `${apiBaseURL}/api/products/category/1`;
+		let url = `${apiBaseURL}/api/products/category/2`;
 
 		var requestOptions = {
 			method: "GET",
@@ -22,14 +23,13 @@ export const RopaMujer = () => {
 			.catch(error => console.log("error", error));
 	}, []);
 
-	// Parece que falla el map cuando la lista de items está vacía
-	let itemListCat1 = products.map((item, key) => (
-		// Categoria 1
-		<div className="col-md-4" key={key}>
-			<ProductCard data={item} />
-		</div>
-	));
-
+	if (products != "product not found") {
+		itemListCat2 = products.map((item, key) => (
+			<div className="col-md-4" key={key}>
+				<ProductCard data={item} />
+			</div>
+		));
+	}
 	return (
 		<div className="container">
 			<h1 className="display-4 py-5 text-center">Ropa de mujer</h1>
@@ -49,7 +49,7 @@ export const RopaMujer = () => {
 			</p>
 			{
 				<div>
-					<div className="row">{itemListCat1}</div>
+					<div className="row">{itemListCat2}</div>
 				</div>
 			}
 		</div>
