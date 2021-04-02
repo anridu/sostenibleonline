@@ -5,6 +5,8 @@ import { apiBaseURL } from "../constants";
 import PropTypes from "prop-types";
 //include images into your bundle
 import marca from "../../img/ropa.jpg";
+import "../../styles/index.scss";
+import Button from "react-bootstrap/Button";
 
 //create your first component
 export const Product = () => {
@@ -26,7 +28,9 @@ export const Product = () => {
 			<div>
 				<div className="card mb-3">
 					<div className="row g-0">
-						<div className="col-md-4">{<img src={details ? details.imageUrl : "loading"} />}</div>
+						<div className="col-md-4">
+							{<img className="product-Image" src={details ? details.imageUrl : "loading"} />}
+						</div>
 						<div className="col-md-8">
 							<div className="card-body">
 								<h5 className="card-title">{details ? details.product_name : "loading"}</h5>
@@ -85,29 +89,31 @@ export const Product = () => {
 									</div>
 								</div>
 								<h5 className="card-title">
-									{details ? details.price : "loading"}
+									{details ? details.price + " " : "loading"}
 									euros
 								</h5>
+								<div className="row  mt-3">
+									<div className="col-md-8">
+										<div className="card text-center border-info">
+											<div className="card-header">
+												<ul className="nav nav-tabs card-header-tabs">
+													<li className="nav-item">
+														<a className="nav-link" href="#">
+															Descripción
+														</a>
+													</li>
+												</ul>
+											</div>
+											<div className="card-body">
+												<p className="card-text">{details ? details.description : "loading"}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<Link to="/compra">
+									<Button className="btn btn-success btn-lg">Añadir a la cesta</Button>
+								</Link>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div className="row justify-content-center mt-3">
-				<div className="col-md-8">
-					<div className="card text-center border-info">
-						<div className="card-header">
-							<ul className="nav nav-tabs card-header-tabs">
-								<li className="nav-item">
-									<a className="nav-link" href="#">
-										Descripción
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div className="card-body">
-							<p className="card-text">{details ? details.description : "loading"}</p>
 						</div>
 					</div>
 				</div>
