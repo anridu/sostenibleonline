@@ -7,15 +7,18 @@ import PropTypes from "prop-types";
 import marca from "../../img/ropa.jpg";
 
 //create your first component
-export const Product = data => {
+export const Product = () => {
 	const [details, setDetails] = useState();
 	const params = useParams();
+
 	// const { product_name, description, price, imageUrl } = data.data;
 
 	useEffect(() => {
 		fetch(`${apiBaseURL}/api/products/${params.id}`)
 			.then(resp => resp.json())
-			.then(data => setDetails(data.id));
+			.then(data => {
+				setDetails(data);
+			});
 	}, []);
 
 	return (
