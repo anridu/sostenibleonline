@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Context from "../store/appContext";
 import { apiBaseURL } from "../constants";
@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 
 //create your first component
 export const Product = () => {
+	const { store, actions } = useContext(Context);
 	const [details, setDetails] = useState();
 	const params = useParams();
 
@@ -22,6 +23,8 @@ export const Product = () => {
 				setDetails(data);
 			});
 	}, []);
+
+	let isProduct = store.productsCart.find(element => element.id === props.data.id) !== undefined;
 
 	return (
 		<div>
@@ -113,6 +116,9 @@ export const Product = () => {
 								<Link to="/compra">
 									<Button className="btn btn-success btn-lg">Añadir a la cesta</Button>
 								</Link>
+								<button className="btn" onClick={event => actions.addProduct(details)}>
+									<i className={isFavorite ? "fas fa-heart" : "far fa-heart"} />
+								</button>
 							</div>
 						</div>
 					</div>

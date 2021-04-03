@@ -4,6 +4,7 @@ import { apiBaseURL } from "../constants";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			productsCart: [],
 			message: null,
 			demo: [
 				{
@@ -23,6 +24,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			addProduct: element => {
+				const store = getStore();
+				setStore({ productsCart: [...store.productsCart, element] });
+			},
+
+			removeProduct: index => {
+				const store = getStore();
+				const newproductsCart = store.productsCart;
+				newproductsCart.splice(index, 1);
+				setStore({ productsCart: newproductsCart });
+			},
+
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
