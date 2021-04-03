@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { apiBaseURL } from "../constants";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import login from "../../img/login.png";
 
 export const Login = () => {
 	const history = useHistory();
@@ -55,6 +56,9 @@ export const Login = () => {
 	return (
 		<div>
 			<div className="Login">
+				<div className="text-center">
+					<img src={login} className="img-fluid" />
+				</div>
 				<Form onSubmit={handleSubmit}>
 					<Form.Group size="lg" controlId="email">
 						<Form.Label>Email</Form.Label>
