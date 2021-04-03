@@ -24,11 +24,13 @@ export const ProductCard = data => {
 
 	return (
 		<Card className="mb-5">
-			<Card.Img variant="top" src={data ? imageUrl : "loading"} style={{ height: "18rem" }} />
+			<Card.Img variant="top" src={data ? imageUrl : "loading"} />
 			<Card.Body>
 				<Card.Title>{data ? product_name : "loading"}</Card.Title>
 				<Card.Text>{data ? description : "loading"}</Card.Text>
-				<Button variant="success">Ver el producto</Button>
+				<Link to={`/products/${data.data.id}`}>
+					<button className="btn btn-success">Ver el producto</button>
+				</Link>
 			</Card.Body>
 		</Card>
 	);

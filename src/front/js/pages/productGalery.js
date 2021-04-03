@@ -21,7 +21,7 @@ export const ProductGalery = () => {
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
-			.then(result => setProducts(result))
+			.then(result => setProductsCat3(result))
 			.catch(error => console.log("error", error));
 
 		// actions.getProducts()
@@ -51,39 +51,51 @@ export const ProductGalery = () => {
 			.catch(error => console.log("error", error));
 	}, []);
 
-	// Parece que falla el map cuando la lista de items está vacía
-	let itemListCat1 = products.map((item, key) => (
-		// Categoria 1
-		<div className="col-md-4" key={key}>
-			<ProductCard data={item} />
-		</div>
-	));
+	let itemListCat1 = "";
+	if (products != "product not found") {
+		itemListCat1 = products.map((item, key) => (
+			// Categoria 1
+			<div className="col-md-4" key={key}>
+				<ProductCard data={item} />
+			</div>
+		));
+	}
 
-	let itemListCat2 = productsCat2.map((item, key) => (
-		// Categoria 2
-		<div className="col-md-4" key={key}>
-			<ProductCard data={item} />
-		</div>
-	));
+	let itemListCat2 = "";
+	if (productsCat2 != "product not found") {
+		itemListCat2 = productsCat2.map((item, key) => (
+			// Categoria 2
+			<div className="col-md-4" key={key}>
+				<ProductCard data={item} />
+			</div>
+		));
+	}
 
-	// Parece que falla el map cuando la lista de items está vacía
-	let itemListCat3 = products.map((item, key) => (
-		// Categoria 3
-		<div className="col-md-4" key={key}>
-			<ProductCard data={item} />
-		</div>
-	));
+	let itemListCat3 = "";
+	if (productsCat3 != "product not found") {
+		itemListCat3 = productsCat3.map((item, key) => (
+			// Categoria 3
+			<div className="col-md-4" key={key}>
+				<ProductCard data={item} />
+			</div>
+		));
+	}
 
 	return (
 		<div className="container">
 			{
-				<div>
-					Unisex
-					<div className="row">{itemListCat1}</div>
-					Hombre
-					<div className="row">{itemListCat2}</div>
-					Mujer
-					<div className="row">{itemListCat3}</div>
+				<div className="py-5">
+					<h1 className="display-4">Productos sostenibles, gente comprometida</h1>
+					<p className="lead">
+						En esta página se muestran todos los productos de SostenibleOnline para que encuentres la prenda
+						perfecta, para verte bien, sentirte mejor y respetar el planeta. Porque no hay un planeta B.
+					</p>
+					<h3>Ropa de hombre</h3>
+					<div className="row py-3">{itemListCat1}</div>
+					<h3>Ropa de mujer</h3>
+					<div className="row py-3">{itemListCat2}</div>
+					<h3>Ropa unisex</h3>
+					<div className="row py-3">{itemListCat3}</div>
 				</div>
 			}
 		</div>

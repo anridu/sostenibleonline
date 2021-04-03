@@ -19,12 +19,13 @@ export const ProductForm = () => {
 	const [quantity, setQuantity] = useState("");
 	const [size, setSize] = useState("");
 	const [description, setDescription] = useState("");
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState("Hombre");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [businessId, setBusinessId] = useState("");
 	const [certs, setSelectedCerts] = useState([]);
 	const [files, setFiles] = useState([]);
+	const [validated, setValidated] = useState(false);
 
 	useEffect(() => {
 		actions.getBusiness();
@@ -36,22 +37,29 @@ export const ProductForm = () => {
 
 	const handleClick = event => {
 		event.preventDefault();
-		let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
-		let product = {
-			productName: productName,
-			quantity: quantity,
-			size: size,
-			description: description,
-			category: category,
-			price: price,
-			color: color,
-			business_id: BuId,
-			certs: certs,
-			image: files[0]
-		};
+		const form = event.currentTarget;
+		if (form.checkValidity() === false) {
+			setValidated(false);
+			event.stopPropagation();
 
-		createProduct(product);
+			let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
+			let product = {
+				productName: productName,
+				quantity: quantity,
+				size: size,
+				description: description,
+				category: category,
+				price: price,
+				color: color,
+				business_id: BuId,
+				certs: certs,
+				image: files[0]
+			};
+
+			createProduct(product);
+		} else setValidated(true);
 	};
+
 	const createProduct = product => {
 		let myHeaders = new Headers();
 
@@ -74,7 +82,7 @@ export const ProductForm = () => {
 			.then(response => response.json())
 			.then(result => {
 				alert("Producto agregado correctamente");
-				history.push("/");
+				history.push("/productos-subidos");
 				console.log(result);
 			});
 	};
@@ -85,7 +93,7 @@ export const ProductForm = () => {
 				<h1 className="display-4">Subida de productos</h1>
 				<p className="lead">Formulario para subir los productos de la tienda</p>
 			</div>
-			<Form className="m-5">
+			<Form noValidate validated={validated} className="m-5">
 				<Form.Row>
 					<Form.Group as={Col}>
 						<Form.Label>Nombre del producto</Form.Label>
@@ -93,7 +101,9 @@ export const ProductForm = () => {
 							type="text"
 							placeholder="Nombre de Producto"
 							onChange={event => setProductName(event.target.value)}
+							required
 						/>
+						<Form.Control.Feedback type="invalid">Debes poner nombre al producto.</Form.Control.Feedback>
 					</Form.Group>
 					<Form.Group as={Col}>
 						<Form.Label>Categoría</Form.Label>

@@ -22,7 +22,7 @@ import { Registro } from "./pages/registro";
 import { Gracias } from "./pages/gracias-registro";
 import { Login } from "./pages/login";
 import { BusinessProfile } from "./pages/business-profile";
-
+import { BusinessProfile2 } from "./pages/business-profile2";
 import { ProductGalery } from "./pages/productGalery";
 
 //create your first component
@@ -67,7 +67,7 @@ const Layout = () => {
 						<Route exact path="/sign-up">
 							<SignUp />
 						</Route>
-						<Route exact path="/producto-id">
+						<Route exact path="/products/:id">
 							<Product />
 						</Route>
 						<Route exact path="/productos">
@@ -87,6 +87,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/perfil-empresa">
 							<BusinessProfile />
+						</Route>
+						<Route exact path="/productos-subidos">
+							<BusinessProfile2 />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

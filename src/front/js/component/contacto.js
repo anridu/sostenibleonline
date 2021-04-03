@@ -21,7 +21,7 @@ export const Contact = () => {
 			<div className="col-md-6 p-3 mt-3">
 				<MapContainer center={[41.3818, 2.1685]} zoom={13} scrollWheelZoom={false} style={{ height: 300 }}>
 					<TileLayer
-						attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+						attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
 					<Marker position={[41.3818, 2.1685]}>

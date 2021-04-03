@@ -6,6 +6,7 @@ import { Context } from "../store/appContext";
 export const RopaHombre = () => {
 	const [products, setProducts] = useState([]);
 	const { store, actions } = useContext(Context);
+	let itemListCat1 = "";
 
 	useEffect(() => {
 		// actions.getProducts()
@@ -22,13 +23,14 @@ export const RopaHombre = () => {
 			.catch(error => console.log("error", error));
 	}, []);
 
-	// Parece que falla el map cuando la lista de items está vacía
-	let itemListCat1 = products.map((item, key) => (
-		// Categoria 1
-		<div className="col-md-4" key={key}>
-			<ProductCard data={item} />
-		</div>
-	));
+	if (products != "product not found") {
+		itemListCat1 = products.map((item, key) => (
+			// Categoria 1
+			<div className="col-md-4" key={key}>
+				<ProductCard data={item} />
+			</div>
+		));
+	}
 
 	return (
 		<div className="container">
