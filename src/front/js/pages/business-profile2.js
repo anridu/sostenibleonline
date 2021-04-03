@@ -44,10 +44,9 @@ export const BusinessProfile2 = () => {
 
 	return (
 		<div className="container">
-			<h1 className="display-4 py-5 text-center">Gracias por subir tu produto a SostenibleOnline</h1>
+			<h1 className="display-4 py-5 text-center">Aumenta tus ventas con SostenibleOnline</h1>
 			<div className="row">
 				<div className="col">
-					<h3>Aumenta tus ventas</h3>
 					<p className="lead pt-2 my-2">
 						Subiendo tus productos a nuestra plataforma podrás llegar a más clientes, asegúrate de añadir
 						una foto del producto y una buena descripción para que más clientes puedan disfrutar de tus
@@ -57,8 +56,8 @@ export const BusinessProfile2 = () => {
 			</div>
 			<div className="row">
 				<div className="col text-center mb-3">
-					<a href="/subir-producto" className=" my-4 btn btn-lg btn-secondary text-center mb-5 mr-3">
-						<i className="fas fa-upload" /> Subir otro producto
+					<a href="/subir-producto" className=" my-4 btn btn-lg btn-outline-success text-center mb-5 mr-3">
+						<i className="fas fa-upload" /> Subir un producto
 					</a>
 					<a href="/" className=" my-4 btn btn-lg btn-outline-secondary text-center mb-5">
 						<i className="fas fa-home" /> Ir a la página de inicio

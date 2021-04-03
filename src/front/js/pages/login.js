@@ -28,6 +28,7 @@ export const Login = () => {
 	// 	// }
 	// 	event.preventDefault();
 	// };
+
 	const validateForm = () => {
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
@@ -44,14 +45,42 @@ export const Login = () => {
 
 		fetch(url, requestOptions)
 			.then(response => response.json())
+
 			.then(result => {
 				actions.setIsLogged(true);
 				localStorage.setItem("token", result.access_token);
-				console.log(result.access_token);
-				history.push("/");
-			})
+				console.log("access token:" + result.access_token);
 
-			.catch(error => console.log("error", error));
+				if (result.access_token == undefined) {
+					alert("Login failed");
+					//} else history.push("/");
+				} else {
+					let myHeaders = new Headers();
+					myHeaders.append(
+						"Authorization",
+						"Bearer " + localStorage.getItem("token"),
+						"Content-Type",
+						"application/json"
+					);
+
+					let url = `${apiBaseURL}/api/me/get_business`;
+
+					var requestOptions = {
+						method: "GET",
+						headers: myHeaders
+					};
+
+					fetch(url, requestOptions)
+						.then(response => response.json())
+						.then(result => {
+							//history.push("/");
+							console.log(result);
+							if (result[0] != undefined) history.push("/productos-subidos");
+							else history.push("/");
+						});
+				}
+			})
+			.catch(error => alert("error", error));
 	};
 	return (
 		<div>

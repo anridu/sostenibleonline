@@ -39,26 +39,25 @@ export const ProductForm = () => {
 		event.preventDefault();
 		const form = event.currentTarget;
 		if (form.checkValidity() === false) {
+			setValidated(false);
 			event.stopPropagation();
-		}
 
-		setValidated(true);
+			let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
+			let product = {
+				productName: productName,
+				quantity: quantity,
+				size: size,
+				description: description,
+				category: category,
+				price: price,
+				color: color,
+				business_id: BuId,
+				certs: certs,
+				image: files[0]
+			};
 
-		let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
-		let product = {
-			productName: productName,
-			quantity: quantity,
-			size: size,
-			description: description,
-			category: category,
-			price: price,
-			color: color,
-			business_id: BuId,
-			certs: certs,
-			image: files[0]
-		};
-
-		createProduct(product);
+			createProduct(product);
+		} else setValidated(true);
 	};
 
 	const createProduct = product => {
