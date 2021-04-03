@@ -38,8 +38,8 @@ export const ProductForm = () => {
 	const handleClick = event => {
 		event.preventDefault();
 		const form = event.currentTarget;
-		if (form.checkValidity() === false) {
-			setValidated(false);
+		if (form.checkValidity() === true) {
+			setValidated(true);
 			event.stopPropagation();
 
 			let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
@@ -57,7 +57,7 @@ export const ProductForm = () => {
 			};
 
 			createProduct(product);
-		} else setValidated(true);
+		} else setValidated(false);
 	};
 
 	const createProduct = product => {
