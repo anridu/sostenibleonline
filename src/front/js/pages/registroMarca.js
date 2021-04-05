@@ -185,6 +185,7 @@ export const RegistroMarca = () => {
 							className="form-control"
 							placeholder="Calle, número, puerta."
 							onChange={event => setAddress(event.target.value)}
+							required
 						/>
 					</Form.Group>
 				</Form.Row>
@@ -196,11 +197,15 @@ export const RegistroMarca = () => {
 							className="form-control"
 							placeholder="Ciudad"
 							onChange={event => setCity(event.target.value)}
+							required
 						/>
 					</Form.Group>
 					<Form.Group as={Col}>
 						<Form.Label>Provincia</Form.Label>
-						<Form.Control as="select" defaultValue="Eige...">
+						<Form.Control
+							as="select"
+							defaultValue="Eige..."
+							onChange={event => setRegion(event.target.value)}>
 							<option>Elige...</option>
 							<option>Albacete</option>
 							<option>Alicante</option>
@@ -263,6 +268,7 @@ export const RegistroMarca = () => {
 							className="form-control"
 							placeholder="Código postal"
 							onChange={event => setZipCode(event.target.value)}
+							required
 						/>
 					</Form.Group>
 				</Form.Row>

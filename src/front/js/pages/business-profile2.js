@@ -68,7 +68,7 @@ export const BusinessProfile2 = () => {
 				{itemList && (
 					<div>
 						<h3 className="pb-3">Productos subidos</h3>
-						<div>{itemList}</div>
+						<div className="row py-3">{itemList}</div>
 					</div>
 				)}
 			</div>
