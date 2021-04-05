@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
 import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
 import { AutoCompleteDemo } from "../component/searchBar";
+
+import { AutoComplete } from "primereact/autocomplete";
+import { CountryService } from "../component/countryService";
 
 export const TopNav = () => {
 	return (
