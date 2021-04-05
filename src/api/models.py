@@ -73,7 +73,7 @@ class Business(db.Model):
     city = db.Column(db.String(80), nullable=False)
     region = db.Column(db.String(80), nullable=False)
     zip_code = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.String(400), nullable=False)
+    description = db.Column(db.String(400), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     products = db.relationship("Product")
