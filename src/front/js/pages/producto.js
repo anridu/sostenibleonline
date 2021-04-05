@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import marca from "../../img/ropa.jpg";
 import "../../styles/index.scss";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
 //create your first component
 export const Product = () => {
@@ -29,66 +30,41 @@ export const Product = () => {
 				<div className="card mb-3">
 					<div className="row g-0">
 						<div className="col-md-4">
-							{<img className="product-Image" src={details ? details.imageUrl : "loading"} />}
+							{<img className="img-fluid" src={details ? details.imageUrl : "loading"} />}
 						</div>
 						<div className="col-md-8">
 							<div className="card-body">
-								<h5 className="card-title">{details ? details.product_name : "loading"}</h5>
+								<h5 className="card-title display-3 py-3">
+									{details ? details.product_name : "loading"}
+								</h5>
 
-								<div className="dropdown">
-									<button
-										className="btn btn-secondary dropdown-toggle"
-										type="button"
-										id="dropdownMenuButton"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
+								<Dropdown className="py-4">
+									<Dropdown.Toggle variant="secondary" id="dropdown-basic">
 										Elige tu talla
-									</button>
-									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										{/* hacer con un if o seleccionar una de las disponibles */}
-										<a className="dropdown-item" href="#">
-											s
-										</a>
-										<a className="dropdown-item" href="#">
-											M
-										</a>
-										<a className="dropdown-item" href="#">
-											L
-										</a>
-										<a className="dropdown-item" href="#">
-											XL
-										</a>
-									</div>
-								</div>
-								<br />
-								<div className="dropdown">
-									<button
-										className="btn btn-secondary dropdown-toggle"
-										type="button"
-										id="dropdownMenuButton"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
+									</Dropdown.Toggle>
+
+									<Dropdown.Menu>
+										<Dropdown.Item href="#">S</Dropdown.Item>
+										<Dropdown.Item href="#">M</Dropdown.Item>
+										<Dropdown.Item href="#">L</Dropdown.Item>
+										<Dropdown.Item href="#">XL</Dropdown.Item>
+									</Dropdown.Menu>
+								</Dropdown>
+
+								<Dropdown>
+									<Dropdown.Toggle variant="secondary" id="dropdown-basic">
 										Cantidad
-									</button>
-									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										{/* igual que la talla o diferente?? */}
-										<a className="dropdown-item" href="#">
-											1
-										</a>
-										<a className="dropdown-item" href="#">
-											2
-										</a>
-										<a className="dropdown-item" href="#">
-											3
-										</a>
-										<a className="dropdown-item" href="#">
-											Para mas cantidad contacta con nosotros
-										</a>
-									</div>
-								</div>
-								<h5 className="card-title">
+									</Dropdown.Toggle>
+
+									<Dropdown.Menu>
+										<Dropdown.Item href="#">1</Dropdown.Item>
+										<Dropdown.Item href="#">2</Dropdown.Item>
+										<Dropdown.Item href="#">3</Dropdown.Item>
+										<Dropdown.Item href="#">Para más cantidad contacta con nosotros</Dropdown.Item>
+									</Dropdown.Menu>
+								</Dropdown>
+
+								<h5 className="card-title mt-4 mb-2">
 									{details ? details.price + " " : "loading"}
 									euros
 								</h5>
@@ -111,7 +87,7 @@ export const Product = () => {
 									</div>
 								</div>
 								<Link to="/compra">
-									<Button className="btn btn-success btn-lg">Añadir a la cesta</Button>
+									<Button className="btn btn-success btn-lg mt-3">Añadir a la cesta</Button>
 								</Link>
 							</div>
 						</div>

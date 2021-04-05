@@ -170,6 +170,7 @@ export const ProductForm = () => {
 							type="text"
 							placeholder="Color"
 							onChange={event => setColor(event.target.value)}
+							required
 						/>
 					</Form.Group>
 				</Form.Row>
@@ -181,6 +182,7 @@ export const ProductForm = () => {
 							rows={3}
 							placeholder="Descripción"
 							onChange={event => setDescription(event.target.value)}
+							required
 						/>
 					</Form.Group>
 				</Form.Row>
