@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { ProductCard } from "../component/productcard";
 import { apiBaseURL } from "../constants";
 import { Context } from "../store/appContext";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export const ProductGalery = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
@@ -82,7 +83,7 @@ export const ProductGalery = () => {
 	}
 
 	return (
-        <div className="container">
+		<div className="container">
 			{
 				<div className="py-5">
 					<h1 className="display-4">Productos sostenibles, gente comprometida</h1>
