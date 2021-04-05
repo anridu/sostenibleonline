@@ -82,7 +82,7 @@ export const ProductGalery = () => {
 	}
 
 	return (
-		<div className="container">
+        <div className="container">
 			{
 				<div className="py-5">
 					<h1 className="display-4">Productos sostenibles, gente comprometida</h1>
@@ -90,6 +90,32 @@ export const ProductGalery = () => {
 						En esta página se muestran todos los productos de SostenibleOnline para que encuentres la prenda
 						perfecta, para verte bien, sentirte mejor y respetar el planeta. Porque no hay un planeta B.
 					</p>
+					<form action="">
+						<div className="input-group my-4">
+							<div className="input-group-prepend">
+								<Dropdown>
+									<Dropdown.Toggle variant="light" id="dropdown-basic">
+										Todos los productos
+									</Dropdown.Toggle>
+
+									<Dropdown.Menu>
+										<Dropdown.Item href="#">Hombre</Dropdown.Item>
+										<Dropdown.Item href="#">Mujer</Dropdown.Item>
+										<Dropdown.Item href="#">Unisex</Dropdown.Item>
+									</Dropdown.Menu>
+								</Dropdown>
+							</div>
+							<input
+								type="text"
+								className="form-control"
+								aria-label="Search input with dropdown button"></input>
+							<div className="input-group-append">
+								<button className="btn btn-success" type="button">
+									Buscar
+								</button>
+							</div>
+						</div>
+					</form>
 					<h3>Ropa de hombre</h3>
 					<div className="row py-3">{itemListCat1}</div>
 					<h3>Ropa de mujer</h3>
