@@ -2,6 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import { apiBaseURL } from "../constants";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import FormControl from "react-bootstrap/FormControl";
+import FormCheck from "react-bootstrap/FormCheck";
+import FormFile from "react-bootstrap/FormFile";
+import { Col, Row, Form } from "react-bootstrap";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 
 export const RegistroMarca = () => {
 	const history = useHistory();
@@ -22,7 +29,7 @@ export const RegistroMarca = () => {
 	const [certs, setCerts] = useState();
 	// Create CIF Hook / Field
 
-	const handleClick = () => {
+	const handleSubmit = () => {
 		event.preventDefault();
 		let business = {
 			name: name,
@@ -91,109 +98,110 @@ export const RegistroMarca = () => {
 				</p>
 			</div>
 
-			<form>
-				<div className="row mb-3">
-					<div className="col">
-						<label htmlFor="Marca">Nombre</label>
-						<input
+			<Form onSubmit={handleSubmit}>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Nombre</Form.Label>
+						<Form.Control
+							type="text"
+							className="form-control"
+							placeholder="Nombre"
 							onChange={event => setName(event.target.value)}
+							required
+						/>
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Apellidos</Form.Label>
+						<Form.Control
 							type="text"
 							className="form-control"
-							placeholder="Elon"
-						/>
-					</div>
-					<div className="col">
-						<label htmlFor="web">Apellidos</label>
-						<input
+							placeholder="Apellidos"
 							onChange={event => setLastName(event.target.value)}
-							type="text"
-							className="form-control"
-							placeholder="Musk"
+							required
 						/>
-					</div>
-				</div>
-
-				<div className="row mb-3">
-					<div className="col">
-						<label htmlFor="email">Correo electrónico</label>
-						<input
-							onChange={event => setEmail(event.target.value)}
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Correo Electrónico</Form.Label>
+						<Form.Control
 							type="email"
 							className="form-control"
-							placeholder="xxx@xxxx.com"
+							placeholder="Email"
+							onChange={event => setEmail(event.target.value)}
+							required
 						/>
-					</div>
-					<div className="col">
-						<label htmlFor="Marca">Contraseña</label>
-						<input
-							onChange={event => setPassword(event.target.value)}
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Contraseña</Form.Label>
+						<Form.Control
 							type="password"
 							className="form-control"
-							placeholder="*******"
+							placeholder="******"
+							onChange={event => setPassword(event.target.value)}
+							required
 						/>
-					</div>
-				</div>
-				<div className="row mb-3">
-					<div className="col">
-						<label htmlFor="Marca">Nombre comercial</label>
-						<input
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Nombre comercial</Form.Label>
+						<Form.Control
 							type="text"
-							value={commercialName}
-							onChange={event => setCommercialName(event.target.value)}
 							className="form-control"
+							value={commercialName}
 							placeholder="Nombre de la marca/tienda"
+							onChange={event => setCommercialName(event.target.value)}
+							required
 						/>
-					</div>
-					<div className="col">
-						<label htmlFor="web">Nombre Fiscal</label>
-						<input
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Nombre fiscal</Form.Label>
+						<Form.Control
 							type="text"
-							onChange={event => setTaxName(event.target.value)}
 							className="form-control"
 							placeholder="Tu empresa"
+							onChange={event => setTaxName(event.target.value)}
+							required
 						/>
-					</div>
-				</div>
-				<div className="row mb-3">
-					<div className="form-group ml-3">
-						<label htmlFor="exampleFormControlFile1">Subir logo</label>
-						<input
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Subir logo</Form.Label>
+						<Form.Control
 							type="file"
-							onChange={event => setLogo(event.target.value)}
 							className="form-control-file"
-							id="exampleFormControlFile1"
+							placeholder="Sube tu logo"
+							onChange={event => setLogo(event.target.value)}
 						/>
-					</div>
-				</div>
-
-				<div className="row mb-3">
-					<div className="col">
-						<label htmlFor="CodigoPostal">Dirección</label>
-						<input
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Dirección</Form.Label>
+						<Form.Control
 							type="text"
-							onChange={event => setAddress(event.target.value)}
 							className="form-control"
 							placeholder="Calle, número, puerta."
+							onChange={event => setAddress(event.target.value)}
 						/>
-					</div>
-				</div>
-				<div className="row mb-3">
-					<div className="form-group col-md-6">
-						<label htmlFor="inputCity">Ciudad</label>
-						<input
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Ciudad</Form.Label>
+						<Form.Control
 							type="text"
-							onChange={event => setCity(event.target.value)}
 							className="form-control"
-							id="inputCity"
+							placeholder="Ciudad"
+							onChange={event => setCity(event.target.value)}
 						/>
-					</div>
-					<div className="form-group col-md-4">
-						<label htmlFor="inputState">Provincia</label>
-						<select
-							id="inputState"
-							onChange={event => setRegion(event.target.value)}
-							className="form-control">
-							<option defaultValue>Elige...</option>
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Provincia</Form.Label>
+						<Form.Control as="select" defaultValue="Eige...">
+							<option>Elige...</option>
 							<option>Albacete</option>
 							<option>Alicante</option>
 							<option>Almeria</option>
@@ -246,94 +254,33 @@ export const RegistroMarca = () => {
 							<option>Zaragoza</option>
 							<option>Ceuta</option>
 							<option>Melilla</option>
-						</select>
-					</div>
-					<div className="form-group col-md-2">
-						<label htmlFor="inputZip">Código postal</label>
-						<input
+						</Form.Control>
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Código postal</Form.Label>
+						<Form.Control
 							type="text"
-							onChange={event => setZipCode(event.target.value)}
 							className="form-control"
-							id="inputZip"
+							placeholder="Código postal"
+							onChange={event => setZipCode(event.target.value)}
 						/>
-					</div>
-				</div>
-
-				<div className="row mb-3">
-					<div className="col">
-						<div className="form-group">
-							<label htmlFor="exampleFormControlTextarea">Descripción de tu empresa/marca</label>
-							<textarea
-								className="form-control"
-								id="exampleFormControlTextarea"
-								onChange={event => setDescription(event.target.value)}
-								rows="4"
-							/>
-						</div>
-					</div>
-				</div>
-				{/* <div className="row mb-3">
-					<div className="col-md-6">
-						<label htmlFor="input-check">¿De qué sellos de sostenibilidad dispones?</label>
-						<div className="form-check">
-							<input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-							<label className="form-check-label" htmlFor="defaultCheck1">
-								EU Ecolabel
-							</label>
-						</div>
-						<div className="form-check">
-							<input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-							<label className="form-check-label" htmlFor="defaultCheck2">
-								BIO Cotton
-							</label>
-						</div>
-						<div className="form-check">
-							<input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-							<label className="form-check-label" htmlFor="defaultCheck2">
-								Fairtrade
-							</label>
-						</div>
-						<div className="form-check">
-							<input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-							<label className="form-check-label" htmlFor="defaultCheck2">
-								STeP by OEKO-TEX®
-							</label>
-						</div>
-						<div className="form-check">
-							<input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-							<label className="form-check-label" htmlFor="defaultCheck2">
-								PETA Approved Vegan
-							</label>
-						</div>
-						<div className="form-check">
-							<input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-							<label className="form-check-label" htmlFor="defaultCheck2">
-								GLOBAL ORGANIC TEXTILE STANDARD
-							</label>
-						</div>
-					</div>
-					<div className="col-md-6">
-						<div className="form-group ml-3">
-							<label htmlFor="exampleFormControlFile1">Subir certificados de calidad</label>
-							<input
-								type="file"
-								className="form-control-file"
-								id="exampleFormControlFile1"
-								onChange={event => setCerts(event.target.value)}
-							/>
-						</div>
-					</div>
-				</div> */}
-				<div className="row mb-3">
-					<div className="col-md">
-						<div className="form-group ml-3">
-							<button onClick={event => handleClick(event)} className="btn btn-success btn-lg">
-								Registro
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Descripción de tu empresa/marca</Form.Label>
+						<Form.Control
+							as="textarea"
+							rows={4}
+							className="form-control"
+							onChange={event => setDescription(event.target.value)}
+						/>
+					</Form.Group>
+				</Form.Row>
+				<Button type="submit" className="btn btn-success btn-lg">
+					Registro
+				</Button>
+			</Form>
 		</div>
 	);
 };

@@ -25,7 +25,6 @@ export const ProductForm = () => {
 	const [businessId, setBusinessId] = useState("");
 	const [certs, setSelectedCerts] = useState([]);
 	const [files, setFiles] = useState([]);
-	const [validated, setValidated] = useState(false);
 
 	useEffect(() => {
 		actions.getBusiness();
@@ -35,29 +34,24 @@ export const ProductForm = () => {
 		setSelectedCerts(Array.prototype.slice.call(event.target.selectedOptions).map(o => o.value));
 	}
 
-	const handleClick = event => {
+	const handleSubmit = event => {
 		event.preventDefault();
-		const form = event.currentTarget;
-		if (form.checkValidity() === true) {
-			setValidated(true);
-			event.stopPropagation();
 
-			let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
-			let product = {
-				productName: productName,
-				quantity: quantity,
-				size: size,
-				description: description,
-				category: category,
-				price: price,
-				color: color,
-				business_id: BuId,
-				certs: certs,
-				image: files[0]
-			};
+		let BuId = event.target.closest("form").querySelector("#formBusinessId").value;
+		let product = {
+			productName: productName,
+			quantity: quantity,
+			size: size,
+			description: description,
+			category: category,
+			price: price,
+			color: color,
+			business_id: BuId,
+			certs: certs,
+			image: files[0]
+		};
 
-			createProduct(product);
-		} else setValidated(false);
+		createProduct(product);
 	};
 
 	const createProduct = product => {
@@ -93,7 +87,7 @@ export const ProductForm = () => {
 				<h1 className="display-4">Subida de productos</h1>
 				<p className="lead">Formulario para subir los productos de la tienda</p>
 			</div>
-			<Form noValidate validated={validated} className="m-5">
+			<Form onSubmit={handleSubmit} className="m-5">
 				<Form.Row>
 					<Form.Group as={Col}>
 						<Form.Label>Nombre del producto</Form.Label>
@@ -103,7 +97,6 @@ export const ProductForm = () => {
 							onChange={event => setProductName(event.target.value)}
 							required
 						/>
-						<Form.Control.Feedback type="invalid">Debes poner nombre al producto.</Form.Control.Feedback>
 					</Form.Group>
 					<Form.Group as={Col}>
 						<Form.Label>Categoría</Form.Label>
@@ -123,6 +116,7 @@ export const ProductForm = () => {
 							data-browse="Examinar"
 							onChange={event => setFiles(event.target.files)}
 							custom
+							required
 						/>
 					</Form.Group>
 
@@ -147,12 +141,18 @@ export const ProductForm = () => {
 							type="text"
 							placeholder="Cantidad de productos(Stok)"
 							onChange={event => setQuantity(event.target.value)}
+							required
 						/>
 					</Form.Group>
 
 					<Form.Group as={Col}>
 						<Form.Label>Talla</Form.Label>
-						<Form.Control type="text" placeholder="Talla" onChange={event => setSize(event.target.value)} />
+						<Form.Control
+							type="text"
+							placeholder="Talla"
+							onChange={event => setSize(event.target.value)}
+							required
+						/>
 					</Form.Group>
 
 					<Form.Group as={Col}>
@@ -161,6 +161,7 @@ export const ProductForm = () => {
 							type="text"
 							placeholder="Precio por unidad"
 							onChange={event => setPrice(event.target.value)}
+							required
 						/>
 					</Form.Group>
 					<Form.Group as={Col}>
@@ -172,23 +173,27 @@ export const ProductForm = () => {
 						/>
 					</Form.Group>
 				</Form.Row>
-				<Form.Group>
-					<Form.Label>Descripción</Form.Label>
-					<Form.Control
-						as="textarea"
-						rows={3}
-						placeholder="Descripción"
-						onChange={event => setDescription(event.target.value)}
-					/>
-				</Form.Group>
-				<Form.Control as="select" multiple onChange={event => addSelectedCerts(event)}>
-					<option>BIO Cotton</option>
-					<option>Fairtrade</option>
-					<option>STeP by OEKO-TEX®</option>
-					<option>PETA Approved Vegan</option>
-				</Form.Control>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Descripción</Form.Label>
+						<Form.Control
+							as="textarea"
+							rows={3}
+							placeholder="Descripción"
+							onChange={event => setDescription(event.target.value)}
+						/>
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Control as="select" multiple onChange={event => addSelectedCerts(event)} required>
+						<option>BIO Cotton</option>
+						<option>Fairtrade</option>
+						<option>STeP by OEKO-TEX®</option>
+						<option>PETA Approved Vegan</option>
+					</Form.Control>
+				</Form.Row>
 
-				<Button onClick={handleClick} className="btn btn-success btn-lg">
+				<Button type="submit" className="btn btn-success btn-lg mt-3">
 					Subir producto
 				</Button>
 			</Form>
