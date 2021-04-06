@@ -33,8 +33,8 @@ const responsive = {
 };
 export const MultiCarousel = () => {
 	return (
-		<div className="Container">
-			<h2 className="text-center py-3 mt-3">Nuestros sellos de calidad</h2>
+		<div className="Container p-4">
+			<h2 className="text-center mt-3">Nuestros sellos de calidad</h2>
 			<p className="ml-3">
 				Trabajamos únicamente con empresas y marcas certificadas con sellos de calidad y estándares que te
 				ofrezcan una garantía absoluta de que el producto que estás adquiriendo responde a unos protocolos de

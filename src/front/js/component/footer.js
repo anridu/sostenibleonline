@@ -6,7 +6,7 @@ export const _Footer = () => (
 	<footer className="footer mt-auto py-3 text-center mt-5">
 		<Container fluid className="text-left">
 			<Row>
-				<Col md="6">
+				<Col md="6" className="p-4">
 					<h5 className="text-uppercase mb-4 mt-3 font-weight-bold">SostenibleOnline</h5>
 					<p>Estamos convencidos de que un pequeño gesto de cada uno es una gran ayuda para el planeta.</p>
 				</Col>

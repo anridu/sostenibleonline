@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
-import novedades from "../../img/novedades.png";
-import ropaMujer from "../../img/ropa-mujer.jpg";
-import ropaHombre from "../../img/ropa-hombre.jpg";
-import nosotros from "../../img/nosotros.jpg";
+import unisex from "../../img/slide-unisex.jpg";
+import ropaMujer from "../../img/slide-mujer.jpg";
+import ropaHombre from "../../img/slide-hombre.jpg";
+import nosotros from "../../img/slide-nosotros.jpg";
 import "../../styles/home.scss";
 import Carousel from "react-bootstrap/Carousel";
 
@@ -12,7 +12,7 @@ export const Slideshow = () => {
 	return (
 		<Carousel>
 			<Carousel.Item>
-				<img className="d-block w-100 dark-overlay" src={novedades} alt="Novedades" />
+				<img className="d-block w-100 dark-overlay" src={unisex} alt="Novedades" />
 				<Carousel.Caption>
 					<h3 className="display-4">Ropa para todos, ecológica</h3>
 					<p className="lead">
