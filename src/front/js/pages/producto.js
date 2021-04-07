@@ -12,9 +12,17 @@ import Dropdown from "react-bootstrap/Dropdown";
 //create your first component
 export const Product = () => {
 	const [details, setDetails] = useState();
+  const { store, actions } = useContext(Context);
 	const params = useParams();
 
 	// const { product_name, description, price, imageUrl } = data.data;
+
+  const addProduct = (event) =>{
+    event.preventDefault();
+    const product = {...details, talla: 'X', cantidad: 50};
+    actions.addProductToShoppingCard(product);
+  }
+
 
 	useEffect(() => {
 		fetch(`${apiBaseURL}/api/products/${params.id}`)

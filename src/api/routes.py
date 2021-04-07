@@ -119,7 +119,8 @@ def modify_user(id):
 
 
 @api.route('/products', methods=['GET'])
-def handle_products():
+def handle_products(): 
+
 
     products = Product.get_all_products()
     all_products = list(map(lambda product: product.serialize(), products))
@@ -129,7 +130,7 @@ def handle_products():
 @api.route('/products/category/<int:id>', methods=['GET'])
 def handle_productCategory(id):
 
-    products = Product.query.join(ProductCategory).join(Category). filter((ProductCategory.category_id == id)).all()
+    products = Product.query.join(ProductCategory).join(Category).filter((ProductCategory.category_id == id)).all()
     all_products = list(map(lambda product: product.serialize(), products))
 
     # product = Product.query.filter_by(Product.categories==id).all()

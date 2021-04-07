@@ -19,7 +19,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			isLogged: false,
 
-			business: []
+			business: [],
+      shoppingCard:{
+      },
+      itemsShoppingCard: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -76,7 +79,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+      addProductToShoppingCard: (product) => {
+        const store = getStore();
+        setStore({
+          itemsShoppingCard: [...store.itemsShoppingCard, product]
+        });
+      }
 		}
 	};
 };
