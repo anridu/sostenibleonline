@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import Context from "../store/appContext";
+import { Context } from "../store/appContext";
 import { apiBaseURL } from "../constants";
 import PropTypes from "prop-types";
-//include images into your bundle
 import marca from "../../img/ropa.jpg";
 import "../../styles/index.scss";
 import Button from "react-bootstrap/Button";
@@ -11,18 +10,18 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 //create your first component
 export const Product = () => {
+	const { store, actions } = useContext(Context);
 	const [details, setDetails] = useState();
-  const { store, actions } = useContext(Context);
 	const params = useParams();
 
 	// const { product_name, description, price, imageUrl } = data.data;
 
-  const addProduct = (event) =>{
-    event.preventDefault();
-    const product = {...details, talla: 'X', cantidad: 50};
-    actions.addProductToShoppingCard(product);
-  }
-
+	const addProduct = event => {
+		event.preventDefault();
+		const product = { ...details, talla: "X", cantidad: 50 };
+		actions.addProductToShoppingCard(product);
+		console.log(product);
+	};
 
 	useEffect(() => {
 		fetch(`${apiBaseURL}/api/products/${params.id}`)
@@ -94,9 +93,9 @@ export const Product = () => {
 										</div>
 									</div>
 								</div>
-								<Link to="/compra">
-									<Button className="btn btn-success btn-lg mt-3">Añadir a la cesta</Button>
-								</Link>
+								<Button className="btn btn-success btn-lg mt-3" onClick={addProduct}>
+									Añadir a la cesta
+								</Button>
 							</div>
 						</div>
 					</div>
