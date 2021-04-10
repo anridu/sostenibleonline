@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
 import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
 
 export const TopNav = () => {
+	const { store, actions } = useContext(Context);
 	return (
 		<Navbar bg="light" expand="lg">
 			<Navbar.Brand href="/" className="brand-name mr-4">
@@ -23,7 +25,8 @@ export const TopNav = () => {
 
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
 					<Nav.Link href="/compra">
-						<i className="fas fa-shopping-cart" />
+						<i className="fas fa-shopping-cart" />{" "}
+						<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
 					</Nav.Link>
 				</Nav>
 				<div className="d-flex justify-content-between">

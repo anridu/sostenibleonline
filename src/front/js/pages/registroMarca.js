@@ -204,7 +204,7 @@ export const RegistroMarca = () => {
 						<Form.Label>Provincia</Form.Label>
 						<Form.Control
 							as="select"
-							defaultValue="Eige..."
+							defaultValue="Elige..."
 							onChange={event => setRegion(event.target.value)}>
 							<option>Elige...</option>
 							<option>Albacete</option>

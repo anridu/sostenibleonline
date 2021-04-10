@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import marca from "../../img/ropa.jpg";
 import "../../styles/index.scss";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
+import { Form, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 //create your first component
@@ -15,12 +15,14 @@ export const Product = () => {
 	const [details, setDetails] = useState();
 	const params = useParams();
 	const history = useHistory();
+	const [size, setSize] = useState("");
+	const [quantity, setQuantity] = useState("");
 
 	// const { product_name, description, price, imageUrl } = data.data;
 
 	const addProduct = event => {
 		event.preventDefault();
-		const product = { ...details, talla: "X", cantidad: 50 };
+		const product = { ...details, size, quantity };
 		actions.addProductToShoppingCard(product);
 		console.log("Producto:" + product);
 		console.log("Productos en cesta: ");
@@ -42,72 +44,76 @@ export const Product = () => {
 
 	return (
 		<div>
-			<div>
-				<div className="card mb-3">
-					<div className="row g-0">
-						<div className="col-md-4">
-							{<img className="img-fluid" src={details ? details.imageUrl : "loading"} />}
-						</div>
-						<div className="col-md-8">
-							<div className="card-body">
-								<h5 className="card-title display-3 py-3">
-									{details ? details.product_name : "loading"}
-								</h5>
+			<div className="card mb-3">
+				<div className="row g-0">
+					<div className="col-md-4">
+						{<img className="img-fluid" src={details ? details.imageUrl : "loading"} />}
+					</div>
+					<div className="col-md-8">
+						<div className="card-body">
+							<h5 className="card-title display-3 py-3">{details ? details.product_name : "loading"}</h5>
+							<h5 className="card-title mt-4 mb-2">
+								Precio: <b>{details ? details.price + " " : "loading"}</b> €
+							</h5>
 
-								<Dropdown className="py-4">
-									<Dropdown.Toggle variant="secondary" id="dropdown-basic">
-										Elige tu talla
-									</Dropdown.Toggle>
+							<Form className="mt-3" onSubmit={addProduct}>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label>Talla:</Form.Label>
+										<Form.Control
+											as="select"
+											defaultValue="Elige..."
+											onChange={event => setSize(event.target.value)}>
+											<option>Elige...</option>
+											<option>XS</option>
+											<option>S</option>
+											<option>M</option>
+											<option>L</option>
+											<option>XL</option>
+										</Form.Control>
+									</Form.Group>
+								</Form.Row>
+								<Form.Row>
+									<Form.Group as={Col} controlId="exampleForm.ControlSelect1">
+										<Form.Label>Cantidad</Form.Label>
+										<Form.Control
+											as="select"
+											defaultValue="1"
+											onChange={event => setQuantity(event.target.value)}>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option disabled>Para más cantidad contacta con nosotros</option>
+										</Form.Control>
+									</Form.Group>
+								</Form.Row>
+								<Button type="submit" className="btn btn-dark btn-lg">
+									Añadir al carrito de la compra
+								</Button>
+							</Form>
 
-									<Dropdown.Menu>
-										<Dropdown.Item href="#">S</Dropdown.Item>
-										<Dropdown.Item href="#">M</Dropdown.Item>
-										<Dropdown.Item href="#">L</Dropdown.Item>
-										<Dropdown.Item href="#">XL</Dropdown.Item>
-									</Dropdown.Menu>
-								</Dropdown>
+							<Button className="btn btn-light btn-lg mt-3" onClick={checkout}>
+								Tramitar el pedido
+							</Button>
 
-								<Dropdown>
-									<Dropdown.Toggle variant="secondary" id="dropdown-basic">
-										Cantidad
-									</Dropdown.Toggle>
-
-									<Dropdown.Menu>
-										<Dropdown.Item href="#">1</Dropdown.Item>
-										<Dropdown.Item href="#">2</Dropdown.Item>
-										<Dropdown.Item href="#">3</Dropdown.Item>
-										<Dropdown.Item href="#">Para más cantidad contacta con nosotros</Dropdown.Item>
-									</Dropdown.Menu>
-								</Dropdown>
-
-								<h5 className="card-title mt-4 mb-2">
-									{details ? details.price + " " : "loading"}
-									euros
-								</h5>
-								<div className="row  mt-3">
-									<div className="col-md-8">
-										<div className="card text-center border-info">
-											<div className="card-header">
-												<ul className="nav nav-tabs card-header-tabs">
-													<li className="nav-item">
-														<a className="nav-link" href="#">
-															Descripción
-														</a>
-													</li>
-												</ul>
-											</div>
-											<div className="card-body">
-												<p className="card-text">{details ? details.description : "loading"}</p>
-											</div>
+							<div className="row  mt-3">
+								<div className="col-md-8">
+									<div className="card text-center border-info">
+										<div className="card-header">
+											<ul className="nav nav-tabs card-header-tabs">
+												<li className="nav-item">
+													<a className="nav-link" href="#">
+														Descripción
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div className="card-body">
+											<p className="card-text">{details ? details.description : "loading"}</p>
 										</div>
 									</div>
 								</div>
-								<Button className="btn btn-success btn-lg mt-3" onClick={addProduct}>
-									Añadir a la cesta
-								</Button>
-								<Button className="btn btn-secondary btn-lg mt-3 ml-3" onClick={checkout}>
-									Tramitar pedido
-								</Button>
 							</div>
 						</div>
 					</div>
