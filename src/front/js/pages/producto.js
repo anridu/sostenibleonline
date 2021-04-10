@@ -7,12 +7,14 @@ import marca from "../../img/ropa.jpg";
 import "../../styles/index.scss";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useHistory } from "react-router-dom";
 
 //create your first component
 export const Product = () => {
 	const { store, actions } = useContext(Context);
 	const [details, setDetails] = useState();
 	const params = useParams();
+	const history = useHistory();
 
 	// const { product_name, description, price, imageUrl } = data.data;
 
@@ -20,7 +22,14 @@ export const Product = () => {
 		event.preventDefault();
 		const product = { ...details, talla: "X", cantidad: 50 };
 		actions.addProductToShoppingCard(product);
-		console.log(product);
+		console.log("Producto:" + product);
+		console.log("Productos en cesta: ");
+		console.log(store.itemsShoppingCard);
+	};
+
+	const checkout = event => {
+		event.preventDefault();
+		history.push("/cesta");
 	};
 
 	useEffect(() => {
@@ -95,6 +104,9 @@ export const Product = () => {
 								</div>
 								<Button className="btn btn-success btn-lg mt-3" onClick={addProduct}>
 									Añadir a la cesta
+								</Button>
+								<Button className="btn btn-secondary btn-lg mt-3 ml-3" onClick={checkout}>
+									Tramitar pedido
 								</Button>
 							</div>
 						</div>
