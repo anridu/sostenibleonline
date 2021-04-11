@@ -24,7 +24,7 @@ export const TopNav = () => {
 					</NavDropdown>
 
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
-					<Nav.Link href="/compra">
+					<Nav.Link href="/cesta">
 						<i className="fas fa-shopping-cart" />{" "}
 						<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
 					</Nav.Link>

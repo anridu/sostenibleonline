@@ -6,34 +6,39 @@ import { Button, Table } from "react-bootstrap";
 
 export const Cesta = () => {
 	const { store, actions } = useContext(Context);
+	const cartTotal = store.itemsShoppingCard.reduce(
+		(total, { price = 0, quantity = 0 }) => total + price * quantity,
+		0
+	);
 
-	let shoppingList = store.itemsShoppingCard.map((item, key) => (
-		<div key={key}>
+	const shoppingCart = store.itemsShoppingCard.map((item, index) => (
+		<div key={index}>
 			<ProductShoppingList data={item} />
 		</div>
 	));
-
-	const printProducts = event => {
-		event.preventDefault();
-		console.log("Productos en cesta!!!!!: ");
-		console.log(store.itemsShoppingCard);
-	};
-
-	console.log(store.itemsShoppingCard);
 
 	return (
 		<div className="container">
 			<h1 className="display-4 py-5 text-center">Tu cesta de la compra</h1>
 			<div className="row">
 				<div className="col">
-					<div className="mt-2">{shoppingList}</div>
-					<a href="/" className=" my-5 btn btn-lg btn-success btn-block align-center">
+					<div className="mt-2">{shoppingCart}</div>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-md-1"></div>
+				<div className="col-md-2 lead">
+					<b>Total:</b>
+				</div>
+				<div className="col-md-6 "></div>
+				<div className="col-md-2 text-center lead">{cartTotal} €</div>
+				<div className="col-md-1"></div>
+			</div>
+			<div className="row">
+				<div className="col">
+					<a href="/compra" className=" my-3 btn btn-lg btn-success btn-block align-center">
 						<i className="fas fa-shopping-basket" /> Realizar pedido
 					</a>
-
-					<Button className="btn btn-success btn-lg mt-3" onClick={printProducts}>
-						Console Log Lista
-					</Button>
 				</div>
 			</div>
 		</div>

@@ -16,17 +16,18 @@ export const Product = () => {
 	const params = useParams();
 	const history = useHistory();
 	const [size, setSize] = useState("");
-	const [quantity, setQuantity] = useState("");
+	const [quantity, setQuantity] = useState("1");
 
 	// const { product_name, description, price, imageUrl } = data.data;
 
 	const addProduct = event => {
 		event.preventDefault();
 		const product = { ...details, size, quantity };
-		actions.addProductToShoppingCard(product);
-		console.log("Producto:" + product);
-		console.log("Productos en cesta: ");
-		console.log(store.itemsShoppingCard);
+		if (product.size !== "" && product.size !== "-") {
+			actions.addProductToShoppingCard(product);
+		} else {
+			alert("Debes seleccionar una talla");
+		}
 	};
 
 	const checkout = event => {
@@ -63,8 +64,9 @@ export const Product = () => {
 										<Form.Control
 											as="select"
 											defaultValue="Elige..."
-											onChange={event => setSize(event.target.value)}>
-											<option>Elige...</option>
+											onChange={event => setSize(event.target.value)}
+											required>
+											<option>-</option>
 											<option>XS</option>
 											<option>S</option>
 											<option>M</option>
@@ -79,7 +81,8 @@ export const Product = () => {
 										<Form.Control
 											as="select"
 											defaultValue="1"
-											onChange={event => setQuantity(event.target.value)}>
+											onChange={event => setQuantity(event.target.value)}
+											required>
 											<option>1</option>
 											<option>2</option>
 											<option>3</option>

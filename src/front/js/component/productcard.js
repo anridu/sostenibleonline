@@ -9,16 +9,7 @@ import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const ProductCard = data => {
-	// const [details, setDetails] = useState();
 	const params = useParams();
-	// useEffect(() => {
-	// 	let url = `${apiBaseURL}/api/products/<int:id>`;
-	// 	fetch(url)
-	// 		.then(resp => resp.json())
-	// 		.then(data => {
-	// 			setDetails(data);
-	// 		});
-	// }, []);
 	const { imageUrl, product_name, description } = data.data;
 	console.log(data.data.product_name);
 

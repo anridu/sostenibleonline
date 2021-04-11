@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Context from "../store/appContext";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { apiBaseURL } from "../constants";
 import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const ProductShoppingList = data => {
+	const { store, actions } = useContext(Context);
 	const params = useParams();
-	const { imageUrl, product_name, price, quantity, size } = data.data;
+	const { imageUrl, product_name, price, quantity, size, index } = data.data;
 
 	return (
 		<div>
@@ -27,7 +28,13 @@ export const ProductShoppingList = data => {
 				<div className="col-md-2 text-center">
 					<b>Precio:</b> {data ? price : "loading"} €
 				</div>
-				<div className="col-md-1"></div>
+				<div className="col-md-1">
+					<button
+						className="close"
+						onClick={() => actions.removeProductFromShoppingCart(data ? index : "loading")}>
+						<i className="fas fa-trash" />
+					</button>
+				</div>
 			</div>
 			<hr />
 		</div>
