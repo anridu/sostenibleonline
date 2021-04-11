@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export const ProductShoppingList = data => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
-	const { imageUrl, product_name, price, quantity, size, index } = data.data;
+	const { imageUrl, product_name, price, quantity, size, IdEnCesta } = data.data;
 
 	return (
 		<div>
@@ -31,7 +31,7 @@ export const ProductShoppingList = data => {
 				<div className="col-md-1">
 					<button
 						className="close"
-						onClick={() => actions.removeProductFromShoppingCart(data ? index : "loading")}>
+						onClick={() => actions.removeProductFromShoppingCart(data ? IdEnCesta : "loading")}>
 						<i className="fas fa-trash" />
 					</button>
 				</div>

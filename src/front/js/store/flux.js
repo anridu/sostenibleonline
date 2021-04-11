@@ -48,19 +48,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addProductToShoppingCard: product => {
 				const store = getStore();
-				product.index = store.itemsShoppingCard.length;
+				product.IdEnCesta = store.itemsShoppingCard.length;
 				console.log(product);
 				setStore({
 					itemsShoppingCard: [...store.itemsShoppingCard, product]
 				});
 			},
 
-			removeProductFromShoppingCart: index => {
+			removeProductFromShoppingCart: IdEnCesta => {
 				const store = getStore();
-				console.log("Index:" + index);
-				console.log("Antes:" + store.itemsShoppingCard);
-				store.itemsShoppingCard.splice(index, 1);
-				console.log("despues:" + store.itemsShoppingCard);
+				console.log("Index:" + IdEnCesta);
+				console.log(store.itemsShoppingCard);
+				let i = 0;
+				while (store.itemsShoppingCard[i].IdEnCesta != IdEnCesta && i < store.itemsShoppingCard.length) {
+					i++;
+				}
+				store.itemsShoppingCard.splice(i, 1);
+				console.log(store.itemsShoppingCard);
 				setStore({ itemsShoppingCard: store.itemsShoppingCard });
 			}
 		}
