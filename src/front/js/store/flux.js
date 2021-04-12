@@ -47,25 +47,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			signUp: user => {},
 
 			addProductToShoppingCard: product => {
+				console.log(product, "#");
 				const store = getStore();
 				product.IdEnCesta = store.itemsShoppingCard.length;
-				console.log(product);
 				setStore({
 					itemsShoppingCard: [...store.itemsShoppingCard, product]
 				});
+				localStorage.setItem("product", JSON.stringify(store.itemsShoppingCard));
+			},
+
+			updateShoppingCart: cart => {
+				setStore({ itemsShoppingCard: cart });
 			},
 
 			removeProductFromShoppingCart: IdEnCesta => {
 				const store = getStore();
-				console.log("Index:" + IdEnCesta);
-				console.log(store.itemsShoppingCard);
 				let i = 0;
 				while (store.itemsShoppingCard[i].IdEnCesta != IdEnCesta && i < store.itemsShoppingCard.length) {
 					i++;
 				}
 				store.itemsShoppingCard.splice(i, 1);
-				console.log(store.itemsShoppingCard);
 				setStore({ itemsShoppingCard: store.itemsShoppingCard });
+				localStorage.setItem("product", JSON.stringify(store.itemsShoppingCard));
 			}
 		}
 	};

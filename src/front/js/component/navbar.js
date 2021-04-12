@@ -9,10 +9,12 @@ export const TopNav = () => {
 	const { store, actions } = useContext(Context);
 	return (
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand href="/" className="brand-name mr-4">
-				<img src={logo} className="logo" />
-				SostenibleOnline
-			</Navbar.Brand>
+			<Link to="/">
+				<Navbar.Brand className="brand-name mr-4">
+					<img src={logo} className="logo" />
+					SostenibleOnline
+				</Navbar.Brand>
+			</Link>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
