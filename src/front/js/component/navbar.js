@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
 import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
 
 export const TopNav = () => {
+	const { store, actions } = useContext(Context);
 	return (
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand href="/" className="brand-name mr-4">
-				<img src={logo} className="logo" />
-				SostenibleOnline
-			</Navbar.Brand>
+			<Link to="/">
+				<Navbar.Brand className="brand-name mr-4">
+					<img src={logo} className="logo" />
+					SostenibleOnline
+				</Navbar.Brand>
+			</Link>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
@@ -22,8 +26,9 @@ export const TopNav = () => {
 					</NavDropdown>
 
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
-					<Nav.Link href="/compra">
-						<i className="fas fa-shopping-cart" />
+					<Nav.Link href="/cesta">
+						<i className="fas fa-shopping-cart" />{" "}
+						<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
 					</Nav.Link>
 				</Nav>
 				<div className="d-flex justify-content-between">

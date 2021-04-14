@@ -7,7 +7,7 @@ export const Hero_Section = () => {
 		<div>
 			<div className="text-center mt-5">
 				<h1 className="display-4">Apuesta por un futuro sostenible con SostenibleOnline</h1>
-				<p className="lead">
+				<p className="lead p-3">
 					En SostenibleOnline trabajamos para poner a tu alcance las mejores prendas de ropa sostenible
 					producidas en España por pequeñas empresas y sastres, vendidas por comercios de proximidad, en tu
 					barrio y ahora en tu pantalla.

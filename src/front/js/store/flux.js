@@ -4,29 +4,12 @@ import { apiBaseURL } from "../constants";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			isLogged: false,
-
-			business: []
+			business: [],
+			itemsShoppingCard: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
 			setIsLogged: value => {
 				setStore({
 					isLogged: value
@@ -59,23 +42,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			getProducts: () => {},
+			//getProducts: () => {},
 
 			signUp: user => {},
 
-			changeColor: (index, color) => {
-				//get the store
+			addProductToShoppingCard: product => {
+				console.log(product, "#");
 				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+				product.IdEnCesta = store.itemsShoppingCard.length;
+				setStore({
+					itemsShoppingCard: [...store.itemsShoppingCard, product]
 				});
+				localStorage.setItem("product", JSON.stringify(store.itemsShoppingCard));
+			},
 
-				//reset the global store
-				setStore({ demo: demo });
+			updateShoppingCart: cart => {
+				setStore({ itemsShoppingCard: cart });
+			},
+
+			removeProductFromShoppingCart: IdEnCesta => {
+				const store = getStore();
+				let i = 0;
+				while (store.itemsShoppingCard[i].IdEnCesta != IdEnCesta && i < store.itemsShoppingCard.length) {
+					i++;
+				}
+				store.itemsShoppingCard.splice(i, 1);
+				setStore({ itemsShoppingCard: store.itemsShoppingCard });
+				localStorage.setItem("product", JSON.stringify(store.itemsShoppingCard));
 			}
 		}
 	};
