@@ -127,6 +127,21 @@ def handle_products():
 
     return jsonify(all_products), 200
 
+
+# @api.route('/products/category/<int:categoryId>/<string:search_text>', methods=['GET'])
+# def handle_search(categoryId,search_text):
+@api.route('/products/category', methods=['GET'])
+def handle_search():
+    # here we want to get the value of user (i.e. ?user=some-value)
+    categoryId = request.args.get('categoryId')
+    search_text = request.args.get('name')
+    products = Product.query.join(ProductCategory).join(Category).filter(ProductCategory.category_id == categoryId, Product.product_name.like(f'%{search_text}%') ).all()
+    all_products = list(map(lambda product: product.serialize(), products))
+
+    if not all_products: 
+        return jsonify ("product not found"), 404
+    return jsonify(all_products), 200
+
 @api.route('/products/category/<int:id>', methods=['GET'])
 def handle_productCategory(id):
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ProductCard } from "../component/productcard";
 import { apiBaseURL } from "../constants";
 import { Context } from "../store/appContext";
@@ -9,6 +10,26 @@ export const ProductGalery = () => {
 	const [productsCat2, setProductsCat2] = useState([]);
 	const [productsCat3, setProductsCat3] = useState([]);
 	const { store, actions } = useContext(Context);
+	const params = useParams();
+	const [searchResults, setSearchResults] = useState([]);
+
+	let handleSearchProduct = () => {
+		let myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		let requestOptions = {
+			method: "GET",
+			headers: myHeaders,
+			redirect: "follow"
+		};
+
+		let url = `${apiBaseURL}/api/products/category${params.id}`;
+
+		fetch(url, requestOptions)
+			.then(response => response.text())
+			.then(result => setSearchResults(result))
+			.catch(error => console.log("error", error));
+	};
 
 	useEffect(() => {
 		// actions.getProducts()
