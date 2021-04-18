@@ -69,6 +69,8 @@
 		]
 	},
 	"dependencies": {
+		"@stripe/react-stripe-js": "^1.4.0",
+		"@stripe/stripe-js": "^1.13.2",
 		"bootstrap": "^4.6.0",
 		"cloudinary": "^1.25.0",
 		"leaflet": "^1.7.1",
@@ -87,6 +89,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-static-google-map": "^0.8.0",
 		"start": "^5.1.0",
-		"static-google-map": "0.0.3"
+		"static-google-map": "0.0.3",
+		"stripe": "^8.144.0"
 	}
 }

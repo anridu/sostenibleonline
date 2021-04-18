@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ProductCard } from "../component/productcard";
 import { apiBaseURL } from "../constants";
 import { Context } from "../store/appContext";
+import { Form, Col, Row, DropdownButton, Button, Dropdown, InputGroup, FormControl } from "react-bootstrap";
 
 export const ProductGalery = () => {
 	const [selectedCategory, setSelectedCategory] = useState("");
@@ -11,25 +12,6 @@ export const ProductGalery = () => {
 	const [productsCat3, setProductsCat3] = useState([]);
 	const { store, actions } = useContext(Context);
 	const params = useParams();
-	const [searchResults, setSearchResults] = useState([]);
-
-	let handleSearchProduct = () => {
-		let myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
-
-		let requestOptions = {
-			method: "GET",
-			headers: myHeaders,
-			redirect: "follow"
-		};
-
-		let url = `${apiBaseURL}/api/products/category${params.id}`;
-
-		fetch(url, requestOptions)
-			.then(response => response.text())
-			.then(result => setSearchResults(result))
-			.catch(error => console.log("error", error));
-	};
 
 	useEffect(() => {
 		// actions.getProducts()
@@ -111,6 +93,7 @@ export const ProductGalery = () => {
 						En esta página se muestran todos los productos de SostenibleOnline para que encuentres la prenda
 						perfecta, para verte bien, sentirte mejor y respetar el planeta. Porque no hay un planeta B.
 					</p>
+
 					<h3>Ropa de hombre</h3>
 					<div className="row py-3">{itemListCat1}</div>
 					<h3>Ropa de mujer</h3>

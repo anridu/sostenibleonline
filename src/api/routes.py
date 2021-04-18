@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Product, Business, BusinessCertificate, Category, ProductCategory, Role, Designation
 from api.seed_data import RoleSeedData, CategorySeedData
@@ -11,7 +12,9 @@ from flask_jwt_extended import jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
 import cloudinary.uploader
 
-api = Blueprint('api', __name__)
+
+
+api = Blueprint('api', __name__) 
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -134,13 +137,27 @@ def handle_products():
 def handle_search():
     # here we want to get the value of user (i.e. ?user=some-value)
     categoryId = request.args.get('categoryId')
-    search_text = request.args.get('name')
+    search_text = request.args.get('search_text')
     products = Product.query.join(ProductCategory).join(Category).filter(ProductCategory.category_id == categoryId, Product.product_name.like(f'%{search_text}%') ).all()
     all_products = list(map(lambda product: product.serialize(), products))
 
     if not all_products: 
         return jsonify ("product not found"), 404
     return jsonify(all_products), 200
+
+
+@api.route('/search', methods=['GET'])
+def handle_main_search():
+    # here we want to get the value of user (i.e. ?user=some-value)    
+    search_text = request.args.get('search_text')
+    products = Product.query.filter(Product.product_name.like(f'%{search_text}%')).all()
+    all_products = list(map(lambda product: product.serialize(), products))
+
+    if not all_products: 
+        return jsonify ("product not found"), 404
+    return jsonify(all_products), 200
+
+
 
 @api.route('/products/category/<int:id>', methods=['GET'])
 def handle_productCategory(id):
@@ -315,3 +332,5 @@ def post_categories():
 
 def current_user(identity):
   return User.query.filter_by(email=identity['email']).one_or_none()
+
+

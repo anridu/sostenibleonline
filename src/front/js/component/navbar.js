@@ -38,10 +38,16 @@ export const TopNav = () => {
 					<Link to="/registro">
 						<button className="btn btn-success mr-3">Registro</button>
 					</Link>
-					<Form inline>
-						<FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" />
+					<Link to="/busqueda">
+						<button className="btn btn-secondary mr-3">
+							<i className="fas fa-search"></i> Buscar
+						</button>
+					</Link>
+
+					{/* <Form inline>
+					 <FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" /> 
 						<Button variant="outline-success">Buscar</Button>
-					</Form>
+					</Form> */}
 				</div>
 			</Navbar.Collapse>
 		</Navbar>
