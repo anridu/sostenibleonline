@@ -1,72 +1,120 @@
-import React from "react";
-
-//include images into your bundle
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { apiBaseURL } from "../constants";
+import PropTypes from "prop-types";
 import marca from "../../img/ropa.jpg";
+import "../../styles/index.scss";
+import Button from "react-bootstrap/Button";
+import { Form, Col, Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 //create your first component
-export function Product() {
+export const Product = () => {
+	const { store, actions } = useContext(Context);
+	const [details, setDetails] = useState();
+	const params = useParams();
+	const history = useHistory();
+	const [size, setSize] = useState("");
+	const [quantity, setQuantity] = useState("1");
+
+	// const { product_name, description, price, imageUrl } = data.data;
+
+	const addProduct = event => {
+		event.preventDefault();
+		const product = { ...details, size, quantity };
+		if (product.size !== "" && product.size !== "-") {
+			actions.addProductToShoppingCard(product);
+		} else {
+			alert("Debes seleccionar una talla");
+		}
+	};
+
+	const checkout = event => {
+		event.preventDefault();
+		history.push("/cesta");
+	};
+
+	useEffect(() => {
+		fetch(`${apiBaseURL}/api/products/${params.id}`)
+			.then(resp => resp.json())
+			.then(data => {
+				setDetails(data);
+			});
+	}, []);
+
 	return (
 		<div>
-			<div>
-				<div className="card mb-3">
-					<div className="row g-0">
-						<div className="col-md-4">
-							<img src={marca} className="img-thumbnail" />{" "}
-						</div>
-						<div className="col-md-8">
-							<div className="card-body">
-								<h5 className="card-title">Título del producto</h5>
-								<h5 className="card-title">Precio</h5>
+			<div className="card mb-3">
+				<div className="row g-0">
+					<div className="col-md-4">
+						{<img className="img-fluid" src={details ? details.imageUrl : "loading"} />}
+					</div>
+					<div className="col-md-8">
+						<div className="card-body">
+							<h5 className="card-title display-3 py-3">{details ? details.product_name : "loading"}</h5>
+							<h5 className="card-title mt-4 mb-2">
+								Precio: <b>{details ? details.price + " " : "loading"}</b> €
+							</h5>
 
-								<div className="dropdown">
-									<button
-										className="btn btn-secondary dropdown-toggle"
-										type="button"
-										id="dropdownMenuButton"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
-										Elige tu talla
-									</button>
-									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a className="dropdown-item" href="#">
-											s
-										</a>
-										<a className="dropdown-item" href="#">
-											M
-										</a>
-										<a className="dropdown-item" href="#">
-											L
-										</a>
-										<a className="dropdown-item" href="#">
-											XL
-										</a>
-									</div>
-								</div>
-								<br />
-								<div className="dropdown">
-									<button
-										className="btn btn-secondary dropdown-toggle"
-										type="button"
-										id="dropdownMenuButton"
-										data-toggle="dropdown"
-										aria-haspopup="true"
-										aria-expanded="false">
-										Cantidad
-									</button>
-									<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a className="dropdown-item" href="#">
-											1
-										</a>
-										<a className="dropdown-item" href="#">
-											2
-										</a>
-										<a className="dropdown-item" href="#">
-											3
-										</a>
-										<a className="dropdown-item" href="#">
-											Para mas cantidad contacta con nosotros
-										</a>
+							<Form className="mt-3" onSubmit={addProduct}>
+								<Form.Row>
+									<Form.Group as={Col}>
+										<Form.Label>Talla:</Form.Label>
+										<Form.Control
+											as="select"
+											defaultValue="Elige..."
+											onChange={event => setSize(event.target.value)}
+											required>
+											<option>-</option>
+											<option>XS</option>
+											<option>S</option>
+											<option>M</option>
+											<option>L</option>
+											<option>XL</option>
+										</Form.Control>
+									</Form.Group>
+								</Form.Row>
+								<Form.Row>
+									<Form.Group as={Col} controlId="exampleForm.ControlSelect1">
+										<Form.Label>Cantidad</Form.Label>
+										<Form.Control
+											as="select"
+											defaultValue="1"
+											onChange={event => setQuantity(event.target.value)}
+											required>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option disabled>Para más cantidad contacta con nosotros</option>
+										</Form.Control>
+									</Form.Group>
+								</Form.Row>
+								<Button type="submit" className="btn btn-dark btn-lg">
+									Añadir al carrito de la compra
+								</Button>
+							</Form>
+
+							<Button className="btn btn-light btn-lg mt-3" onClick={checkout}>
+								Tramitar el pedido
+							</Button>
+
+							<div className="row  mt-3">
+								<div className="col-md-8">
+									<div className="card text-center border-info">
+										<div className="card-header">
+											<ul className="nav nav-tabs card-header-tabs">
+												<li className="nav-item">
+													<a className="nav-link" href="#">
+														Descripción
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div className="card-body">
+											<p className="card-text">{details ? details.description : "loading"}</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -74,35 +122,10 @@ export function Product() {
 					</div>
 				</div>
 			</div>
-
-			<div className="row justify-content-center mt-3">
-				<div className="col-md-8">
-					<div className="card text-center border-info">
-						<div className="card-header">
-							<ul className="nav nav-tabs card-header-tabs">
-								<li className="nav-item">
-									<a className="nav-link" href="#">
-										Descripción
-									</a>
-								</li>
-								<li className="nav-item">
-									<a className="nav-link" href="#">
-										Información adicional
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div className="card-body">
-							<h4 className="card-title">Titulo de la tarjeta</h4>
-							<p className="card-text">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus sem, tempor vitae
-								mattis malesuada, ornare sed erat. Pellentesque nulla dui, congue nec tortor sit amet,
-								maximus mattis dui.{" "}
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
-}
+};
+
+Product.propTypes = {
+	data: PropTypes.object
+};

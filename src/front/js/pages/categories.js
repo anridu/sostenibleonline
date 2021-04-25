@@ -6,7 +6,7 @@ import CardColumns from "react-bootstrap/CardColumns";
 import Form from "react-bootstrap/Form";
 import Badge from "react-bootstrap/Badge";
 
-import { CardCategory } from "../component/cardCategory";
+import { ProductCard } from "../component/productcard";
 
 export const Categories = () => {
 	return (
@@ -30,23 +30,9 @@ export const Categories = () => {
 					</div>
 				</div>
 				<CardDeck>
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
+					<ProductCard />
 				</CardDeck>
-				<CardDeck>
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-				</CardDeck>
-				<CardDeck>
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-					<CardCategory />
-				</CardDeck>
+
 				<Button className="float-right" variant="secondary">
 					<h5>Cargar mas categorías</h5>
 				</Button>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Team from "../../img/team.jpg";
+import Team from "../../img/team.png";
 import Sonia from "../../img/Sonia.jpg";
 import Angel from "../../img/angel.png";
 import Samuel from "../../img/Samuel.jpg";
@@ -12,10 +12,10 @@ export const About = () => {
 
 	return (
 		<div className="container">
-			<h1 className="display-4 py-5 text-center">Sobre nosotros</h1>
+			<h1 className="display-4 py-4 text-center">Sobre nosotros</h1>
 			<div className="container">
 				<div className="row">
-					<div className="col-md-6">
+					<div className="col-md-6 py-3">
 						<h3>Nuestro proyecto</h3>
 						<p>
 							SostenibleOnline ofrece una oportunidad única a negocios locales. Tiendas y pequeños
@@ -34,12 +34,12 @@ export const About = () => {
 							productos sostenibles.
 						</p>
 					</div>
-					<div className="col-md-6">
+					<div className="col-md-6 py-3">
 						<img src={Team} className="img-fluid" />
 					</div>
 				</div>
 			</div>
-			<div className="container p-3">
+			<div className="container py-3 mt-5">
 				<div className="row">
 					<div className="col">
 						<h3>Nuestro equipo</h3>
@@ -132,7 +132,7 @@ export const About = () => {
 					</div>
 				</div>
 			</div>
-			<div className="container p-3">
+			<div className="container p-3 py-5">
 				<div className="row">
 					<div className="col-md-6">
 						<img src={nosotros} className="img-fluid" />
