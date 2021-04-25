@@ -48,7 +48,6 @@ export const TopNav = () => {
 					</Nav.Link>
 					<Nav.Link>
 						<Link to="/cesta" className="text-secondary text-decoration-none">
-							Sobre Nosotros
 							<i className="fas fa-shopping-cart" />{" "}
 							<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
 						</Link>
