@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { apiBaseURL } from "../constants";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Col, Row, Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 export const SignUp = () => {
 	const history = useHistory();
@@ -53,57 +55,55 @@ export const SignUp = () => {
 				<h1 className="display-4">Registro de usuarios</h1>
 			</div>
 
-			<div className="row mb-3">
-				<div className="col">
-					<label htmlFor="Marca">Nombre</label>
-					<input
-						onChange={event => setName(event.target.value)}
-						type="text"
-						className="form-control"
-						placeholder="Elon"
-					/>
-				</div>
-				<div className="col">
-					<label htmlFor="web">Apellidos</label>
-					<input
-						onChange={event => setLastName(event.target.value)}
-						type="text"
-						className="form-control"
-						placeholder="Musk"
-					/>
-				</div>
-			</div>
-
-			<div className="row mb-3">
-				<div className="col">
-					<label htmlFor="email">Correo electrónico</label>
-					<input
-						onChange={event => setEmail(event.target.value)}
-						type="email"
-						className="form-control"
-						placeholder="xxx@xxxx.com"
-					/>
-				</div>
-				<div className="col">
-					<label htmlFor="Marca">Contraseña</label>
-					<input
-						onChange={event => setPassword(event.target.value)}
-						type="password"
-						className="form-control"
-						placeholder="*******"
-					/>
-				</div>
-			</div>
-
-			<div className="row mb-3">
-				<div className="col-md-6">
-					<div className="form-group ml-3">
-						<button onClick={event => handleClick(event)} className="btn btn-primary">
-							Registro
-						</button>
-					</div>
-				</div>
-			</div>
+			<Form>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Nombre</Form.Label>
+						<Form.Control
+							type="text"
+							className="form-control"
+							placeholder="Elon"
+							onChange={event => setName(event.target.value)}
+							required
+						/>
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Apellidos</Form.Label>
+						<Form.Control
+							type="text"
+							className="form-control"
+							placeholder="Musk"
+							onChange={event => setLastName(event.target.value)}
+							required
+						/>
+					</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col}>
+						<Form.Label>Correo Electrónico</Form.Label>
+						<Form.Control
+							type="email"
+							className="form-control"
+							placeholder="Email"
+							onChange={event => setEmail(event.target.value)}
+							required
+						/>
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Contraseña</Form.Label>
+						<Form.Control
+							type="password"
+							className="form-control"
+							placeholder="******"
+							onChange={event => setPassword(event.target.value)}
+							required
+						/>
+					</Form.Group>
+				</Form.Row>
+				<Button onClick={event => handleClick(event)} className="btn btn-success btn-lg mt-3">
+					Registro
+				</Button>
+			</Form>
 		</div>
 	);
 };

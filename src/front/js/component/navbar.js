@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import logo from "../../img/logo.png";
 import { Navbar, Nav, Button, Form, FormControl, Badge, FromCheck, Col, Row, NavDropdown } from "react-bootstrap";
 
 export const TopNav = () => {
+	const { store, actions } = useContext(Context);
 	return (
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand href="/" className="brand-name mr-4">
-				<img src={logo} className="logo" />
-				SostenibleOnline
-			</Navbar.Brand>
+			<Link to="/">
+				<Navbar.Brand className="brand-name mr-4">
+					<img src={logo} className="logo" />
+					SostenibleOnline
+				</Navbar.Brand>
+			</Link>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
@@ -18,10 +22,13 @@ export const TopNav = () => {
 						<NavDropdown.Item href="/ropa-hombre">Hombre</NavDropdown.Item>
 						<NavDropdown.Item href="/ropa-mujer">Mujer</NavDropdown.Item>
 						<NavDropdown.Item href="/ropa-unisex">Unisex</NavDropdown.Item>
+						<NavDropdown.Item href="/productos">Todos los productos</NavDropdown.Item>
 					</NavDropdown>
+
 					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
-					<Nav.Link href="/compra">
-						<i className="fas fa-shopping-cart" />
+					<Nav.Link href="/cesta">
+						<i className="fas fa-shopping-cart" />{" "}
+						<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
 					</Nav.Link>
 				</Nav>
 				<div className="d-flex justify-content-between">
@@ -31,10 +38,16 @@ export const TopNav = () => {
 					<Link to="/registro">
 						<button className="btn btn-success mr-3">Registro</button>
 					</Link>
-					<Form inline>
-						<FormControl style={{ width: "60vh" }} type="text" placeholder="Búsqueda" className="mr-sm-2" />
+					<Link to="/busqueda">
+						<button className="btn btn-secondary mr-3">
+							<i className="fas fa-search"></i> Buscar
+						</button>
+					</Link>
+
+					{/* <Form inline>
+					 <FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" /> 
 						<Button variant="outline-success">Buscar</Button>
-					</Form>
+					</Form> */}
 				</div>
 			</Navbar.Collapse>
 		</Navbar>

@@ -22,6 +22,13 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
+			let shoppingCart = JSON.parse(localStorage.getItem("product"));
+
+			if (shoppingCart !== undefined && shoppingCart !== null) {
+				state.actions.updateShoppingCart(shoppingCart);
+			}
+			console.log(state.store.itemsShoppingCard, typeof shoppingCart);
+
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
