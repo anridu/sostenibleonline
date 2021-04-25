@@ -56,12 +56,12 @@ export const BusinessProfile2 = () => {
 			</div>
 			<div className="row">
 				<div className="col text-center mb-3">
-					<a href="/subir-producto" className=" my-4 btn btn-lg btn-outline-success text-center mb-5 mr-3">
+					<Link to="/subir-producto" className=" my-4 btn btn-lg btn-outline-success text-center mb-5 mr-3">
 						<i className="fas fa-upload" /> Subir un producto
-					</a>
-					<a href="/" className=" my-4 btn btn-lg btn-outline-secondary text-center mb-5">
+					</Link>
+					<Link to="/" className=" my-4 btn btn-lg btn-outline-secondary text-center mb-5">
 						<i className="fas fa-home" /> Ir a la página de inicio
-					</a>
+					</Link>
 				</div>
 			</div>
 			<div className="row">

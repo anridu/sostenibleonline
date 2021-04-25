@@ -17,9 +17,9 @@ export const Registro = () => {
 						a los negocios locales y a las personas, cuidando de mi planeta y su salud ambiental, siendo
 						respetuoso con todxs formando parte del cambio.
 					</p>
-					<a href="/sign-up" className="btn btn-outline-success btn-block mt-3">
+					<Link to="/sign-up" className="btn btn-outline-success btn-block mt-3">
 						Quiero registrarme como usuario
-					</a>
+					</Link>
 				</div>
 				<div className="col-md-6 py-4">
 					<h3 className="text-center">Empresa sostenible</h3>
@@ -29,9 +29,9 @@ export const Registro = () => {
 						clientes que se preocupan por la sostenibilidad y el medioambiente. Quiero que mi negocio crezca
 						trabajando con los mejores sellos de garantía sostenible.
 					</p>
-					<a href="/registro-marca" className="btn btn-outline-secondary btn-block mt-3 align-center">
+					<Link to="/registro-marca" className="btn btn-outline-secondary btn-block mt-3 align-center">
 						Quiero formar parte de SostenibleOnline
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>

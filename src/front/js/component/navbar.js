@@ -19,16 +19,39 @@ export const TopNav = () => {
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="mr-auto">
 					<NavDropdown title="Categorías" id="basic-nav-dropdown">
-						<NavDropdown.Item href="/ropa-hombre">Hombre</NavDropdown.Item>
-						<NavDropdown.Item href="/ropa-mujer">Mujer</NavDropdown.Item>
-						<NavDropdown.Item href="/ropa-unisex">Unisex</NavDropdown.Item>
-						<NavDropdown.Item href="/productos">Todos los productos</NavDropdown.Item>
+						<NavDropdown.Item>
+							<Link to="/ropa-hombre" className="text-secondary text-decoration-none">
+								Hombre
+							</Link>
+						</NavDropdown.Item>
+						<NavDropdown.Item>
+							<Link to="/ropa-mujer" className="text-secondary text-decoration-none">
+								Mujer
+							</Link>
+						</NavDropdown.Item>
+						<NavDropdown.Item>
+							<Link to="/ropa-unisex" className="text-secondary text-decoration-none">
+								Unisex
+							</Link>
+						</NavDropdown.Item>
+						<NavDropdown.Item>
+							<Link to="/productos" className="text-secondary text-decoration-none">
+								Todos los productos
+							</Link>
+						</NavDropdown.Item>
 					</NavDropdown>
 
-					<Nav.Link href="/about">Sobre Nosotros</Nav.Link>
-					<Nav.Link href="/cesta">
-						<i className="fas fa-shopping-cart" />{" "}
-						<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
+					<Nav.Link>
+						<Link to="/about" className="text-secondary text-decoration-none">
+							Sobre Nosotros
+						</Link>
+					</Nav.Link>
+					<Nav.Link>
+						<Link to="/cesta" className="text-secondary text-decoration-none">
+							Sobre Nosotros
+							<i className="fas fa-shopping-cart" />{" "}
+							<span className="badge badge-pill badge-success">{store.itemsShoppingCard.length}</span>
+						</Link>
 					</Nav.Link>
 				</Nav>
 				<div className="d-flex justify-content-between">
@@ -43,11 +66,6 @@ export const TopNav = () => {
 							<i className="fas fa-search"></i> Buscar
 						</button>
 					</Link>
-
-					{/* <Form inline>
-					 <FormControl type="text" placeholder="Búsqueda" className="mr-sm-2" /> 
-						<Button variant="outline-success">Buscar</Button>
-					</Form> */}
 				</div>
 			</Navbar.Collapse>
 		</Navbar>

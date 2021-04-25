@@ -46,9 +46,9 @@ export const Product = () => {
 	return (
 		<div>
 			<div className="card mb-3">
-				<div className="row g-0">
+				<div className="row g-0 m-4">
 					<div className="col-md-4">
-						{<img className="img-fluid" src={details ? details.imageUrl : "loading"} />}
+						{<img className="img-fluid mx-auto d-block" src={details ? details.imageUrl : "loading"} />}
 					</div>
 					<div className="col-md-8">
 						<div className="card-body">
@@ -106,9 +106,7 @@ export const Product = () => {
 										<div className="card-header">
 											<ul className="nav nav-tabs card-header-tabs">
 												<li className="nav-item">
-													<a className="nav-link" href="#">
-														Descripción
-													</a>
+													<a className="nav-link">Descripción</a>
 												</li>
 											</ul>
 										</div>

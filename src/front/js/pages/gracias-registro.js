@@ -18,9 +18,9 @@ export const Gracias = () => {
 							futuro mejor para el planeta y para quienes lo habitan. Gracias por confiar en nosotros y
 							nuestra causa.
 						</p>
-						<a href="/" className=" my-5 btn btn-lg btn-success btn-block align-center">
+						<Link to="/" className=" my-5 btn btn-lg btn-success btn-block align-center">
 							<i className="fas fa-shopping-basket" /> Seguir comprando
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

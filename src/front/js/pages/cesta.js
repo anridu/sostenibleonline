@@ -3,6 +3,7 @@ import { apiBaseURL } from "../constants";
 import { Context } from "../store/appContext";
 import { ProductShoppingList } from "../component/productShoppingList";
 import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const Cesta = () => {
 	const { store, actions } = useContext(Context);
@@ -36,9 +37,9 @@ export const Cesta = () => {
 			</div>
 			<div className="row">
 				<div className="col">
-					<a href="/compra" className=" my-3 btn btn-lg btn-success btn-block align-center">
+					<Link to="/compra" className=" my-3 btn btn-lg btn-success btn-block align-center">
 						<i className="fas fa-shopping-basket" /> Realizar pedido
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>

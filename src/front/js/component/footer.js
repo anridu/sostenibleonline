@@ -15,13 +15,13 @@ export const _Footer = () => (
 					<h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Tienda</h5>
 					<ul className="list-unstyled">
 						<li>
-							<a href="/ropa-hombre">Hombre</a>
+							<Link to="/ropa-hombre">Hombre</Link>
 						</li>
 						<li>
-							<a href="/ropa-mujer">Mujer</a>
+							<Link to="/ropa-mujer">Mujer</Link>
 						</li>
 						<li>
-							<a href="/ropa-unisex">Unisex</a>
+							<Link to="/ropa-unisex">Unisex</Link>
 						</li>
 					</ul>
 				</Col>
@@ -30,16 +30,16 @@ export const _Footer = () => (
 					<h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Información</h5>
 					<ul className="list-unstyled">
 						<li>
-							<a href="#!" />
+							<Link to="#!" />
 						</li>
 						<li>
-							<a href="mailto:info@sostenibleonline.com">Contacta con nosotros</a>
+							<Link to="mailto:info@sostenibleonline.com">Contacta con nosotros</Link>
 						</li>
 						<li>
-							<a href="#!">Donde estamos</a>
+							<Link to="#!">Donde estamos</Link>
 						</li>
 						<li>
-							<a href="#!">Ayuda</a>
+							<Link to="#!">Ayuda</Link>
 						</li>
 					</ul>
 				</Col>
@@ -48,10 +48,10 @@ export const _Footer = () => (
 					<h5 className="text-uppercase mb-4 mt-3 font-weight-bold">Además</h5>
 					<ul className="list-unstyled">
 						<li>
-							<a href="#!">Certificados </a>
+							<Link to="#!">Certificados </Link>
 						</li>
 						<li>
-							<a href="#!">Colabora con nosotros</a>
+							<Link to="#!">Colabora con nosotros</Link>
 						</li>
 					</ul>
 				</Col>

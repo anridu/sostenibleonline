@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import unisex from "../../img/slide-unisex.jpg";
 import ropaMujer from "../../img/slide-mujer.jpg";
@@ -16,9 +17,9 @@ export const Slideshow = () => {
 				<Carousel.Caption>
 					<h3 className="display-4">Para todxs</h3>
 					<p className="lead">Te presentamos nuestra colección de ropa unisex sostenible.</p>
-					<a href="/ropa-unisex">
+					<Link to="/ropa-unisex">
 						<button className="btn btn-success">Ver colección</button>
-					</a>
+					</Link>
 				</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
@@ -30,9 +31,9 @@ export const Slideshow = () => {
 						Descubre nuestra colección de ropa de mujer. Marcas de calidad y con un compromiso con la
 						sostenibilidad.
 					</p>
-					<a href="/ropa-mujer">
+					<Link to="/ropa-mujer">
 						<button className="btn btn-success">Ver colección</button>
-					</a>
+					</Link>
 				</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
@@ -40,9 +41,9 @@ export const Slideshow = () => {
 				<Carousel.Caption>
 					<h3 className="display-4">Hombre</h3>
 					<p className="lead">Ropa diseñada para ir a la última y respetar el planeta al mismo tiempo.</p>
-					<a href="/ropa-hombre">
+					<Link to="/ropa-hombre">
 						<button className="btn btn-success">Ver colección</button>
-					</a>
+					</Link>
 				</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
@@ -52,9 +53,9 @@ export const Slideshow = () => {
 					<p className="lead">
 						Estamos comprometidos con la sostenibilidad a todos sus niveles: ecológico, económico y social.
 					</p>
-					<a href="/about">
+					<Link to="/about">
 						<button className="btn btn-secondary">Leer más</button>
-					</a>
+					</Link>
 				</Carousel.Caption>
 			</Carousel.Item>
 		</Carousel>
